@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17181b">
+  <meta name="description" content="Un annuaire mariage sourcé pour Lille Métropole, les Flandres et la frontière France–Belgique. Les fiches sont ajoutées au fil des vérifications, sans prétendre à l’exhaustivité.">
+  <title>Mon Mariage Idéal — Annuaire mariage Lille, Flandres &amp; Belgique</title>
+  <style>
+    :root{
+      color-scheme:light;
+      --ink:#1d1d1f;
+      --ink-soft:#424248;
+      --muted:#6e6e73;
+      --blue:#0066cc;
+      --blue-hover:#0077ed;
+      --blue-soft:#eaf3ff;
+      --paper:#f5f5f7;
+      --white:#fff;
+      --line:#d2d2d7;
+      --line-soft:#e8e8ed;
+      --green:#28784b;
+      --green-soft:#e9f5ec;
+      --shadow:0 18px 54px rgba(0,0,0,.09);
+      --radius:24px;
+      --container:min(1220px,calc(100% - 56px));
+      --system:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--white);color:var(--ink);font-family:var(--system);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    body.dialog-open{overflow:hidden}
+    button,input,select{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{color:inherit}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    ::selection{background:#cfe3ff;color:var(--ink)}
+    :focus-visible{outline:3px solid rgba(0,102,204,.62);outline-offset:3px}
+    .container{width:var(--container);max-width:1220px;margin:0 auto}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .section{padding:104px 0}
+    .section--soft{background:var(--paper)}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0;color:var(--blue);font-size:.73rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
+    .section-heading h2{max-width:720px;margin:12px 0 0;font-size:clamp(2.15rem,4.4vw,3.65rem);font-weight:650;line-height:1.02;letter-spacing:-.06em}
+    .section-heading h2 em{font-style:normal;color:var(--muted);font-weight:500}
+    .section-heading p{max-width:410px;margin:0;color:var(--muted);font-size:.96rem;line-height:1.6}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 19px;border:1px solid transparent;border-radius:999px;background:var(--blue);color:#fff;cursor:pointer;font-size:.9rem;font-weight:600;transition:background .2s,transform .2s,box-shadow .2s}
+    .btn:hover{background:var(--blue-hover);box-shadow:0 6px 20px rgba(0,102,204,.19);transform:translateY(-1px)}
+    .btn--quiet{background:var(--white);border-color:var(--line);color:var(--ink)}
+    .btn--quiet:hover{background:#f0f0f2;border-color:#c5c5ca;box-shadow:none}
+    .btn--small{min-height:38px;padding:0 14px;font-size:.82rem}
+    .text-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:600}
+    .text-link:hover{text-decoration:underline;text-underline-offset:3px}
+    .subtle-note{color:var(--muted);font-size:.82rem}
+
+    /* Navigation */
+    .site-header{position:fixed;z-index:50;inset:0 0 auto;height:72px;border-bottom:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(8,10,12,.36),transparent);color:#fff;backdrop-filter:saturate(150%) blur(8px);transition:background .25s,border-color .25s,box-shadow .25s}
+    .site-header.is-scrolled{border-color:rgba(210,210,215,.76);background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 1px 12px rgba(0,0,0,.06);backdrop-filter:saturate(180%) blur(18px)}
+    .header-inner{width:var(--container);max-width:1320px;height:100%;margin:auto;display:flex;align-items:center;gap:28px}
+    .brand{display:inline-flex;align-items:center;gap:10px;flex:0 0 auto}
+    .brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--ink);color:#fff;font-size:.92rem;font-weight:700;letter-spacing:-.08em}
+    .brand-copy{display:flex;flex-direction:column;line-height:1.05}
+    .brand-copy strong{font-size:.9rem;letter-spacing:-.035em}
+    .brand-copy small{margin-top:5px;color:var(--muted);font-size:.63rem;letter-spacing:.04em}
+    .site-header:not(.is-scrolled) .brand-mark{border:1px solid rgba(255,255,255,.62);background:rgba(255,255,255,.13);color:#fff}
+    .site-header:not(.is-scrolled) .brand-copy strong,.site-header:not(.is-scrolled) .brand-copy small{color:#fff}
+    .main-nav{display:flex;align-items:center;gap:clamp(16px,2vw,27px);margin-left:auto}
+    .main-nav a{color:#515158;font-size:.81rem;font-weight:500;white-space:nowrap;transition:color .2s}
+    .site-header:not(.is-scrolled) .main-nav a{color:rgba(255,255,255,.92)}
+    .main-nav a:hover{color:var(--blue)}
+    .site-header:not(.is-scrolled) .main-nav a:hover{color:#fff;opacity:.76}
+    .header-actions{display:flex;align-items:center;gap:10px}
+    .favorite-jump{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap}
+    .favorite-jump:hover{background:var(--paper)}
+    .site-header:not(.is-scrolled) .favorite-jump{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.1);color:#fff}
+    .site-header:not(.is-scrolled) .favorite-jump:hover{background:rgba(255,255,255,.19)}
+    .favorite-jump svg{width:16px;height:16px;color:#bf3f55}
+    .favorite-count{min-width:19px;height:19px;display:grid;place-items:center;padding:0 4px;border-radius:999px;background:#fcecef;color:#9f2940;font-size:.68rem}
+    .menu-toggle{display:none;width:40px;height:40px;padding:10px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer}
+    .menu-toggle span{display:block;width:17px;height:1.5px;margin:4px auto;background:var(--ink);transition:transform .2s}
+    .site-header:not(.is-scrolled) .menu-toggle{border-color:rgba(255,255,255,.6)}
+    .site-header:not(.is-scrolled) .menu-toggle span{background:#fff}
+
+    /* Immersive, source-credited hero */
+    .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#17181b;color:#fff;padding:106px 0 82px;isolation:isolate}
+    .hero-backdrop{position:absolute;z-index:-2;inset:0;margin:0;overflow:hidden;background:#17181b}
+    .hero-backdrop img{width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.88);transform:scale(1.015)}
+    .hero-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,11,13,.82) 0%,rgba(9,11,13,.63) 39%,rgba(9,11,13,.23) 72%,rgba(9,11,13,.18) 100%),linear-gradient(0deg,rgba(9,11,13,.72) 0%,transparent 43%,rgba(9,11,13,.36) 100%)}
+    .hero-inner{position:relative;z-index:1;width:var(--container);max-width:1320px;min-height:calc(100svh - 188px);margin:auto;display:flex;align-items:center}
+    .hero-copy{max-width:990px;padding:35px 0 44px}
+    .hero-copy .eyebrow{margin-bottom:23px;color:#f2d79c}
+    .hero h1{max-width:1000px;margin:0;font-size:clamp(4.35rem,10.3vw,9.7rem);font-weight:680;line-height:.89;letter-spacing:-.085em;text-wrap:balance;text-shadow:0 4px 30px rgba(0,0,0,.2)}
+    .hero h1 span{display:block;color:#fff;font-weight:560}
+    .hero-lead{max-width:680px;margin:27px 0 0;color:rgba(255,255,255,.9);font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.65;text-shadow:0 2px 12px rgba(0,0,0,.28)}
+    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:30px}
+    .hero .btn{background:#fff;color:#17181b;border-color:#fff}
+    .hero .btn:hover{background:#e9e9ed;border-color:#e9e9ed;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    .hero .btn--quiet{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.1);color:#fff;backdrop-filter:blur(12px)}
+    .hero .btn--quiet:hover{border-color:rgba(255,255,255,.85);background:rgba(255,255,255,.2);color:#fff}
+    .hero-facts{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:28px;color:rgba(255,255,255,.77);font-size:.77rem}
+    .hero-facts strong{color:#fff;font-weight:650}
+    .hero-facts .dot{color:rgba(255,255,255,.5)}
+    .hero-caption{position:absolute;z-index:1;right:max(28px,calc((100vw - 1320px)/2));bottom:22px;display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.8);font-size:.69rem;text-shadow:0 1px 5px rgba(0,0,0,.55)}
+    .hero-caption a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+    .hero-caption a:hover{opacity:.8}
+    .hero-region-mark{position:absolute;z-index:1;right:max(28px,calc((100vw - 1320px)/2));top:50%;writing-mode:vertical-rl;transform:translateY(-30%);color:rgba(255,255,255,.7);font-size:.66rem;font-weight:650;letter-spacing:.15em;text-transform:uppercase}
+    .truth-strip{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:#fff}
+    .truth-strip-inner{width:var(--container);max-width:1220px;min-height:76px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:17px 0}
+    .truth-item{display:flex;align-items:center;gap:10px;color:#494950;font-size:.82rem}
+    .truth-icon{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:var(--green-soft);color:var(--green);font-size:.77rem;font-weight:700}
+    .truth-item strong{font-weight:650;color:var(--ink)}
+
+    /* Discovery */
+    .discover-section{padding-top:92px}
+    .directory-note{margin:-9px 0 22px;padding:15px 17px;border-left:3px solid #d7b978;border-radius:0 13px 13px 0;background:#faf8f2;color:#64615a;font-size:.83rem;line-height:1.55}
+    .directory-note strong{margin-right:5px;color:#292824;font-weight:650}
+    .search-panel{display:grid;grid-template-columns:minmax(240px,1fr) 225px auto;align-items:end;gap:13px;padding:17px;border:1px solid var(--line-soft);border-radius:20px;background:#fff;box-shadow:0 8px 32px rgba(0,0,0,.035)}
+    .field{display:flex;flex-direction:column;gap:7px;min-width:0}
+    .field label{color:#494950;font-size:.76rem;font-weight:600}
+    .search-box{position:relative}
+    .search-box svg{position:absolute;left:14px;top:50%;width:18px;height:18px;color:#8a8a91;transform:translateY(-50%);pointer-events:none}
+    .field input,.field select,.budget-total-input,.task-input{width:100%;min-height:45px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s}
+    .search-box input{padding-left:43px}
+    .field input:focus,.field select:focus,.budget-total-input:focus,.task-input:focus{border-color:#5aa2e8;box-shadow:0 0 0 4px rgba(0,102,204,.11)}
+    .filter-reset{min-height:45px;padding:0 13px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--blue);cursor:pointer;font-size:.85rem;font-weight:600;white-space:nowrap}
+    .filter-reset:hover{background:var(--blue-soft)}
+    .category-chips{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 21px}
+    .category-chip{min-height:36px;padding:0 14px;border:1px solid #d9d9de;border-radius:999px;background:#fff;color:#4b4b52;cursor:pointer;font-size:.78rem;font-weight:550;white-space:nowrap;transition:background .18s,border-color .18s,color .18s}
+    .category-chip:hover{border-color:#a7a7ae;color:var(--ink)}
+    .category-chip.is-active{border-color:var(--ink);background:var(--ink);color:#fff}
+    .results-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:13px 0 17px}
+    .results-count{margin:0;color:var(--muted);font-size:.84rem}
+    .results-count strong{color:var(--ink);font-weight:650}
+    .sort-wrap{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.76rem}
+    .sort-wrap select{min-height:35px;padding:0 11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink-soft);font-size:.8rem}
+    .provider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    .provider-card{min-width:0;overflow:hidden;border:1px solid var(--line-soft);border-radius:21px;background:#fff;transition:transform .22s,box-shadow .22s,border-color .22s}
+    .provider-card:hover{transform:translateY(-3px);border-color:#d0d0d6;box-shadow:0 14px 34px rgba(0,0,0,.075)}
+    .card-media{position:relative;height:224px;overflow:hidden;background:#e9e7e2}
+    .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.2,.65,.2,1)}
+    .provider-card:hover .card-media img{transform:scale(1.035)}
+    .card-media::after{content:"";position:absolute;inset:auto 0 0;height:52px;background:linear-gradient(0deg,rgba(0,0,0,.25),transparent);pointer-events:none}
+    .photo-source{position:absolute;z-index:2;bottom:10px;left:12px;padding:5px 8px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(20,20,22,.48);color:#fff;font-size:.64rem;backdrop-filter:blur(8px)}
+    .photo-source:hover{background:rgba(20,20,22,.78)}
+    .no-photo{height:100%;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 24% 18%,#dfeafa 0,#eef2f6 35%,#e7e7eb 100%);text-align:center}
+    .no-photo-mark{width:72px;height:72px;display:grid;place-items:center;border:1px solid rgba(29,29,31,.18);border-radius:24px;color:#33333a;font-size:1.28rem;font-weight:650;letter-spacing:-.06em}
+    .no-photo small{display:block;margin-top:12px;color:#63636b;font-size:.74rem}
+    .favorite-toggle{position:absolute;z-index:3;top:13px;right:13px;width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.76);border-radius:50%;background:rgba(255,255,255,.91);color:#54545b;cursor:pointer;box-shadow:0 2px 9px rgba(0,0,0,.08);transition:transform .18s,background .18s,color .18s}
+    .favorite-toggle:hover{transform:scale(1.06);color:#bc394f}
+    .favorite-toggle.is-favorite{background:#fff0f2;color:#c63850}
+    .favorite-toggle svg{width:18px;height:18px}
+    .card-content{padding:18px 19px 17px}
+    .card-categories{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+    .category-label{display:inline-flex;align-items:center;min-height:23px;padding:0 9px;border-radius:999px;background:var(--blue-soft);color:#075cac;font-size:.64rem;font-weight:700;letter-spacing:.025em}
+    .card-regions{display:flex;gap:5px;flex-wrap:wrap;margin:-2px 0 10px}
+    .region-label{display:inline-flex;align-items:center;min-height:21px;padding:0 8px;border:1px solid #e5e5e8;border-radius:999px;background:#f8f8f9;color:#5d5d65;font-size:.6rem;font-weight:600;letter-spacing:.015em}
+    .profile-categories .region-label{min-height:24px;font-size:.65rem}
+    .provider-card h3{margin:0;font-size:1.27rem;font-weight:650;letter-spacing:-.045em;line-height:1.18}
+    .card-location{display:flex;align-items:center;gap:6px;margin:8px 0 0;color:var(--muted);font-size:.78rem}
+    .card-location svg{width:14px;height:14px;flex:none;color:#8d8d95}
+    .card-summary{min-height:61px;margin:13px 0 0;color:#55555c;font-size:.85rem;line-height:1.52}
+    .card-price{margin:11px 0 0;padding:9px 10px;border-radius:11px;background:#f1f7ff;color:#174e84;font-size:.75rem;line-height:1.4}
+    .card-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid #eeeef1}
+    .card-open{display:inline-flex;align-items:center;gap:7px;padding:0;border:0;background:transparent;color:var(--blue);cursor:pointer;font-size:.83rem;font-weight:650}
+    .card-open:hover{text-decoration:underline;text-underline-offset:3px}
+    .card-site{color:#64646b;font-size:.77rem;font-weight:550;white-space:nowrap}
+    .card-site:hover{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+    .empty-state{grid-column:1/-1;padding:64px 22px;border:1px dashed var(--line);border-radius:20px;background:#fafafd;text-align:center}
+    .empty-state h3{margin:0 0 8px;font-size:1.35rem;letter-spacing:-.04em}
+    .empty-state p{margin:0;color:var(--muted)}
+
+    /* Categories */
+    .category-overview{background:var(--paper)}
+    .category-overview .section-heading{margin-bottom:27px}
+    .category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .category-tile{min-height:112px;display:flex;align-items:center;gap:15px;padding:18px;border:1px solid #e2e2e7;border-radius:18px;background:#fff;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
+    .category-tile:hover{transform:translateY(-2px);border-color:#b8d6f5;box-shadow:0 9px 24px rgba(0,0,0,.05)}
+    .category-index{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:14px;background:#f0f0f3;color:#55555b;font-size:.72rem;font-weight:700}
+    .category-tile-copy{min-width:0;display:flex;flex-direction:column;gap:5px}
+    .category-tile-copy strong{font-size:.9rem;font-weight:650;letter-spacing:-.02em}
+    .category-tile-copy small{color:var(--muted);font-size:.74rem}
+    .category-tile-arrow{margin-left:auto;color:var(--blue);font-size:1.05rem;opacity:.8}
+
+    /* Inspiration from portfolios */
+    .inspiration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
+    .inspiration-card{overflow:hidden;border:1px solid var(--line-soft);border-radius:21px;background:#fff}
+    .inspiration-photo{position:relative;height:275px;overflow:hidden;background:#e6e5e1}
+    .inspiration-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
+    .inspiration-card:hover img{transform:scale(1.04)}
+    .inspiration-photo .photo-source{bottom:12px}
+    .inspiration-copy{padding:17px 19px 19px}
+    .inspiration-copy small{color:var(--blue);font-size:.69rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+    .inspiration-copy h3{margin:7px 0 13px;font-size:1.15rem;font-weight:650;letter-spacing:-.035em}
+    .inspiration-copy .text-link{font-size:.82rem}
+    .portfolio-note{margin:22px 0 0;padding:13px 16px;border-radius:13px;background:var(--paper);color:#5c5c63;font-size:.79rem;line-height:1.55}
+
+    /* Personal tools */
+    .tools-section{background:var(--paper)}
+    .tools-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+    .tool-card{min-width:0;padding:26px;border:1px solid #e3e3e8;border-radius:22px;background:#fff;box-shadow:0 5px 20px rgba(0,0,0,.025)}
+    .tool-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:20px}
+    .tool-card-head h3{margin:0;font-size:1.55rem;font-weight:650;letter-spacing:-.055em}
+    .tool-card-head p{max-width:450px;margin:6px 0 0;color:var(--muted);font-size:.83rem;line-height:1.5}
+    .tool-icon{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:15px;background:var(--blue-soft);color:var(--blue);font-weight:700}
+    .budget-total-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.55fr);align-items:end;gap:14px;padding:15px;border-radius:16px;background:#f6f8fb}
+    .budget-total-row label{display:block;margin-bottom:7px;color:#4c4c53;font-size:.75rem;font-weight:650}
+    .budget-total-input{min-height:42px}
+    .budget-summary{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
+    .budget-summary strong{font-size:1.27rem;letter-spacing:-.04em}
+    .budget-summary small{color:var(--muted);font-size:.71rem}
+    .budget-summary.is-over strong{color:#b42335}
+    .budget-hint{margin:10px 0 12px;color:var(--muted);font-size:.74rem}
+    .budget-lines{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
+    .budget-line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0f3}
+    .budget-line label{font-size:.75rem;color:#48484f}
+    .budget-line input{width:105px;min-height:34px;padding:0 9px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);text-align:right;font-size:.77rem}
+    .budget-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)}
+    .budget-footer strong{font-size:.87rem}
+    .budget-footer span{color:var(--muted);font-size:.74rem}
+    .tool-reset{padding:6px 0;border:0;background:transparent;color:var(--blue);cursor:pointer;font-size:.78rem;font-weight:600}
+    .tool-reset:hover{text-decoration:underline;text-underline-offset:3px}
+    .check-progress{display:flex;align-items:center;gap:11px;margin:2px 0 16px}
+    .progress-track{display:block;min-width:0;height:7px;flex:1;overflow:hidden;border:0;border-radius:999px;background:#e9e9ed;appearance:none;-webkit-appearance:none}
+    .progress-track::-webkit-progress-bar{border-radius:999px;background:#e9e9ed}
+    .progress-track::-webkit-progress-value{border-radius:999px;background:var(--blue);transition:width .25s}
+    .progress-track::-moz-progress-bar{border-radius:999px;background:var(--blue);transition:width .25s}
+    .progress-label{color:var(--muted);font-size:.75rem;white-space:nowrap}
+    .task-form{display:flex;gap:8px;margin-bottom:14px}
+    .task-input{min-height:41px;flex:1}
+    .task-add{width:42px;min-width:42px;height:42px;border:0;border-radius:13px;background:var(--blue);color:#fff;cursor:pointer;font-size:1.3rem;line-height:1}
+    .task-add:hover{background:var(--blue-hover)}
+    .task-list{display:flex;flex-direction:column;gap:1px;max-height:350px;overflow:auto;padding:0;margin:0;list-style:none}
+    .task-item{display:flex;align-items:center;gap:10px;min-height:41px;padding:7px 2px;border-bottom:1px solid #f0f0f3}
+    .task-item label{min-width:0;display:flex;align-items:center;gap:10px;flex:1;color:#45454c;font-size:.8rem;cursor:pointer}
+    .task-item input[type=checkbox]{width:17px;height:17px;flex:none;accent-color:var(--blue)}
+    .task-item.is-done label span{text-decoration:line-through;color:#898990}
+    .task-remove{width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:#8c8c92;cursor:pointer;font-size:1.1rem}
+    .task-remove:hover{background:#f3f3f5;color:#b42335}
+    .local-storage-note{margin:16px 0 0;color:#73737a;font-size:.72rem;line-height:1.5}
+
+    /* Favorites */
+    .favorites-section{min-height:220px}
+    .favorites-section .section-heading{margin-bottom:26px}
+    .favorite-empty{grid-column:1/-1;display:flex;align-items:center;gap:17px;padding:23px;border:1px dashed var(--line);border-radius:18px;background:#fafafd;color:var(--muted);font-size:.88rem}
+    .favorite-empty-mark{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:15px;background:#fcecef;color:#bc394f}
+    .favorite-empty-mark svg{width:19px;height:19px}
+
+    /* Transparency */
+    .transparency{padding:34px 0;background:#1d1d1f;color:#f5f5f7}
+    .transparency-inner{display:grid;grid-template-columns:1.2fr 2fr;gap:36px;align-items:center}
+    .transparency h2{margin:0;font-size:1.5rem;font-weight:600;letter-spacing:-.045em}
+    .transparency p{margin:7px 0 0;color:#b9b9c0;font-size:.8rem}
+    .transparency-points{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .transparency-point{color:#d0d0d6;font-size:.77rem;line-height:1.5}
+    .transparency-point strong{display:block;margin-bottom:4px;color:#fff;font-size:.79rem}
+
+    /* Footer */
+    .site-footer{padding:33px 0 28px;background:#1d1d1f;color:#b9b9c0;border-top:1px solid rgba(255,255,255,.12)}
+    .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;flex-wrap:wrap}
+    .footer-brand{color:#fff;font-size:.92rem;font-weight:650;letter-spacing:-.03em}
+    .footer-inner p{max-width:700px;margin:8px 0 0;font-size:.74rem;line-height:1.6}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;font-size:.77rem}
+    .footer-links a{color:#e2e2e7}
+    .footer-links a:hover{text-decoration:underline;text-underline-offset:3px}
+    .footer-bottom{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:23px;padding-top:16px;border-top:1px solid rgba(255,255,255,.13);font-size:.69rem;color:#92929a}
+
+    /* Profile dialog */
+    .provider-dialog{width:min(760px,calc(100% - 28px));max-width:760px;max-height:min(90vh,900px);padding:0;overflow:hidden;border:0;border-radius:26px;background:#fff;color:var(--ink);box-shadow:0 24px 100px rgba(0,0,0,.28)}
+    .provider-dialog::backdrop{background:rgba(12,12,14,.48);backdrop-filter:blur(5px)}
+    .dialog-panel{max-height:min(90vh,900px);overflow:auto}
+    .dialog-close{position:absolute;z-index:4;top:14px;right:14px;width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.72);border-radius:50%;background:rgba(255,255,255,.9);color:#252529;cursor:pointer;font-size:1.4rem;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.12)}
+    .dialog-close:hover{background:#fff}
+    .profile-media{position:relative;height:315px;overflow:hidden;background:#e5e5e8}
+    .profile-media img{width:100%;height:100%;object-fit:cover}
+    .profile-media .no-photo{height:100%}
+    .profile-content{padding:27px clamp(22px,5vw,42px) 34px}
+    .profile-categories{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
+    .profile-content h2{margin:0;font-size:clamp(1.8rem,4vw,2.55rem);font-weight:670;letter-spacing:-.06em;line-height:1.06}
+    .profile-location{display:flex;align-items:center;gap:7px;margin:11px 0 0;color:var(--muted);font-size:.86rem}
+    .profile-summary{margin:21px 0 0;color:#4b4b52;font-size:.97rem;line-height:1.7}
+    .source-status{display:inline-flex;align-items:center;gap:8px;margin:21px 0 0;padding:8px 11px;border-radius:999px;background:var(--green-soft);color:#21633d;font-size:.73rem;font-weight:600}
+    .source-status i{width:7px;height:7px;border-radius:50%;background:#279253}
+    .profile-facts-title{margin:24px 0 10px;font-size:.98rem;font-weight:650;letter-spacing:-.02em}
+    .profile-facts{display:grid;gap:8px;padding:0;margin:0;list-style:none}
+    .profile-facts li{position:relative;padding-left:19px;color:#45454c;font-size:.87rem;line-height:1.55}
+    .profile-facts li::before{content:"";position:absolute;left:1px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+    .profile-pricing{margin:19px 0 0;padding:13px 15px;border:1px solid #d9e9f9;border-radius:14px;background:#f1f7ff;color:#194d7d;font-size:.83rem;line-height:1.55}
+    .profile-pricing strong{display:block;margin-bottom:4px;color:#173e62;font-size:.78rem}
+    .profile-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft)}
+    .profile-favorite{min-height:43px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#55555c;cursor:pointer;font-size:.82rem;font-weight:600}
+    .profile-favorite:hover{background:#f9f9fa}
+    .profile-favorite.is-favorite{border-color:#efc8d0;background:#fff2f4;color:#b82b44}
+    .profile-credits{margin:19px 0 0;color:var(--muted);font-size:.72rem;line-height:1.55}
+    .profile-credits a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+    .profile-disclaimer{margin:13px 0 0;color:#77777e;font-size:.72rem;line-height:1.55}
+    .toast{position:fixed;z-index:100;left:50%;bottom:24px;max-width:calc(100% - 32px);padding:12px 17px;border-radius:999px;background:#252529;color:#fff;font-size:.82rem;box-shadow:0 10px 32px rgba(0,0,0,.2);opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:opacity .2s,transform .2s}
+    .toast.is-visible{opacity:1;transform:translate(-50%,0)}
+
+    @media (max-width:1050px){
+      :root{--container:min(100% - 42px,1220px)}
+      .main-nav{gap:16px}
+      .main-nav a{font-size:.77rem}
+      .provider-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .hero h1{font-size:clamp(4.5rem,11.6vw,8rem)}
+      .hero-region-mark{right:20px}
+      .tools-grid{gap:14px}
+      .tool-card{padding:22px}
+    }
+    @media (max-width:780px){
+      :root{--container:calc(100% - 34px)}
+      html{scroll-padding-top:76px}
+      .site-header{height:64px}
+      .header-inner{gap:12px}
+      .brand-mark{width:31px;height:31px;border-radius:10px}
+      .brand-copy strong{font-size:.82rem}
+      .brand-copy small{font-size:.58rem}
+      .main-nav{position:absolute;display:none;top:63px;left:0;right:0;margin:0;padding:12px 17px 17px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.97);backdrop-filter:blur(18px);box-shadow:0 12px 22px rgba(0,0,0,.07)}
+      .main-nav.is-open{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
+      .main-nav a{padding:11px 9px;border-radius:9px;font-size:.83rem}
+      .main-nav a:hover{background:var(--paper)}
+      .site-header:not(.is-scrolled) .main-nav{border-bottom-color:rgba(255,255,255,.18);background:rgba(20,20,22,.97)}
+      .site-header:not(.is-scrolled) .main-nav a{color:#fff}
+      .site-header:not(.is-scrolled) .main-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
+      .header-actions{margin-left:auto;gap:7px}
+      .favorite-jump{min-height:36px;padding:0 9px}
+      .favorite-jump .favorite-label{display:none}
+      .menu-toggle{display:block}
+      .hero{min-height:100svh;padding:88px 0 72px}
+      .hero-inner{min-height:calc(100svh - 160px);align-items:center}
+      .hero-copy{padding:32px 0 48px}
+      .hero h1{font-size:clamp(3.5rem,12.5vw,6.7rem);max-width:760px}
+      .hero-lead{margin-top:19px;font-size:.98rem}
+      .hero-actions{margin-top:23px}
+      .hero-facts{margin-top:21px;font-size:.72rem}
+      .hero-backdrop img{object-position:59% center}
+      .hero-caption{right:17px;bottom:15px;max-width:calc(100% - 34px);font-size:.64rem}
+      .hero-region-mark{display:none}
+      .directory-note{margin:-6px 0 17px;padding:13px 14px;font-size:.78rem}
+      .truth-strip-inner{justify-content:flex-start;gap:12px 22px;min-height:0;padding:15px 0}
+      .truth-item{font-size:.76rem}
+      .section{padding:76px 0}
+      .discover-section{padding-top:72px}
+      .section-heading{display:block;margin-bottom:26px}
+      .section-heading h2{font-size:clamp(2.2rem,9vw,3.2rem)}
+      .section-heading p{margin-top:15px}
+      .search-panel{grid-template-columns:1fr 1fr;gap:11px;padding:13px;border-radius:17px}
+      .search-field-wrap{grid-column:1/-1}
+      .filter-reset{align-self:end;text-align:left}
+      .category-chips{flex-wrap:nowrap;overflow-x:auto;padding:1px 0 5px;margin:17px -17px 17px;padding-left:17px;padding-right:17px;scrollbar-width:thin}
+      .results-bar{align-items:flex-end}
+      .sort-wrap{font-size:.68rem}
+      .sort-wrap select{max-width:135px;font-size:.74rem}
+      .provider-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+      .card-media{height:190px}
+      .card-content{padding:15px 14px 14px}
+      .provider-card h3{font-size:1.1rem}
+      .card-summary{min-height:80px;font-size:.79rem}
+      .card-actions{gap:7px;align-items:flex-start}
+      .card-open{font-size:.76rem}
+      .card-site{font-size:.71rem}
+      .category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+      .category-tile{min-height:100px;padding:13px;gap:10px}
+      .category-index{width:34px;height:34px;border-radius:12px}
+      .category-tile-copy strong{font-size:.79rem}
+      .category-tile-copy small{font-size:.68rem}
+      .inspiration-grid{grid-template-columns:1fr 1fr;gap:11px}
+      .inspiration-card:last-child{grid-column:1/-1}
+      .inspiration-photo{height:210px}
+      .inspiration-card:last-child .inspiration-photo{height:230px}
+      .inspiration-copy{padding:14px}
+      .inspiration-copy h3{font-size:1rem}
+      .tools-grid{grid-template-columns:1fr}
+      .tool-card{padding:19px}
+      .budget-lines{gap:6px 10px}
+      .transparency-inner{grid-template-columns:1fr;gap:17px}
+      .transparency-points{gap:12px}
+      .transparency-point{font-size:.72rem}
+      .footer-inner{gap:20px}
+    }
+    @media (max-width:460px){
+      :root{--container:calc(100% - 28px)}
+      .brand-copy small{letter-spacing:.01em}
+      .favorite-jump{width:36px;justify-content:center;padding:0}
+      .favorite-count{position:absolute;transform:translate(14px,-12px);min-width:16px;height:16px;font-size:.61rem}
+      .menu-toggle{width:36px;height:36px;padding:8px}
+      .hero h1{font-size:clamp(3.25rem,13vw,4.7rem)}
+      .hero-actions .btn{width:100%}
+      .hero-facts{align-items:flex-start;line-height:1.5}
+      .hero-caption{align-items:flex-start;flex-direction:column}
+      .truth-strip-inner{display:grid;grid-template-columns:1fr 1fr}
+      .truth-item{align-items:flex-start;font-size:.72rem}
+      .search-panel{grid-template-columns:1fr;gap:10px}
+      .search-field-wrap{grid-column:auto}
+      .filter-reset{justify-self:start;min-height:36px;padding:0 9px}
+      .results-bar{align-items:flex-start;flex-direction:column;gap:8px}
+      .provider-grid{grid-template-columns:1fr}
+      .card-media{height:235px}
+      .card-summary{min-height:0}
+      .category-grid{grid-template-columns:1fr 1fr}
+      .category-tile{align-items:flex-start;flex-direction:column;min-height:112px;gap:9px}
+      .category-tile-arrow{position:absolute;right:13px;top:12px}
+      .inspiration-grid{grid-template-columns:1fr}
+      .inspiration-card:last-child{grid-column:auto}
+      .inspiration-photo,.inspiration-card:last-child .inspiration-photo{height:250px}
+      .budget-total-row{grid-template-columns:1fr;gap:9px}
+      .budget-summary{align-items:flex-start;text-align:left}
+      .budget-lines{grid-template-columns:1fr}
+      .budget-line input{width:120px}
+      .transparency-points{grid-template-columns:1fr}
+      .provider-dialog{width:calc(100% - 14px);max-height:94vh;border-radius:20px}
+      .dialog-panel{max-height:94vh}
+      .profile-media{height:240px}
+      .profile-actions .btn,.profile-actions .profile-favorite{flex:1}
+      .footer-links{gap:10px 14px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Mon Mariage Idéal, accueil">
+        <span class="brand-mark" aria-hidden="true">m.</span>
+        <span class="brand-copy"><strong>mon mariage idéal</strong><small>carnet d’adresses sourcées</small></span>
+      </a>
+      <nav class="main-nav" id="siteNav" aria-label="Navigation principale">
+        <a href="#prestataires">Prestataires</a>
+        <a href="#territoires">Territoires</a>
+        <a href="#categories">Métiers</a>
+        <a href="#inspirations">Inspirations</a>
+        <a href="#outils">Budget &amp; checklist</a>
+      </nav>
+      <div class="header-actions">
+        <button class="favorite-jump" id="jumpFavorites" type="button" aria-label="Aller à mes favoris">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 8.8c0 5.2-8.5 11-8.5 11s-8.5-5.8-8.5-11a4.5 4.5 0 0 1 8.5-1.5 4.5 4.5 0 0 1 8.5 1.5Z"/></svg>
+          <span class="favorite-label">Favoris</span><span class="favorite-count" id="favoriteCount">0</span>
+        </button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="siteNav"><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="heroTitle">
+      <figure class="hero-backdrop" aria-label="Photographie de mariage publiée par Atelier Coqlico">
+        <img src="assets/atelier-coqlico.jpg" alt="Un couple de mariés dans une rue pavée, photographie publiée par Atelier Coqlico" fetchpriority="high">
+      </figure>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Le carnet d’adresses mariage · Hauts-de-France &amp; Belgique</p>
+          <h1 id="heroTitle">Le mariage<br><span>sans frontières.</span></h1>
+          <p class="hero-lead">Les professionnels du mariage de Lille Métropole aux Flandres, jusqu’à la frontière franco-belge. Des fiches reliées à leurs sources publiques, sans tarifs, avis ni promesses inventés.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#prestataires">Explorer les prestataires <span aria-hidden="true">→</span></a>
+            <a class="btn btn--quiet" href="#outils">Préparer mon mariage</a>
+          </div>
+          <div class="hero-facts" id="directoryFacts" role="group" aria-label="Périmètre et principes du guide">
+            <strong>Un annuaire de proximité</strong><span class="dot">·</span><span>Lille Métropole</span><span class="dot">·</span><span>Flandres</span><span class="dot">·</span><span>France ↔ Belgique</span>
+          </div>
+        </div>
+      </div>
+      <span class="hero-region-mark" aria-hidden="true">Lille · Flandres · frontière franco-belge</span>
+      <div class="hero-caption"><span>Photographie publiée par Atelier Coqlico</span><a href="https://ateliercoqlico.fr/" target="_blank" rel="noopener noreferrer">Source officielle ↗</a></div>
+    </section>
+
+    <section class="truth-strip" id="territoires" aria-label="Périmètre de l’annuaire et engagements de transparence">
+      <div class="truth-strip-inner">
+        <div class="truth-item"><span class="truth-icon" aria-hidden="true">↔</span><span><strong>Lille Métropole</strong> et environs</span></div>
+        <div class="truth-item"><span class="truth-icon" aria-hidden="true">✳</span><span><strong>Flandre française</strong> &amp; Flandre belge</span></div>
+        <div class="truth-item"><span class="truth-icon" aria-hidden="true">✓</span><span><strong>Sources officielles</strong> pour chaque fiche</span></div>
+        <div class="truth-item"><span class="truth-icon" aria-hidden="true">✓</span><span><strong>Tarifs et avis</strong> jamais inventés</span></div>
+      </div>
+    </section>
+
+    <section class="section discover-section" id="prestataires" aria-labelledby="providersTitle">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">L’annuaire local, en clair</p><h2 id="providersTitle">Les professionnels,<br><em>des deux côtés de la frontière.</em></h2></div>
+          <p>Recherchez par nom, métier ou lieu. Les territoires affichés reprennent les zones publiées par chaque professionnel ; ils ne garantissent ni sa disponibilité ni un déplacement donné.</p>
+        </div>
+        <p class="directory-note"><strong>Un répertoire en expansion.</strong> Les fiches sont ajoutées au fil des vérifications de sources publiques. Cette sélection n’est pas présentée comme exhaustive.</p>
+        <div class="search-panel" role="search">
+          <div class="field search-field-wrap">
+            <label for="searchInput">Rechercher dans les fiches</label>
+            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="searchInput" type="search" autocomplete="off" placeholder="Ex. traiteur, Lille, alliances…"></div>
+          </div>
+          <div class="field">
+            <label for="zoneFilter">Territoire concerné</label>
+            <select id="zoneFilter">
+              <option value="all">Tout le périmètre</option>
+              <option value="lille-metropole">Lille Métropole</option>
+              <option value="flandre-francaise">Flandre française</option>
+              <option value="flandre-belge">Flandre belge</option>
+              <option value="frontiere-fr-be">Transfrontalier France–Belgique</option>
+            </select>
+          </div>
+          <button class="filter-reset" id="resetFilters" type="button">Effacer les filtres</button>
+        </div>
+        <div class="category-chips" id="categoryChips" role="group" aria-label="Filtrer par catégorie"></div>
+        <div class="results-bar">
+          <p class="results-count" id="resultsCount" aria-live="polite"></p>
+          <label class="sort-wrap">Trier
+            <select id="sortSelect"><option value="name">Nom A–Z</option><option value="category">Catégorie</option><option value="location">Lieu</option></select>
+          </label>
+        </div>
+        <div class="provider-grid" id="providerGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="section category-overview" id="categories" aria-labelledby="categoriesTitle">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Les métiers du mariage</p><h2 id="categoriesTitle">Une catégorie,<br><em>un point de départ.</em></h2></div>
+          <p>Chaque tuile applique un filtre réel au carnet. Certains professionnels apparaissent dans plusieurs catégories quand leurs sites publient plusieurs activités.</p>
+        </div>
+        <div class="category-grid" id="categoryGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="inspirations" aria-labelledby="inspirationTitle">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Inspirations sourcées</p><h2 id="inspirationTitle">Des images de portfolios.<br><em>Pas de faux moodboards.</em></h2></div>
+          <p>Quelques aperçus publiés par les professionnels du carnet. Ouvrez leur fiche pour retrouver les services et la page d’origine.</p>
+        </div>
+        <div class="inspiration-grid" id="inspirationGrid"></div>
+        <p class="portfolio-note">Les visuels sont issus des pages officielles indiquées et restent la propriété de leurs auteurs. Les engagements ou caractéristiques décrits par les professionnels sont attribués à leurs propres sites.</p>
+      </div>
+    </section>
+
+    <section class="section tools-section" id="outils" aria-labelledby="toolsTitle">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Vos outils, vos chiffres</p><h2 id="toolsTitle">Organiser sans<br><em>chiffres préfabriqués.</em></h2></div>
+          <p>Le budget ne contient aucun tarif moyen : saisissez votre enveloppe et vos propres montants. La checklist est modifiable et enregistrée sur cet appareil.</p>
+        </div>
+        <div class="tools-grid">
+          <section class="tool-card" aria-labelledby="budgetTitle">
+            <div class="tool-card-head"><div><h3 id="budgetTitle">Mon budget</h3><p>Ajoutez les montants de vos devis ou de vos estimations personnelles.</p></div><span class="tool-icon" aria-hidden="true">€</span></div>
+            <div class="budget-total-row">
+              <div><label for="budgetTotal">Mon enveloppe totale</label><input class="budget-total-input" id="budgetTotal" type="number" min="0" step="100" inputmode="numeric" placeholder="Ex. 20 000"></div>
+              <div class="budget-summary" id="budgetSummary"><strong id="budgetRemaining">—</strong><small id="budgetSummaryLabel">à répartir</small></div>
+            </div>
+            <p class="budget-hint">Montants prévus par catégorie — ils restent à zéro tant que vous ne les renseignez pas.</p>
+            <div class="budget-lines" id="budgetLines"></div>
+            <div class="budget-footer"><div><strong id="budgetAllocated">0 € répartis</strong><br><span id="budgetTotalLabel">Aucune enveloppe saisie</span></div><button class="tool-reset" id="resetBudget" type="button">Réinitialiser</button></div>
+          </section>
+          <section class="tool-card" aria-labelledby="checklistTitle">
+            <div class="tool-card-head"><div><h3 id="checklistTitle">Ma checklist</h3><p>Une base légère, à cocher, compléter ou adapter à votre journée.</p></div><span class="tool-icon" aria-hidden="true">✓</span></div>
+            <div class="check-progress"><progress class="progress-track" id="progressBar" max="100" value="0" aria-label="Progression de la checklist">0%</progress><span class="progress-label" id="progressLabel">0 terminée</span></div>
+            <form class="task-form" id="taskForm"><label class="sr-only" for="taskInput">Ajouter une tâche</label><input class="task-input" id="taskInput" type="text" maxlength="120" placeholder="Ajouter une tâche personnelle…"><button class="task-add" type="submit" aria-label="Ajouter la tâche">+</button></form>
+            <ul class="task-list" id="taskList"></ul>
+            <div class="budget-footer"><span>Cette checklist est personnelle et modifiable.</span><button class="tool-reset" id="resetChecklist" type="button">Tout réinitialiser</button></div>
+          </section>
+        </div>
+        <p class="local-storage-note">Vos favoris, votre budget et votre checklist sont conservés localement dans ce navigateur. Ils ne sont pas envoyés à un serveur.</p>
+      </div>
+    </section>
+
+    <section class="section favorites-section" id="favoris" aria-labelledby="favoritesTitle">
+      <div class="container">
+        <div class="section-heading">
+          <div><p class="eyebrow">Votre sélection personnelle</p><h2 id="favoritesTitle">Les adresses<br><em>à garder près de vous.</em></h2></div>
+          <p>Ajoutez un cœur sur une fiche. Vos favoris restent privés et stockés uniquement dans ce navigateur.</p>
+        </div>
+        <div class="provider-grid" id="favoritesGrid"></div>
+      </div>
+    </section>
+
+    <section class="transparency" aria-labelledby="transparencyTitle">
+      <div class="container transparency-inner">
+        <div><h2 id="transparencyTitle">Le réel avant le décor.</h2><p>Un annuaire utile ne promet pas ce qu’il ne peut pas vérifier.</p></div>
+        <div class="transparency-points">
+          <div class="transparency-point"><strong>Sources visibles</strong>Un lien officiel accompagne chaque fiche.</div>
+          <div class="transparency-point"><strong>Informations sobres</strong>Aucun avis, note ou créneau inventé.</div>
+          <div class="transparency-point"><strong>Contact direct</strong>Confirmez prix, dates et zone avec le professionnel.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div><div class="footer-brand">mon mariage idéal</div><p>Un annuaire local en cours d’enrichissement, consacré à Lille Métropole, aux Flandres et au bassin transfrontalier France–Belgique. Chaque fiche renvoie à une source publique ; la sélection n’est pas exhaustive et la présence d’une fiche ne garantit pas une disponibilité.</p></div>
+        <div class="footer-links"><a href="#prestataires">Prestataires</a><a href="#territoires">Territoires</a><a href="#outils">Budget &amp; checklist</a><a href="#top">Retour en haut ↑</a></div>
+      </div>
+      <div class="footer-bottom"><span>Les tarifs et prestations peuvent évoluer : vérifiez toujours auprès du professionnel.</span><span>Photos : droits réservés à leurs auteurs et sources respectives.</span></div>
+    </div>
+  </footer>
+
+  <dialog class="provider-dialog" id="providerDialog" aria-labelledby="profileName">
+    <div class="dialog-panel">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Fermer la fiche">×</button>
+      <div class="profile-media" id="profileMedia"></div>
+      <div class="profile-content">
+        <div class="profile-categories" id="profileCategories"></div>
+        <h2 id="profileName">Fiche prestataire</h2>
+        <p class="profile-location" id="profileLocation"></p>
+        <p class="profile-summary" id="profileSummary"></p>
+        <div class="source-status"><i aria-hidden="true"></i>Fiche établie à partir de la source officielle</div>
+        <h3 class="profile-facts-title">Informations publiées</h3>
+        <ul class="profile-facts" id="profileFacts"></ul>
+        <div class="profile-pricing" id="profilePricing" hidden></div>
+        <div class="profile-actions" id="profileActions"></div>
+        <p class="profile-credits" id="profileCredits"></p>
+        <p class="profile-disclaimer">Les informations peuvent évoluer. Contactez directement le professionnel pour confirmer disponibilités, tarifs, conditions et zone d’intervention.</p>
+      </div>
+    </div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const REGION_LABELS = {
+        'lille-metropole': 'Lille Métropole',
+        'flandre-francaise': 'Flandre française',
+        'flandre-belge': 'Flandre belge',
+        'frontiere-fr-be': 'France–Belgique'
+      };
+
+      const CATEGORIES = [
+        'Lieu de réception', 'Photographe', 'Vidéaste', 'Traiteur', 'Wedding planner',
+        'Fleuriste', 'Robe de mariée', 'Costume', 'DJ & animation', 'Musique & musiciens',
+        'Maquillage & coiffure', 'Papeterie', 'Alliances', 'Décoration & location',
+        'Photobooth', 'Officiant de cérémonie'
+      ];
+
+      const PROVIDERS = [
+        {
+          id: 'domaine-achelles', name: 'Domaine d’Achelles', categories: ['Lieu de réception'],
+          location: 'Bondues · Nord', regions: ['lille-metropole'],
+          summary: 'Lieu de réception pour les mariages à Bondues, avec une salle de 180 m².',
+          facts: ['La page mariage indique une salle de 180 m².', 'Capacité publiée : jusqu’à 110 personnes assises et 220 en cocktail.'],
+          image: 'assets/domaine-achelles.jpg', imageAlt: 'Salle de réception dressée au Domaine d’Achelles, photo de la page officielle des espaces',
+          sourceUrl: 'https://www.ledomainedachelles.com/mariage', photoSource: 'https://www.ledomainedachelles.com/lesespaces',
+          photoSourceLabel: 'Les espaces du Domaine d’Achelles', contacts: []
+        },
+        {
+          id: 'fred-laurent', name: 'Fred Laurent', categories: ['Photographe'],
+          location: 'Près de Lille · reportage à Tournai', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Photographe de mariage et de portrait près de Lille ; son portfolio officiel comprend un reportage à Tournai.',
+          facts: ['Photographie de mariage et portrait.', 'Le site décrit une approche naturelle et discrète.', 'Un reportage de mariage à Tournai est publié sur son site.'],
+          image: 'assets/fred-laurent.jpg', imageAlt: 'Couple de mariés lors d’une réception extérieure, photographie issue du portfolio de Fred Laurent',
+          sourceUrl: 'https://www.fredlaurent.com/', photoSource: 'https://www.fredlaurent.com/mariage-dans-lesprit-guinguette-a-tournai/',
+          photoSourceLabel: 'Portfolio mariage de Fred Laurent', contacts: []
+        },
+        {
+          id: 'yanka-traiteur', name: 'Yanka Traiteur', categories: ['Traiteur'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Traiteur événementiel à Lille ; l’offre mariage présentée comprend cocktail, dîner et brunch.',
+          facts: ['Les prestations de mariage mentionnent cocktail, dîner et brunch.', 'Yanka indique privilégier des produits de saison et des approvisionnements locaux.'],
+          image: 'assets/yanka-traiteur.jpg', imageAlt: 'Plateau de mignardises présenté sur le site officiel de Yanka Traiteur',
+          sourceUrl: 'https://www.yanka.com/', photoSource: 'https://www.yanka.com/traiteur-cocktails/cocktail-sucres-traiteur-nord-pas-de-calais',
+          photoSourceLabel: 'Visuel officiel Yanka · mignardises', contacts: []
+        },
+        {
+          id: 'studio-paupiette', name: 'Studio Paupiette', categories: ['Fleuriste'],
+          location: 'Lille · Belgique proche', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Design floral de mariage à Lille et créations sur mesure, avec une zone annoncée incluant la Belgique proche.',
+          facts: ['Créations florales sur mesure pour les mariages.', 'L’atelier annonce fleurs de saison et locales, sans plastique ni mousse florale.', 'La page officielle mentionne la Belgique proche parmi les zones desservies.'],
+          image: 'assets/studio-paupiette.jpg', imageAlt: 'Composition florale de table publiée sur la page mariage de Studio Paupiette',
+          sourceUrl: 'https://studiopaupiette.com/les-prestations-de-design-floral/le-mariage/', photoSource: 'https://studiopaupiette.com/les-prestations-de-design-floral/le-mariage/',
+          photoSourceLabel: 'Page mariage de Studio Paupiette', contacts: []
+        },
+        {
+          id: 'aly-production', name: 'Aly Production', categories: ['Photographe', 'Vidéaste'],
+          location: 'Lille · Hauts-de-France · Belgique', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Alyssia propose des reportages photo et des films de mariage ; son site cite Lille, les Hauts-de-France et la Belgique.',
+          facts: ['Prestations publiées : photographie, film de mariage, couple, famille et professionnels.', 'La photographe indique être basée à Lille et se déplacer dans le Nord, en Belgique et ailleurs.'],
+          image: 'assets/aly-production.png', imageAlt: 'Mariée dans une chambre lumineuse, image issue du portfolio de mariage d’Aly Production',
+          sourceUrl: 'https://alyproduction.com/', photoSource: 'https://alyproduction.com/mariage-anglais-chic-et-colore-au-chateau-bayard',
+          photoSourceLabel: 'Portfolio mariage d’Aly Production', contacts: [{ label: 'Contact officiel', href: 'https://alyproduction.com/contact/' }]
+        },
+        {
+          id: 'elsa-barois', name: 'Elsa Barois', categories: ['Robe de mariée'],
+          location: 'Lille · sur rendez-vous', regions: ['lille-metropole'],
+          summary: 'Créatrice de robes de mariée à Lille, avec un showroom accessible sur rendez-vous.',
+          facts: ['Showroom au 1 rue de Denain, à Lille.', 'Le premier rendez-vous est annoncé comme gratuit.'],
+          price: 'Semi-mesure dès 2 500 € ; sur-mesure dès 3 500 €, selon les tarifs publiés sur le site.',
+          image: 'assets/elsa-barois.webp', imageAlt: 'Robe de mariée en dentelle photographiée de dos, image issue du site d’Elsa Barois',
+          sourceUrl: 'https://elsabarois.com/', photoSource: 'https://elsabarois.com/le-prix-dune-robe-de-mariee-sur-mesure/',
+          photoSourceLabel: 'Tarifs et atelier Elsa Barois', contacts: []
+        },
+        {
+          id: 'atelier-coqlico', name: 'Atelier Coqlico', categories: ['Costume'],
+          location: 'Vieux-Lille', regions: ['lille-metropole'],
+          summary: 'Atelier de costume sur mesure situé dans le Vieux-Lille.',
+          facts: ['Adresse publiée : 14 rue Bartholomé Masurel, Vieux-Lille.', 'Le site propose une prise de rendez-vous.'],
+          image: 'assets/atelier-coqlico.jpg', imageAlt: 'Couple de mariés en tenues de cérémonie, photographie publiée sur le site d’Atelier Coqlico',
+          sourceUrl: 'https://ateliercoqlico.fr/les-ateliers/costume-sur-mesure-lille/', photoSource: 'https://ateliercoqlico.fr/',
+          photoSourceLabel: 'Site officiel Atelier Coqlico',
+          contacts: [{ label: '03 20 21 17 26', href: 'tel:+33320211726' }]
+        },
+        {
+          id: 'lolypop-events', name: 'Lolypop Events', categories: ['DJ & animation'],
+          location: 'Frélinghien · Lille, Hazebrouck, Courtrai & Tournai',
+          regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'DJ et animation de mariage, depuis Frélinghien ; les déplacements annoncés relient Lille, Hazebrouck, Courtrai et Tournai.',
+          facts: ['Adresse publiée : 103 rue Au Vent, 4 Clos du Chêne, 59236 Frélinghien.', 'Le site présente une offre de sonorisation et d’animation musicale pour les mariages.', 'La zone de déplacement affichée inclut Lille, Courtrai, Hazebrouck et Tournai.'],
+          image: null, imageAlt: '',
+          sourceUrl: 'https://www.lolypop-events.com/mariage.php', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 66 88 35 87', href: 'tel:+33366883587' }]
+        },
+        {
+          id: 'suzette-simone', name: 'Suzette & Simone', categories: ['Wedding planner'],
+          location: 'Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Agence d’organisation d’événements qui présente des mariages à Lille et propose une sélection de prestataires.',
+          facts: ['Services présentés : coordination, planning, animations et décoration.', 'L’agence indique aussi accompagner la sélection de prestataires.', 'Le site présente des mariages organisés à Lille.'],
+          image: 'assets/suzette-simone.jpg', imageAlt: 'Mariés à la sortie d’une cérémonie, photographie issue du site de Suzette & Simone',
+          sourceUrl: 'https://www.suzetteetsimone.com/', photoSource: 'https://www.suzetteetsimone.com/',
+          photoSourceLabel: 'Portfolio de Suzette & Simone', contacts: []
+        },
+        {
+          id: 'laurene-dandois', name: 'Laurène Dandois', categories: ['Maquillage & coiffure'],
+          location: 'Métropole lilloise · mobile', regions: ['lille-metropole'],
+          summary: 'Maquillage et coiffure de mariage, avec des prestations mobiles sur la métropole lilloise.',
+          facts: ['Le forfait mariage présenté inclut un essai et le jour J.', 'Téléphone et adresse e-mail publiés sur le site.'],
+          image: 'assets/laurene-dandois.jpg', imageAlt: 'Portrait publié sur le site de Laurène Dandois',
+          sourceUrl: 'https://www.laurenedandois.com/', photoSource: 'https://www.laurenedandois.com/',
+          photoSourceLabel: 'Site officiel de Laurène Dandois',
+          contacts: [{ label: '06 11 59 00 81', href: 'tel:+33611590081' }, { label: 'Écrire à Laurène', href: 'mailto:laurene.dandois@gmail.com' }]
+        },
+        {
+          id: 'atelier-merigond', name: 'Atelier Mérigond', categories: ['Papeterie'],
+          location: 'Croix · métropole lilloise', regions: ['lille-metropole'],
+          summary: 'Papeterie de mariage personnalisable, avec créations sur rendez-vous à Croix.',
+          facts: ['La boutique et les créations sur rendez-vous sont annoncées à Croix.', 'Le site mentionne des papiers FSC et une fabrication française.'],
+          image: 'assets/atelier-merigond.jpg', imageAlt: 'Papeterie de mariage photographiée sur une table en bois, visuel Atelier Mérigond',
+          sourceUrl: 'https://merigond.fr/mariage/', photoSource: 'https://merigond.fr/categorie-produit/plans-de-table',
+          photoSourceLabel: 'Papeterie mariage Atelier Mérigond',
+          contacts: [{ label: 'imprimerie@merigond.fr', href: 'mailto:imprimerie@merigond.fr' }]
+        },
+        {
+          id: 'dael-grau', name: 'Dael & Grau', categories: ['Alliances'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Joaillier à Lille proposant alliances, collections et création de bijoux.',
+          facts: ['Le site présente des alliances et des collections de bijoux.', 'La création sur mesure est proposée.', 'La maison indique exercer depuis 1830.'],
+          image: 'assets/dael-grau.jpg', imageAlt: 'Alliance photographiée en gros plan, visuel publié sur la page mariage de Dael & Grau',
+          sourceUrl: 'https://www.daelgrau.com/', photoSource: 'https://daelgrau.com/fr/mariage',
+          photoSourceLabel: 'Page mariage de Dael & Grau', contacts: []
+        },
+        {
+          id: 'domaine-chanterelle', name: 'Domaine de la Chanterelle', categories: ['Lieu de réception'],
+          location: 'Verlinghem · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Domaine de réception à Verlinghem, avec salons, parc et espaces pour les mariages.',
+          facts: ['Adresse publiée : rue du Beau Rang, 59237 Verlinghem.', 'Le site annonce jusqu’à 300 personnes assises et 500 en cocktail ou vin d’honneur.', 'Le lieu présente des espaces de réception, un parc et une pergola.'],
+          image: null, imageAlt: '', sourceUrl: 'https://domainedelachanterelle.com/domaine-chanterelle', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 22 20 54', href: 'tel:+33320222054' }]
+        },
+        {
+          id: 'chateau-premesques', name: 'Château de Prémesques', categories: ['Lieu de réception'],
+          location: 'Prémesques · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Salon de réception avec parc et espaces modulables, à Prémesques.',
+          facts: ['Adresse publiée : 1055 route Nationale, 59840 Prémesques.', 'Le site annonce jusqu’à 140 personnes assises et 250 en cocktail.', 'Les salons sont annoncés sur 280 m² avec parking privé.'],
+          image: null, imageAlt: '', sourceUrl: 'https://domainedelachanterelle.com/chateau-premesques', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 22 20 54', href: 'tel:+33320222054' }]
+        },
+        {
+          id: 'bommelaers-wall', name: 'Domaine du Bommelaers Wall', categories: ['Lieu de réception'],
+          location: 'Ghyvelde · Flandre maritime', regions: ['flandre-francaise'],
+          summary: 'Domaine agricole avec salles de réception et espaces extérieurs, à proximité de Dunkerque.',
+          facts: ['Le site officiel présente des réceptions et mariages.', 'La grange du XVIIIᵉ siècle et une seconde salle peuvent être louées.', 'Adresse publiée : RD 601, lieu-dit Le Bommelaers Wall, 59254 Ghyvelde.'],
+          image: null, imageAlt: '', sourceUrl: 'https://location-salle-dunkerque.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 83 47 36 28', href: 'tel:+33683473628' }, { label: 'Écrire au domaine', href: 'mailto:domainebw@orange.fr' }]
+        },
+        {
+          id: 'mh-receptions-villa-blanche', name: 'MH Réceptions · Villa Blanche', categories: ['Lieu de réception', 'Traiteur'],
+          location: 'Coudekerque-Village · Dunkerque', regions: ['flandre-francaise'],
+          summary: 'Traiteur-organisateur de réceptions et lieu modulable Villa Blanche, au pourtour de Dunkerque.',
+          facts: ['Le site présente Villa Blanche comme salon de réception et propose également des prestations traiteur.', 'Adresse publiée pour Villa Blanche : 3 route des 7 Planètes, 59380 Coudekerque-Village.', 'Le site indique intervenir dans la campagne flamande et les Hauts-de-France.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.mh-receptions.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'grande-maison-reception', name: 'La Grande Maison Réception', categories: ['Lieu de réception'],
+          location: 'Cassel · Flandre française', regions: ['flandre-francaise'],
+          summary: 'Demeure de caractère à Cassel pour mariages et réceptions privées, avec offre de location ou d’organisation.',
+          facts: ['Adresse publiée : 1938 route de Lille, 59670 Cassel.', 'Le site présente la location de salle et une organisation clé en main selon le projet.', 'Un parc arboré, des terrasses et des espaces modulables sont présentés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://lagrandemaisonreception.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 85 75 17 69', href: 'tel:+33685751769' }, { label: 'Écrire au lieu', href: 'mailto:lagrandemaisonreception@hotmail.com' }]
+        },
+        {
+          id: 'groot-moerhof', name: '’t Groot Moerhof', categories: ['Lieu de réception', 'Traiteur'],
+          location: 'Adinkerke · frontière franco-belge', regions: ['flandre-belge', 'frontiere-fr-be'],
+          summary: 'Restaurant et salle de fête à Adinkerke, implantés sur la frontière entre la Belgique et la France.',
+          facts: ['Le site présente la grange restaurée pour mariages, réceptions et fêtes familiales.', 'Adresse publiée : Molendam 2, 8660 Adinkerke.', 'Le lieu indique se trouver directement sur la frontière entre les deux pays.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.grootmoerhof.be/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '+32 477 52 59 72', href: 'tel:+32477525972' }, { label: 'Écrire au lieu', href: 'mailto:info@grootmoerhof.be' }]
+        },
+        {
+          id: 'landhuis-molenhof', name: 'Landhuis Molenhof', categories: ['Lieu de réception', 'Traiteur'],
+          location: 'Heuvelland · Flandre belge', regions: ['flandre-belge'],
+          summary: 'Lieu de fête et de réception à Heuvelland, avec offre de restauration présentée sur le site.',
+          facts: ['La page officielle est consacrée aux fêtes de mariage.', 'La salle Crystal Waters est annoncée pour une capacité allant jusqu’à 220 personnes, piste de danse comprise.', 'Adresse publiée : Lijstermolendreef 4, 8950 Heuvelland.'],
+          image: null, imageAlt: '', sourceUrl: 'https://molenhof.be/huwelijksfeesten', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'domaine-ronceval', name: 'Domaine de Ronceval', categories: ['Lieu de réception'],
+          location: 'Mouscron · Belgique', regions: ['frontiere-fr-be'],
+          summary: 'Ferme rénovée accueillant des mariages à Mouscron, à proximité de Lille et Tourcoing.',
+          facts: ['Le site présente des mariages et événements privés.', 'Deux salles communicantes, une cour, un jardin et une maison sont décrits sur le site.', 'Le lieu se présente comme libre de traiteur.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.domainederonceval.be/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'didier-kapitza', name: 'Didier Kapitza', categories: ['Photographe'],
+          location: 'Hazebrouck · Lille · Dunkerque', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Photographe de mariage basé dans le Nord, avec des pages dédiées à Hazebrouck, Lille, Dunkerque et Saint-Omer.',
+          facts: ['La page mariage présente des reportages dans le Nord.', 'Le site décrit des prestations sur mesure ; demandez un devis pour connaître les tarifs actuels.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.didierkapitza.com/mariage/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'bastien-crequi', name: 'Bastien Créqui', categories: ['Photographe'],
+          location: 'Dunkerque · Lille · Nord', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Photographe de mariage à Dunkerque, Lille et dans le Nord, avec des reportages publiés dans les Flandres et en Belgique.',
+          facts: ['Le site indique se déplacer à Lille et dans le Nord de la France.', 'Le portfolio officiel présente des reportages à Dunkerque, Courtrai et De Panne.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.bastiencrequi.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: 'Écrire à Bastien', href: 'mailto:contact@bastiencrequi.com' }]
+        },
+        {
+          id: 'photographegs', name: 'PhotographeGS · Sébastien Garves', categories: ['Photographe'],
+          location: 'Grande-Synthe · Dunkerque', regions: ['flandre-francaise'],
+          summary: 'Photographe de mariage à Grande-Synthe, Dunkerque et dans les Hauts-de-France.',
+          facts: ['Le site identifie Sébastien Garves comme photographe professionnel basé à Grande-Synthe.', 'Un service de reportage de mariage dans le Dunkerquois est présenté.'],
+          image: null, imageAlt: '', sourceUrl: 'https://photographegs.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'christophe-blaszkowski', name: 'Christophe Blaszkowski', categories: ['Photographe'],
+          location: 'Lille · Arras · Hauts-de-France · Belgique', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Photographe de mariage à Lille et Arras ; le site annonce des déplacements dans les Hauts-de-France et en Belgique.',
+          facts: ['Le site présente des reportages de mariage à Lille et dans la région.', 'Les zones annoncées incluent Lille, Arras, les Hauts-de-France et la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://christopheblaszkowski.com/photographe-mariage-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 75 40 09 64', href: 'tel:+33675400964' }, { label: 'Écrire à Christophe', href: 'mailto:christophe.blaszkowski@gmail.com' }]
+        },
+        {
+          id: 'elena-decaen', name: 'Elena Decaen', categories: ['Photographe'],
+          location: 'Lille · Baisieux · Tournai · Courtrai', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Photographe de mariages intimistes, avec une zone de déplacement annoncée des deux côtés de la frontière franco-belge.',
+          facts: ['La page mariage est dédiée aux cérémonies en petit comité autour de Lille et Tournai.', 'Le site mentionne Lille, Villeneuve-d’Ascq, Tournai, Mouscron, Courtrai et la côte belge.', 'La FAQ publiée indique un tarif de 250 € par heure, dans la limite de quatre heures.'],
+          price: '250 € par heure pour les mariages intimistes, jusqu’à quatre heures, selon la FAQ du site.',
+          image: null, imageAlt: '', sourceUrl: 'https://www.elenadecaen.com/photographe-mariage-tournai', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'olivier-cousson', name: 'Olivier Cousson', categories: ['Photographe'],
+          location: 'Tournai · déplacements jusqu’à 75 km de Lille', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Photographe spécialisé dans le mariage à Tournai, avec des frais de déplacement inclus jusqu’à 75 km de Lille selon sa page.',
+          facts: ['Le site présente les prestations de mariage à Tournai et dans le Tournaisis.', 'La formule décrite sur la page inclut les déplacements jusqu’à 75 km de Lille.'],
+          image: null, imageAlt: '', sourceUrl: 'https://oliviercousson.com/mariage-tournai/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'kt-photography', name: 'KT Photography · Kassie Tuba', categories: ['Photographe'],
+          location: 'Lille · Belgique', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Photographe de mariage basée à Lille, qui annonce des reportages en Belgique et dans plusieurs villes flamandes.',
+          facts: ['La page officielle présente des mariages à Tournai, Gand, Bruges et Bruxelles.', 'La photographe indique être basée à Lille, près de la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://ktphotography.fr/photographe-mariage-belgique/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'sylvain-b-videaste', name: 'Sylvain B Vidéaste', categories: ['Vidéaste'],
+          location: 'Arras · Lille · Belgique', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Vidéaste de mariage basé à Arras ; le site annonce des déplacements à Lille, dans le Nord et en Belgique.',
+          facts: ['Le site présente Sylvain B comme vidéaste du duo photo-vidéo avec Stéphane Joly.', 'La FAQ annonce des prestations à Lille, dans le Nord, le Pas-de-Calais et en Belgique.', 'Un film de mariage au Palais Alta Ripa à Avelgem est présenté dans le portfolio.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.sylvainb-videaste.com/photographe-videaste-mariage-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'stephane-joly', name: 'Stéphane Joly', categories: ['Photographe'],
+          location: 'Arras · Lille · Belgique', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Photographe du duo de reportage mariage avec Sylvain B ; le site commun annonce des déplacements à Lille et en Belgique.',
+          facts: ['La page de présentation nomme Stéphane Joly comme photographe partenaire du vidéaste Sylvain B.', 'Le duo indique être basé à Arras et intervenir à Lille, dans le Nord, le Pas-de-Calais et en Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.stephanejoly-mariage.com/photographe-mariage-belgique', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 41 25 71 14', href: 'tel:+33641257114' }]
+        },
+        {
+          id: 'naylan-studio', name: 'Naylan Studio', categories: ['Photographe', 'Vidéaste'],
+          location: 'Lille · Hauts-de-France', regions: ['lille-metropole'],
+          summary: 'Studio proposant photo et vidéo de mariage à Lille et dans les environs.',
+          facts: ['La page mariage présente des reportages vidéo, films et photographies.', 'Le site affiche un numéro de contact pour les prestations de mariage.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.naylanstudio.com/3-1.htm', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 12 11 03 34', href: 'tel:+33612110334' }]
+        },
+        {
+          id: 'nicolas-deman-films', name: 'Nicolas Deman Films', categories: ['Photographe', 'Vidéaste'],
+          location: 'Lille · Hauts-de-France', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Photographe et vidéaste de mariage à Lille, avec une zone annoncée dans les Hauts-de-France.',
+          facts: ['Le site officiel présente les services photo et vidéo pour les mariages.', 'La page cite Lille, Roubaix, Tourcoing, Dunkerque et Villeneuve-d’Ascq parmi les secteurs desservis.'],
+          image: null, imageAlt: '', sourceUrl: 'https://nicolasdemanfilms.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'quentin-emilie', name: 'Quentin & Émilie', categories: ['Vidéaste'],
+          location: 'Lille Métropole · Nord', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Duo de vidéastes de mariage à Lille et dans la métropole, avec des déplacements annoncés dans le Nord et le Pas-de-Calais.',
+          facts: ['Le site présente des films de mariage naturels réalisés à deux vidéastes.', 'Les villes citées incluent Lille, Roubaix, Tourcoing, Villeneuve-d’Ascq, Marcq-en-Barœul, Bondues et Lambersart.'],
+          image: null, imageAlt: '', sourceUrl: 'https://quentin-et-emilie.com/en/videaste-mariage-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'reyem-vision', name: 'Reyem Vision', categories: ['Vidéaste'],
+          location: 'Hauts-de-France · Lille', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Vidéaste de mariage des Hauts-de-France ; la page présente des films de mariage et des prestations autour de Lille.',
+          facts: ['Le site met en avant des films et reportages de mariage.', 'Le vidéaste annonce être basé dans les Hauts-de-France et se déplacer selon les projets.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.reyemvision.com/en', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'le-mariage-des-etoiles', name: 'Le Mariage des Étoiles', categories: ['Wedding planner', 'Officiant de cérémonie', 'Décoration & location'],
+          location: 'Mons · Lille · Tournai', regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Agence basée à Mons proposant organisation, décoration et cérémonies laïques dans le Nord de la France et en Belgique.',
+          facts: ['La fondatrice indique travailler depuis Mons et se déplacer à Lille, Armentières, Tournai, Mons et dans plusieurs villes voisines.', 'Les services publiés incluent organisation de mariage, décoration et cérémonie laïque.'],
+          image: null, imageAlt: '', sourceUrl: 'https://lemariagedesetoiles.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '+33 6 19 97 07 75', href: 'tel:+33619970775' }, { label: 'Écrire à Alice', href: 'mailto:lemariagedesetoiles@gmail.com' }]
+        },
+        {
+          id: '3-petits-mots', name: '3 Petits Mots', categories: ['Wedding planner', 'Officiant de cérémonie'],
+          location: 'Kain · Tournai · Lille', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Wedding planner et officiante basée à Kain, près de Tournai ; elle annonce intervenir dans le Nord de la France, dont Lille.',
+          facts: ['La page officielle présente coordination, organisation de mariage et cérémonie.', 'La zone annoncée comprend la Wallonie picarde, le Hainaut et le Nord de la France.', 'Adresse publiée : avenue d’Audenarde 98, 7540 Kain.'],
+          image: null, imageAlt: '', sourceUrl: 'https://3petitsmots.be/services/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '+32 474 63 50 55', href: 'tel:+32474635055' }, { label: 'Écrire à Jessica', href: 'mailto:contact@3petitsmots.be' }]
+        },
+        {
+          id: 'planners-and-co-lille', name: 'Planners & Co · agence Nord', categories: ['Wedding planner'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Agence de wedding planning basée à Lille, proposant organisation, coaching, décoration et coordination.',
+          facts: ['La page officielle présente Mylène pour l’agence Nord Littoral et le secteur Nord.', 'Adresse publiée : 16 bis rue Garibaldi, 59000 Lille.', 'Les services affichés incluent organisation, coaching, décoration et coordination.'],
+          image: null, imageAlt: '', sourceUrl: 'https://plannersandco.fr/agence-wedding-planner-nord/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '07 66 36 90 58', href: 'tel:+33766369058' }, { label: 'Écrire à l’agence', href: 'mailto:agence-nord@plannersandco.fr' }]
+        },
+        {
+          id: 'agence-eme', name: 'Agence EME', categories: ['Wedding planner', 'Officiant de cérémonie', 'Décoration & location'],
+          location: 'Flandre Intérieure · entre Lille et Dunkerque', regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Agence de mariage basée en Flandre Intérieure, avec des prestations annoncées dans les Hauts-de-France et en Belgique.',
+          facts: ['La fondatrice indique être basée entre Lille et Dunkerque.', 'Le site présente organisation de mariage, événementiel, décoration et cérémonie.', 'Les zones publiées incluent Lille, les Hauts-de-France et la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://agence-eme.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'tomd-sono', name: 'Tom’D Sono', categories: ['DJ & animation'],
+          location: 'Wasquehal · Lille · Belgique frontalière', regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'DJ et animation de mariage basé à Wasquehal, avec une zone annoncée dans la métropole lilloise et en Belgique frontalière.',
+          facts: ['La page mariage présente sonorisation, animation et éclairage.', 'Le site indique intervenir à Lille, dans la métropole lilloise et dans des communes belges telles que Comines, Menin, Wevelgem, Tournai et Mouscron.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.tomd-sono.com/mariages', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 26 65 57 19', href: 'tel:+33626655719' }]
+        },
+        {
+          id: 'kestevents', name: 'KestEvents', categories: ['DJ & animation', 'Musique & musiciens'],
+          location: 'Estaires · Armentières · Nord', regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Agence d’animation près de Lille, avec DJ, musiciens et prestations musicales pour les mariages dans le Nord.',
+          facts: ['Adresse publiée : 20 rue de Merville, 59940 Estaires.', 'L’offre mariage comprend DJ, animateur, musiciens et sonorisation.', 'La page cite Lille, Hazebrouck, Dunkerque et Mouscron parmi les lieux d’intervention.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.kestevents.fr/8/dj-animateur-mariage.html', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '07 61 54 85 75', href: 'tel:+33761548575' }]
+        },
+        {
+          id: 'lille-metropole-traiteur', name: 'Lille Métropole Traiteur', categories: ['Traiteur'],
+          location: 'Faches-Thumesnil · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Traiteur de mariage à Faches-Thumesnil, avec des formules de cocktail, buffet, repas et brunch.',
+          facts: ['Adresse publiée : 287 route d’Arras, 59155 Faches-Thumesnil.', 'La page mariage présente vin d’honneur, cocktails, buffets et desserts.', 'Téléphone et e-mail de contact sont publiés sur le site.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lille-metropole-traiteur.com/traiteur-mariage-nord/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 97 90 04', href: 'tel:+33320979004' }, { label: 'Écrire au traiteur', href: 'mailto:contact@lille-metropole-traiteur.com' }]
+        },
+        {
+          id: 'cassiopa', name: 'Cassiopa', categories: ['Traiteur'],
+          location: 'Lille · Nord', regions: ['lille-metropole'],
+          summary: 'Traiteur de mariage à Lille et dans le Nord, avec menus personnalisés et plusieurs formats de service.',
+          facts: ['La page officielle est consacrée aux prestations traiteur de mariage.', 'Les formats présentés incluent service à l’assiette, buffet et animations culinaires.', 'L’entreprise annonce une couverture à Lille et dans le Nord.'],
+          image: null, imageAlt: '', sourceUrl: 'https://cassiopa.fr/traiteur-mariage/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'forest-traiteur', name: 'Forest Traiteur', categories: ['Traiteur'],
+          location: 'Métropole lilloise', regions: ['lille-metropole'],
+          summary: 'Traiteur événementiel lillois proposant l’organisation de mariages et de réceptions privées.',
+          facts: ['Le site présente des prestations de mariage, cocktails et événements privés.', 'Forest se décrit comme un traiteur lillois proposant des expériences sur mesure.'],
+          image: null, imageAlt: '', sourceUrl: 'https://forestevenementiel.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'les-freres-traiteurs', name: 'Les Frères Traiteurs', categories: ['Traiteur'],
+          location: 'Lille · métropole', regions: ['lille-metropole'],
+          summary: 'Traiteur basé à Lille, proposant buffets, cocktails et repas de mariage dans la métropole.',
+          facts: ['Le site présente des prestations de mariage et de réception privée.', 'L’entreprise indique être basée à Lille et se déplacer dans la métropole.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.traiteurlille.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'la-gourmandine', name: 'La Gourmandine', categories: ['Traiteur'],
+          location: 'Hem · Lille Métropole', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Traiteur de réception à Hem, près de Lille, pour les mariages et événements privés.',
+          facts: ['Le site présente des réceptions de mariage et plusieurs formats de service.', 'L’entreprise indique être basée à Hem et intervenir dans les Hauts-de-France et en Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lagourmandine.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'coquelicotte', name: 'Coquelicotte', categories: ['Fleuriste'],
+          location: 'Nord–Pas-de-Calais · Belgique', regions: ['flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Fleuriste événementielle spécialisée dans le mariage, avec une zone annoncée dans le Nord–Pas-de-Calais et en Belgique.',
+          facts: ['Le site présente bouquets de mariée, compositions de cérémonie, centres de table et décor floral.', 'La zone de prestations publiée couvre le Nord–Pas-de-Calais et la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.coquelicotte.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'mio-flora', name: 'Miö Flora', categories: ['Fleuriste'],
+          location: 'Lille · rue du Faubourg de Roubaix', regions: ['lille-metropole'],
+          summary: 'Atelier de design floral à Lille pour les mariages, événements et commandes sur mesure.',
+          facts: ['Le site présente des créations florales pour les mariages et événements.', 'Adresse publiée : 188 rue du Faubourg de Roubaix, 59000 Lille.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.mioflora.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: 'hello@mioflora.com', href: 'mailto:hello@mioflora.com' }]
+        },
+        {
+          id: 'felicite-fleurs', name: 'Félicité · atelier de poésie florale', categories: ['Fleuriste'],
+          location: 'Mouvaux · à 10 km de Lille', regions: ['lille-metropole'],
+          summary: 'Atelier de design floral à Mouvaux, proposant fleurs et créations pour les mariages et événements.',
+          facts: ['Le site présente une activité de mariage et événementiel.', 'Adresse publiée : 6 rue Jeanne d’Arc, 59420 Mouvaux.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.felicite-fleurs.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'make-up-en-nor', name: 'Make Up en N’or', categories: ['Maquillage & coiffure'],
+          location: 'Armentières · déplacements à Lille', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Maquilleuse professionnelle à Armentières, avec prestations de mariage et déplacements annoncés à Lille.',
+          facts: ['Le site présente un parcours mariée avec préparation, essai et mise en beauté le jour J.', 'La maquilleuse indique exercer à Armentières et se déplacer à Lille.'],
+          image: null, imageAlt: '', sourceUrl: 'https://makeupennor.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'celine-ponnet', name: 'Céline Ponnet', categories: ['Maquillage & coiffure'],
+          location: 'Lille · à domicile et alentours', regions: ['lille-metropole'],
+          summary: 'Make-up artist proposant maquillage et coiffage de mariage, avec rendez-vous à domicile à Lille et alentours.',
+          facts: ['Le site officiel présente des prestations de maquillage et coiffage pour les mariages.', 'Les rendez-vous à domicile à Lille et dans les environs sont mentionnés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://celineponnet.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'viktoria-larose', name: 'Viktoria Larose Makeup', categories: ['Maquillage & coiffure'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Maquilleuse et coiffeuse à Lille pour mariages et événements.',
+          facts: ['Le site présente des prestations de maquillage et de coiffure pour les mariages.', 'Des prestations en studio à Lille sont affichées.'],
+          image: null, imageAlt: '', sourceUrl: 'https://maquilleuse-lille.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'mariee-couture', name: 'Mariée Couture', categories: ['Robe de mariée'],
+          location: 'Lille · rue Sainte-Catherine', regions: ['lille-metropole'],
+          summary: 'Boutique lilloise de robes de mariée et d’accessoires, avec personnalisation et retouches.',
+          facts: ['Adresse publiée : 65 rue Sainte-Catherine, 59800 Lille.', 'Le site présente des collections de robes, accessoires, essayages et services de personnalisation.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.marieecouture.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 06 96 55', href: 'tel:+33320069655' }]
+        },
+        {
+          id: 'cymbeline-lille', name: 'Cymbeline Lille', categories: ['Robe de mariée'],
+          location: 'Lille · déplacements annoncés vers Courtrai et Tournai', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Boutique de robes de mariée à Lille proposant essayages personnalisés et collections Cymbeline.',
+          facts: ['Adresse publiée : 8 rue du Béguinage, 59000 Lille.', 'La page officielle cite Roubaix, Dunkerque, Courtrai et Tournai parmi les zones voisines.'],
+          image: null, imageAlt: '', sourceUrl: 'https://cymbeline.com/stores/cymbeline-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 28 36 27 29', href: 'tel:+33328362729' }, { label: 'cymbelinelille@gmail.com', href: 'mailto:cymbelinelille@gmail.com' }]
+        },
+        {
+          id: 'constance-cellier', name: 'Constance Cellier', categories: ['Robe de mariée'],
+          location: 'Pérenchies · atelier près de Lille', regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Créatrice de robes de mariée sur mesure, avec showroom privé à Pérenchies et pages de service dédiées aux villes voisines.',
+          facts: ['Le site présente des créations de robes de mariée sur mesure.', 'Showroom privé sur rendez-vous au 3 rue Maryse Bastié, 59840 Pérenchies.', 'Les pages officielles citent Armentières, Hazebrouck et Courtrai parmi les secteurs concernés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.constancecellier.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 05 05 02 91', href: 'tel:+33605050291' }]
+        },
+        {
+          id: 'olivier-sinic', name: 'Olivier Sinic · Le Château Blanc', categories: ['Robe de mariée', 'Costume'],
+          location: 'Verlinghem · près de Lille', regions: ['lille-metropole'],
+          summary: 'Maison de cérémonie à Verlinghem réunissant robes de mariée, costumes homme et tenues de cocktail.',
+          facts: ['Le site présente des robes et costumes pour les mariages.', 'Le Château Blanc est annoncé à environ 5 km du centre de Lille.', 'Les essayages sont proposés sur rendez-vous.'],
+          image: null, imageAlt: '', sourceUrl: 'https://oliviersinic.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'blandin-delloye-lille', name: 'Blandin & Delloye Lille', categories: ['Costume'],
+          location: 'Vieux-Lille · rue Pierre Mauroy', regions: ['lille-metropole'],
+          summary: 'Showroom de costumes sur mesure à Lille, avec des tenues de mariage et essayages sur rendez-vous.',
+          facts: ['Adresse publiée : 17 rue Pierre Mauroy, 59000 Lille.', 'La boutique présente des costumes sur mesure de mariage et un accompagnement en showroom.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.blandindelloye.com/boutiques/costume-sur-mesure-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'zeina-lille', name: 'Zeina Lille', categories: ['Alliances'],
+          location: 'Vieux-Lille · place du Lion d’Or', regions: ['lille-metropole'],
+          summary: 'Bijouterie à Lille proposant alliances, bagues de fiançailles et personnalisation.',
+          facts: ['Adresse publiée : 14 bis place du Lion d’Or, 59000 Lille.', 'La boutique présente des alliances en plusieurs métaux et des services de gravure.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.zeina-alliances.com/pages/boutique/lille', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 74 09 66 60', href: 'tel:+33374096660' }]
+        },
+        {
+          id: 'la-fille-au-noeud-rouge', name: 'La Fille au Nœud Rouge', categories: ['Papeterie'],
+          location: 'Lille · atelier de création', regions: ['lille-metropole'],
+          summary: 'Création de faire-part et papeterie de mariage sur mesure, avec impression et finitions artisanales.',
+          facts: ['La créatrice indique accompagner les futurs mariés depuis 2013.', 'Le site présente faire-part, menus, marque-places, plans de table et cartes de remerciement.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lafilleaunoeudrouge.fr/faire-part-mariage-sur-mesure/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'croquez-la-pomme', name: 'Croquez la pomme', categories: ['Papeterie'],
+          location: 'Lille · création de faire-part', regions: ['lille-metropole'],
+          summary: 'Créateur lillois de faire-part de mariage personnalisés et sur mesure.',
+          facts: ['Le site présente des créations de faire-part modernes, personnalisés et sur mesure.', 'La marque se présente comme « Made in Lille ».'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.croquezlapomme.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'la-lilloise-evenementiel', name: 'La Lilloise Événementiel', categories: ['Décoration & location'],
+          location: 'Lille · zone d’intervention annoncée', regions: ['lille-metropole'],
+          summary: 'Wedding & event designer proposant la conception de décoration de mariage de A à Z.',
+          facts: ['Le site se présente comme Wedding & Event Designer à Lille.', 'Les prestations décrites couvrent la conception d’un concept décoratif et l’agencement de l’espace.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lalilloiseevent.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'mkreadesign', name: 'MKréaDesign', categories: ['Décoration & location'],
+          location: 'Bully-les-Mines · livraison à Lille et dans le Nord', regions: ['lille-metropole'],
+          summary: 'Location de décoration, vaisselle et mobilier pour mariages, avec livraison annoncée à Lille et dans les Hauts-de-France.',
+          facts: ['La page mariage présente décoration, mobilier, vaisselle et location.', 'Retrait à Bully-les-Mines ou livraison sur le lieu de réception, selon les modalités du site.'],
+          image: null, imageAlt: '', sourceUrl: 'https://mkreadesign.fr/location/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'time-to-smile', name: 'Time To Smile', categories: ['Photobooth'],
+          location: 'Villeneuve-d’Ascq · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Location de photobooth pour les mariages, avec retrait ou livraison dans la métropole lilloise.',
+          facts: ['Le site indique être basé à Villeneuve-d’Ascq.', 'La page mariage présente des bornes photo et des formules de location.', 'Un rayon de déplacement autour de Lille est affiché sur le site.'],
+          image: null, imageAlt: '', sourceUrl: 'https://timetosmile.fr/photobooth-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 74 47 12 36', href: 'tel:+33374471236' }, { label: 'Écrire à Time To Smile', href: 'mailto:nicolas@timetosmile.fr' }]
+        },
+        {
+          id: 'borne-photo-lille', name: 'BornePhotoLille', categories: ['Photobooth'],
+          location: 'Wasquehal · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Location de borne photo à impression instantanée pour les mariages et événements de la métropole lilloise.',
+          facts: ['Le site présente la location de photobooth, la livraison et l’installation dans la métropole lilloise.', 'Adresse publiée : 74 rue Voltaire, 59290 Wasquehal.', 'Les impressions et l’écran de la borne peuvent être personnalisés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.bornephotolille.com/location-photobooth-lille', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        }
+      ];
+
+      const INSPIRATIONS = [
+        { providerId: 'suzette-simone', eyebrow: 'Portfolio · organisation', title: 'Un mariage en mouvement', image: 'assets/suzette-simone.jpg', alt: 'Mariés à la sortie d’une cérémonie, photo du portfolio de Suzette & Simone' },
+        { providerId: 'studio-paupiette', eyebrow: 'Portfolio · fleurs', title: 'Une composition de table', image: 'assets/studio-paupiette.jpg', alt: 'Composition florale de table issue du portfolio de Studio Paupiette' },
+        { providerId: 'atelier-merigond', eyebrow: 'Portfolio · papeterie', title: 'Le détail imprimé', image: 'assets/atelier-merigond.jpg', alt: 'Papeterie de mariage issue du portfolio de l’Atelier Mérigond' }
+      ];
+
+      const BUDGET_CATEGORIES = [
+        'Lieu de réception', 'Traiteur', 'Photographe', 'Vidéaste', 'Wedding planner',
+        'Fleuriste', 'Tenues', 'DJ & animation', 'Musique & musiciens',
+        'Maquillage & coiffure', 'Papeterie', 'Alliances', 'Décoration & location',
+        'Photobooth', 'Officiant de cérémonie', 'Autre'
+      ];
+
+      const BASE_TASKS = [
+        { id: 'date-guests', text: 'Définir la date et la première liste d’invités' },
+        { id: 'budget-envelope', text: 'Fixer une enveloppe de départ' },
+        { id: 'venue', text: 'Repérer un lieu et confirmer sa capacité' },
+        { id: 'contacts', text: 'Contacter les professionnels retenus' },
+        { id: 'ceremony', text: 'Préparer le déroulé de la cérémonie et de la journée' },
+        { id: 'paperwork', text: 'Lister les démarches administratives à vérifier' }
+      ];
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+      const providerById = id => PROVIDERS.find(provider => provider.id === id);
+      const normalize = value => String(value ?? '').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+      const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+      const formatMoney = value => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.max(0, Number(value) || 0));
+      const safeRead = (key, fallback) => {
+        try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); }
+        catch { return fallback; }
+      };
+      const safeWrite = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { toast('Le navigateur ne permet pas d’enregistrer ces données.'); } };
+
+      const storedFavorites = safeRead('mmi-favorites-v2', []);
+      const storedChecks = safeRead('mmi-checks-v2', []);
+      const storedCustomTasks = safeRead('mmi-custom-tasks-v2', []);
+      const state = {
+        query: '', category: 'all', zone: 'all', sort: 'name', activeProvider: null,
+        favorites: new Set((Array.isArray(storedFavorites) ? storedFavorites : []).filter(id => providerById(id))),
+        budget: safeRead('mmi-budget-v2', { total: '', lines: {} }),
+        done: new Set(Array.isArray(storedChecks) ? storedChecks : []),
+        customTasks: Array.isArray(storedCustomTasks) ? storedCustomTasks : []
+      };
+      if (!state.budget || typeof state.budget !== 'object') state.budget = { total: '', lines: {} };
+      if (!state.budget.lines || typeof state.budget.lines !== 'object') state.budget.lines = {};
+      if (!Array.isArray(state.customTasks)) state.customTasks = [];
+
+      let toastTimer;
+      function toast(message) {
+        const el = $('#toast');
+        if (!el) return;
+        el.textContent = message;
+        el.classList.add('is-visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.classList.remove('is-visible'), 2200);
+      }
+
+      function categoryCount(category) {
+        return PROVIDERS.filter(provider => provider.categories.includes(category)).length;
+      }
+
+      function renderCategoryChips() {
+        const container = $('#categoryChips');
+        const chips = [{ name: 'Tout voir', value: 'all' }, ...CATEGORIES.map(name => ({ name, value: name }))];
+        container.innerHTML = chips.map(chip => `<button class="category-chip ${state.category === chip.value ? 'is-active' : ''}" type="button" data-category-filter="${escapeHTML(chip.value)}" aria-pressed="${state.category === chip.value}">${escapeHTML(chip.name)}</button>`).join('');
+      }
+
+      function renderCategoryTiles() {
+        $('#categoryGrid').innerHTML = CATEGORIES.map((category, index) => `<button class="category-tile" type="button" data-category-filter="${escapeHTML(category)}" aria-label="Filtrer par ${escapeHTML(category)}"><span class="category-index">${String(index + 1).padStart(2, '0')}</span><span class="category-tile-copy"><strong>${escapeHTML(category)}</strong><small>${categoryCount(category)} profil${categoryCount(category) === 1 ? '' : 's'} affiché${categoryCount(category) === 1 ? '' : 's'}</small></span><span class="category-tile-arrow" aria-hidden="true">→</span></button>`).join('');
+      }
+
+      function isFavorite(id) { return state.favorites.has(id); }
+      function favoriteButton(provider) {
+        const active = isFavorite(provider.id);
+        return `<button class="favorite-toggle ${active ? 'is-favorite' : ''}" type="button" data-favorite="${escapeHTML(provider.id)}" aria-label="${active ? 'Retirer' : 'Ajouter'} ${escapeHTML(provider.name)} ${active ? 'des' : 'aux'} favoris" aria-pressed="${active}"><svg viewBox="0 0 24 24" fill="${active ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 8.8c0 5.2-8.5 11-8.5 11s-8.5-5.8-8.5-11a4.5 4.5 0 0 1 8.5-1.5 4.5 4.5 0 0 1 8.5 1.5Z"/></svg></button>`;
+      }
+
+      function renderPhoto(provider, className = '') {
+        if (!provider.image) {
+          return `<div class="no-photo ${className}" role="img" aria-label="Aucun visuel de portfolio sélectionné pour ${escapeHTML(provider.name)}"><div><span class="no-photo-mark">${escapeHTML(provider.categories[0].split(' ').map(word => word[0]).join('').slice(0, 2).toUpperCase())}</span><small>Pas de visuel officiel sélectionné</small></div></div>`;
+        }
+        const credit = provider.photoSource ? `<a class="photo-source" href="${escapeHTML(provider.photoSource)}" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la source de la photo de ${escapeHTML(provider.name)}">Photo · source ↗</a>` : '';
+        return `<img src="${escapeHTML(provider.image)}" alt="${escapeHTML(provider.imageAlt)}" loading="lazy">${credit}`;
+      }
+
+      function renderProviderCard(provider) {
+        const labels = provider.categories.map(category => `<span class="category-label">${escapeHTML(category)}</span>`).join('');
+        const regions = provider.regions.map(region => `<span class="region-label">${escapeHTML(REGION_LABELS[region] || region)}</span>`).join('');
+        const price = provider.price ? `<p class="card-price">${escapeHTML(provider.price)}</p>` : '';
+        return `<article class="provider-card" data-provider-card="${escapeHTML(provider.id)}">
+          <div class="card-media">${renderPhoto(provider)}${favoriteButton(provider)}</div>
+          <div class="card-content">
+            <div class="card-categories">${labels}</div>
+            <div class="card-regions" aria-label="Territoires concernés">${regions}</div>
+            <h3>${escapeHTML(provider.name)}</h3>
+            <p class="card-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M19 10.2c0 5-7 11-7 11s-7-6-7-11a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.2"/></svg><span>${escapeHTML(provider.location)}</span></p>
+            <p class="card-summary">${escapeHTML(provider.summary)}</p>
+            ${price}
+            <div class="card-actions"><button class="card-open" type="button" data-profile="${escapeHTML(provider.id)}">Voir la fiche <span aria-hidden="true">→</span></button><a class="card-site" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Site officiel ↗</a></div>
+          </div>
+        </article>`;
+      }
+
+      function filteredProviders() {
+        const query = normalize(state.query);
+        return PROVIDERS.filter(provider => {
+          const matchesCategory = state.category === 'all' || provider.categories.includes(state.category);
+          const matchesZone = state.zone === 'all' || provider.regions.includes(state.zone);
+          const haystack = normalize([
+            provider.name, provider.location, provider.summary,
+            ...provider.categories, ...provider.facts,
+            ...provider.regions.map(region => REGION_LABELS[region] || region)
+          ].join(' '));
+          return matchesCategory && matchesZone && (!query || haystack.includes(query));
+        }).sort((a, b) => {
+          if (state.sort === 'category') return a.categories[0].localeCompare(b.categories[0], 'fr', { sensitivity: 'base' }) || a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+          if (state.sort === 'location') return a.location.localeCompare(b.location, 'fr', { sensitivity: 'base' }) || a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+          return a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+        });
+      }
+
+      function renderProviders() {
+        const providers = filteredProviders();
+        $('#resultsCount').innerHTML = `<strong>${providers.length}</strong> fiche${providers.length === 1 ? '' : 's'} sur ${PROVIDERS.length}`;
+        $('#directoryFacts').innerHTML = `<strong>${PROVIDERS.length} fiches sourcées</strong><span class="dot">·</span><span>${CATEGORIES.length} métiers</span><span class="dot">·</span><span>périmètre Lille–Flandres–Belgique</span>`;
+        $('#providerGrid').innerHTML = providers.length ? providers.map(renderProviderCard).join('') : `<div class="empty-state"><h3>Aucune fiche ne correspond.</h3><p>Essayez un autre métier, un autre lieu ou effacez les filtres.</p><button class="btn btn--quiet btn--small" type="button" data-reset-filters>Tout afficher</button></div>`;
+        renderFavoriteCount();
+      }
+
+      function renderFavoriteCount() {
+        $('#favoriteCount').textContent = String(state.favorites.size);
+        $('#favoriteCount').setAttribute('aria-label', `${state.favorites.size} favori${state.favorites.size === 1 ? '' : 's'}`);
+        const favoriteProviders = PROVIDERS.filter(provider => state.favorites.has(provider.id));
+        $('#favoritesGrid').innerHTML = favoriteProviders.length ? favoriteProviders.map(renderProviderCard).join('') : `<div class="favorite-empty"><span class="favorite-empty-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 8.8c0 5.2-8.5 11-8.5 11s-8.5-5.8-8.5-11a4.5 4.5 0 0 1 8.5-1.5 4.5 4.5 0 0 1 8.5 1.5Z"/></svg></span><span>Aucune adresse enregistrée pour l’instant. Appuyez sur le cœur d’une fiche pour la retrouver ici.</span></div>`;
+      }
+
+      function renderInspirations() {
+        $('#inspirationGrid').innerHTML = INSPIRATIONS.map(item => {
+          const provider = providerById(item.providerId);
+          return `<article class="inspiration-card">
+            <div class="inspiration-photo"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.alt)}" loading="lazy"><a class="photo-source" href="${escapeHTML(provider.photoSource || provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Photo · source ↗</a></div>
+            <div class="inspiration-copy"><small>${escapeHTML(item.eyebrow)}</small><h3>${escapeHTML(item.title)}</h3><button class="text-link" type="button" data-profile="${escapeHTML(provider.id)}">Découvrir ${escapeHTML(provider.name)} <span aria-hidden="true">→</span></button></div>
+          </article>`;
+        }).join('');
+      }
+
+      function renderProfile(provider) {
+        state.activeProvider = provider.id;
+        const media = $('#profileMedia');
+        if (provider.image) {
+          media.innerHTML = `<img src="${escapeHTML(provider.image)}" alt="${escapeHTML(provider.imageAlt)}">`;
+        } else {
+          media.innerHTML = renderPhoto(provider);
+        }
+        $('#profileCategories').innerHTML = [
+          ...provider.categories.map(category => `<span class="category-label">${escapeHTML(category)}</span>`),
+          ...provider.regions.map(region => `<span class="region-label">${escapeHTML(REGION_LABELS[region] || region)}</span>`)
+        ].join('');
+        $('#profileName').textContent = provider.name;
+        $('#profileLocation').textContent = `⌖  ${provider.location}`;
+        $('#profileSummary').textContent = provider.summary;
+        $('#profileFacts').innerHTML = provider.facts.map(fact => `<li>${escapeHTML(fact)}</li>`).join('');
+        const pricing = $('#profilePricing');
+        if (provider.price) {
+          pricing.hidden = false;
+          pricing.innerHTML = `<strong>Tarifs publiés sur le site</strong>${escapeHTML(provider.price)}`;
+        } else {
+          pricing.hidden = true;
+          pricing.textContent = '';
+        }
+        const contacts = provider.contacts.map(contact => `<a class="btn btn--quiet btn--small" href="${escapeHTML(contact.href)}" ${contact.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHTML(contact.label)}</a>`).join('');
+        const source = `<a class="btn btn--small" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Source publique ↗</a>`;
+        const active = state.favorites.has(provider.id);
+        $('#profileActions').innerHTML = `${source}${contacts}<button class="profile-favorite ${active ? 'is-favorite' : ''}" type="button" id="profileFavorite" data-favorite="${escapeHTML(provider.id)}" aria-pressed="${active}">${active ? '♥ Enregistré' : '♡ Ajouter aux favoris'}</button>`;
+        const photoCredit = provider.photoSource ? `Visuel : <a href="${escapeHTML(provider.photoSource)}" target="_blank" rel="noopener noreferrer">${escapeHTML(provider.photoSourceLabel || 'page source')}</a>. ` : 'Aucun visuel de portfolio n’est repris pour cette fiche. ';
+        $('#profileCredits').innerHTML = `Source des informations : <a href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">page officielle de ${escapeHTML(provider.name)}</a>. ${photoCredit}`;
+        const dialog = $('#providerDialog');
+        if (!dialog.open) dialog.showModal();
+        document.body.classList.add('dialog-open');
+        $('#dialogClose').focus();
+      }
+
+      function closeDialog() {
+        const dialog = $('#providerDialog');
+        if (dialog.open) dialog.close();
+        document.body.classList.remove('dialog-open');
+        state.activeProvider = null;
+      }
+
+      function toggleFavorite(id) {
+        const provider = providerById(id);
+        if (!provider) return;
+        if (state.favorites.has(id)) {
+          state.favorites.delete(id);
+          toast(`${provider.name} retiré des favoris.`);
+        } else {
+          state.favorites.add(id);
+          toast(`${provider.name} ajouté aux favoris.`);
+        }
+        safeWrite('mmi-favorites-v2', [...state.favorites]);
+        renderProviders();
+        if (state.activeProvider) renderProfileControlsOnly(providerById(state.activeProvider));
+      }
+
+      function renderProfileControlsOnly(provider) {
+        if (!provider) return;
+        const active = state.favorites.has(provider.id);
+        const button = $('#profileFavorite');
+        if (button) {
+          button.classList.toggle('is-favorite', active);
+          button.setAttribute('aria-pressed', String(active));
+          button.textContent = active ? '♥ Enregistré' : '♡ Ajouter aux favoris';
+        }
+      }
+
+      function clearFilters() {
+        state.query = '';
+        state.category = 'all';
+        state.zone = 'all';
+        $('#searchInput').value = '';
+        $('#zoneFilter').value = 'all';
+        renderCategoryChips();
+        renderProviders();
+      }
+
+      function renderBudget() {
+        const totalInput = $('#budgetTotal');
+        const total = Number(state.budget.total) || 0;
+        const allocated = BUDGET_CATEGORIES.reduce((sum, category) => sum + (Number(state.budget.lines[category]) || 0), 0);
+        const remaining = total - allocated;
+        totalInput.value = state.budget.total === '' ? '' : String(state.budget.total);
+        $('#budgetRemaining').textContent = total > 0 ? formatMoney(Math.abs(remaining)) : '—';
+        $('#budgetSummaryLabel').textContent = total > 0 ? (remaining < 0 ? 'au-dessus de l’enveloppe' : 'restant à répartir') : 'saisissez une enveloppe';
+        $('#budgetSummary').classList.toggle('is-over', total > 0 && remaining < 0);
+        $('#budgetAllocated').textContent = `${formatMoney(allocated)} répartis`;
+        $('#budgetTotalLabel').textContent = total > 0 ? `sur ${formatMoney(total)}` : 'Aucune enveloppe saisie';
+        $('#budgetLines').innerHTML = BUDGET_CATEGORIES.map((category, index) => `<div class="budget-line"><label for="budgetLine${index}">${escapeHTML(category)}</label><input id="budgetLine${index}" type="number" min="0" step="50" inputmode="numeric" placeholder="0 €" value="${escapeHTML(state.budget.lines[category] ?? '')}" data-budget-line="${escapeHTML(category)}" aria-label="Montant prévu pour ${escapeHTML(category)}"></div>`).join('');
+      }
+
+      function saveBudget() { safeWrite('mmi-budget-v2', state.budget); }
+
+      function renderTasks() {
+        const tasks = [...BASE_TASKS, ...state.customTasks];
+        const doneCount = tasks.filter(task => state.done.has(task.id)).length;
+        const percent = tasks.length ? Math.round(doneCount / tasks.length * 100) : 0;
+        $('#progressBar').value = percent;
+        $('#progressLabel').textContent = `${doneCount} / ${tasks.length} terminée${doneCount === 1 ? '' : 's'}`;
+        $('#taskList').innerHTML = tasks.map(task => `<li class="task-item ${state.done.has(task.id) ? 'is-done' : ''}"><label><input type="checkbox" data-task-toggle="${escapeHTML(task.id)}" ${state.done.has(task.id) ? 'checked' : ''}><span>${escapeHTML(task.text)}</span></label>${task.custom ? `<button class="task-remove" type="button" data-task-remove="${escapeHTML(task.id)}" aria-label="Supprimer la tâche ${escapeHTML(task.text)}">×</button>` : ''}</li>`).join('');
+      }
+
+      function resetBudget() {
+        state.budget = { total: '', lines: {} };
+        saveBudget();
+        renderBudget();
+        toast('Votre budget a été réinitialisé.');
+      }
+
+      function resetChecklist() {
+        state.done.clear();
+        state.customTasks = [];
+        safeWrite('mmi-checks-v2', []);
+        safeWrite('mmi-custom-tasks-v2', []);
+        renderTasks();
+        toast('Votre checklist a été réinitialisée.');
+      }
+
+      function bindEvents() {
+        const header = $('.site-header');
+        const syncHeaderContrast = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+        window.addEventListener('scroll', syncHeaderContrast, { passive: true });
+        syncHeaderContrast();
+        $('#searchInput').addEventListener('input', event => {
+          state.query = event.target.value;
+          renderProviders();
+        });
+        $('#zoneFilter').addEventListener('change', event => {
+          state.zone = event.target.value;
+          renderProviders();
+        });
+        $('#sortSelect').addEventListener('change', event => {
+          state.sort = event.target.value;
+          renderProviders();
+        });
+        $('#resetFilters').addEventListener('click', clearFilters);
+        $('#categoryChips').addEventListener('click', event => {
+          const chip = event.target.closest('[data-category-filter]');
+          if (!chip) return;
+          state.category = chip.dataset.categoryFilter;
+          renderCategoryChips();
+          renderProviders();
+        });
+        $('#categoryGrid').addEventListener('click', event => {
+          const tile = event.target.closest('[data-category-filter]');
+          if (!tile) return;
+          state.category = tile.dataset.categoryFilter;
+          renderCategoryChips();
+          renderProviders();
+          $('#prestataires').scrollIntoView({ behavior: 'smooth' });
+        });
+        document.addEventListener('click', event => {
+          const profileButton = event.target.closest('[data-profile]');
+          if (profileButton) {
+            const provider = providerById(profileButton.dataset.profile);
+            if (provider) renderProfile(provider);
+            return;
+          }
+          const favoriteButtonEl = event.target.closest('[data-favorite]');
+          if (favoriteButtonEl) {
+            toggleFavorite(favoriteButtonEl.dataset.favorite);
+            return;
+          }
+          if (event.target.closest('[data-reset-filters]')) clearFilters();
+        });
+        $('#jumpFavorites').addEventListener('click', () => $('#favoris').scrollIntoView({ behavior: 'smooth' }));
+        $('#dialogClose').addEventListener('click', closeDialog);
+        $('#providerDialog').addEventListener('close', () => {
+          document.body.classList.remove('dialog-open');
+          state.activeProvider = null;
+        });
+        $('#providerDialog').addEventListener('click', event => {
+          if (event.target === $('#providerDialog')) closeDialog();
+        });
+        $('#budgetTotal').addEventListener('input', event => {
+          const raw = event.target.value;
+          state.budget.total = raw === '' ? '' : Math.max(0, Number(raw) || 0);
+          saveBudget();
+          const activeId = document.activeElement.id;
+          renderBudget();
+          if (activeId === 'budgetTotal') $('#budgetTotal').focus();
+        });
+        $('#budgetLines').addEventListener('input', event => {
+          const input = event.target.closest('[data-budget-line]');
+          if (!input) return;
+          const value = input.value;
+          state.budget.lines[input.dataset.budgetLine] = value === '' ? '' : Math.max(0, Number(value) || 0);
+          saveBudget();
+          const total = Number(state.budget.total) || 0;
+          const allocated = BUDGET_CATEGORIES.reduce((sum, category) => sum + (Number(state.budget.lines[category]) || 0), 0);
+          const remaining = total - allocated;
+          $('#budgetRemaining').textContent = total > 0 ? formatMoney(Math.abs(remaining)) : '—';
+          $('#budgetSummaryLabel').textContent = total > 0 ? (remaining < 0 ? 'au-dessus de l’enveloppe' : 'restant à répartir') : 'saisissez une enveloppe';
+          $('#budgetSummary').classList.toggle('is-over', total > 0 && remaining < 0);
+          $('#budgetAllocated').textContent = `${formatMoney(allocated)} répartis`;
+          $('#budgetTotalLabel').textContent = total > 0 ? `sur ${formatMoney(total)}` : 'Aucune enveloppe saisie';
+        });
+        $('#resetBudget').addEventListener('click', resetBudget);
+        $('#taskForm').addEventListener('submit', event => {
+          event.preventDefault();
+          const input = $('#taskInput');
+          const text = input.value.trim();
+          if (text.length < 2) { toast('Ajoutez une tâche un peu plus précise.'); input.focus(); return; }
+          const id = `custom-${Date.now()}-${Math.random().toString(16).slice(2, 7)}`;
+          state.customTasks.push({ id, text, custom: true });
+          safeWrite('mmi-custom-tasks-v2', state.customTasks);
+          input.value = '';
+          renderTasks();
+          toast('Tâche ajoutée à votre checklist.');
+        });
+        $('#taskList').addEventListener('change', event => {
+          const checkbox = event.target.closest('[data-task-toggle]');
+          if (!checkbox) return;
+          const id = checkbox.dataset.taskToggle;
+          if (checkbox.checked) state.done.add(id); else state.done.delete(id);
+          safeWrite('mmi-checks-v2', [...state.done]);
+          renderTasks();
+        });
+        $('#taskList').addEventListener('click', event => {
+          const removeButton = event.target.closest('[data-task-remove]');
+          if (!removeButton) return;
+          const id = removeButton.dataset.taskRemove;
+          state.customTasks = state.customTasks.filter(task => task.id !== id);
+          state.done.delete(id);
+          safeWrite('mmi-custom-tasks-v2', state.customTasks);
+          safeWrite('mmi-checks-v2', [...state.done]);
+          renderTasks();
+          toast('Tâche supprimée.');
+        });
+        $('#resetChecklist').addEventListener('click', resetChecklist);
+        $('#menuToggle').addEventListener('click', () => {
+          const nav = $('#siteNav');
+          const isOpen = nav.classList.toggle('is-open');
+          $('#menuToggle').setAttribute('aria-expanded', String(isOpen));
+          $('#menuToggle').setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
+        });
+        $('#siteNav').addEventListener('click', event => {
+          if (event.target.closest('a')) {
+            $('#siteNav').classList.remove('is-open');
+            $('#menuToggle').setAttribute('aria-expanded', 'false');
+            $('#menuToggle').setAttribute('aria-label', 'Ouvrir le menu');
+          }
+        });
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape') {
+            const nav = $('#siteNav');
+            nav.classList.remove('is-open');
+            $('#menuToggle').setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      renderCategoryChips();
+      renderCategoryTiles();
+      renderInspirations();
+      renderProviders();
+      renderBudget();
+      renderTasks();
+      bindEvents();
+    })();
+  </script>
+</body>
+</html>
