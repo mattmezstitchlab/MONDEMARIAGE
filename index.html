@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17181b">
+  <meta name="description" content="Un annuaire mariage sourcé pour Lille Métropole, les Flandres et la frontière France–Belgique. Les fiches sont ajoutées au fil des vérifications, sans prétendre à l’exhaustivité.">
+  <title>Mon Mariage Idéal — Annuaire mariage Lille, Flandres &amp; Belgique</title>
+  <style>
+    :root{
+      color-scheme:light;
+      --ink:#181819;
+      --ink-soft:#4c4c52;
+      --muted:#74747a;
+      --accent:#b7925f;
+      --paper:#f7f6f3;
+      --line:#e7e5e0;
+      --blue:#126ac4;
+      --container:calc(100% - 28px);
+      --system:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:72px}
+    body{margin:0;background:#fff;color:var(--ink);font-family:var(--system);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    body.dialog-open{overflow:hidden}
+    button,input{font:inherit}
+    button,a{-webkit-tap-highlight-color:transparent}
+    button{color:inherit}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    ::selection{background:#e8dcc7;color:var(--ink)}
+    :focus-visible{outline:3px solid rgba(18,106,196,.62);outline-offset:3px}
+    [hidden]{display:none!important}
+    .container{width:var(--container);max-width:1160px;margin:0 auto}
+    .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+    /* Mobile-first, unboxed M wordmark. */
+    .site-header{position:fixed;z-index:50;inset:0 0 auto;height:66px;color:#fff;border-bottom:1px solid rgba(255,255,255,.15);background:linear-gradient(180deg,rgba(11,12,14,.34),transparent);backdrop-filter:saturate(150%) blur(8px);transition:background .24s,border-color .24s,box-shadow .24s,color .24s}
+    .site-header.is-scrolled{color:var(--ink);border-color:rgba(225,223,218,.85);background:rgba(255,255,255,.95);box-shadow:0 1px 14px rgba(0,0,0,.05);backdrop-filter:saturate(180%) blur(18px)}
+    .header-inner{width:var(--container);max-width:1320px;height:100%;margin:auto;display:flex;align-items:center}
+    .brand{display:inline-flex;align-items:center;gap:11px;flex:0 0 auto}
+    .brand-mark{display:inline-block;color:inherit;font-family:var(--system);font-size:2.65rem;font-weight:760;letter-spacing:-.15em;line-height:.9}
+    .brand-copy{display:flex;flex-direction:column;line-height:1.05}
+    .brand-copy strong{font-size:.82rem;font-weight:650;letter-spacing:-.03em}
+    .brand-copy small{display:none;margin-top:5px;color:rgba(255,255,255,.78);font-size:.6rem;letter-spacing:.055em}
+    .site-header.is-scrolled .brand-copy small{color:var(--muted)}
+
+    /* The first screen is only the immersive hero and the single search field. */
+    .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#171719;color:#fff;padding:82px 0 60px;isolation:isolate}
+    .hero-backdrop{position:absolute;z-index:-2;inset:0;margin:0;overflow:hidden;background:#171719}
+    .hero-backdrop img{width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.88);transform:scale(1.012)}
+    .hero-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,10,12,.42),rgba(9,10,12,.26) 43%,rgba(9,10,12,.56)),linear-gradient(90deg,rgba(9,10,12,.22),transparent 75%)}
+    .hero-inner{position:relative;z-index:1;width:var(--container);max-width:1320px;min-height:calc(100svh - 142px);margin:auto;display:flex;align-items:center;justify-content:center}
+    .hero-copy{width:min(1000px,100%);padding:26px 0 40px;text-align:center}
+    .eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:9px;margin:0;color:#f1dfbe;font-size:.59rem;font-weight:700;letter-spacing:.105em;line-height:1.45;text-transform:uppercase}
+    .eyebrow::before{content:"";width:6px;height:6px;flex:none;border-radius:50%;background:currentColor}
+    .hero .eyebrow{max-width:100%;margin-bottom:18px}
+    .hero h1{max-width:1000px;margin:0 auto;color:#fff;font-size:clamp(3rem,11.8vw,4.35rem);font-weight:650;line-height:.94;letter-spacing:-.085em;text-wrap:balance;text-shadow:0 5px 30px rgba(0,0,0,.23)}
+    .hero h1 span{display:block;color:#fff;font-weight:480}
+    .hero-search{width:min(100%,430px);display:grid;grid-template-columns:1fr;gap:6px;margin:26px auto 0;padding:7px;border:1px solid rgba(255,255,255,.84);border-radius:16px;background:rgba(255,255,255,.98);box-shadow:0 16px 48px rgba(0,0,0,.2);text-align:left}
+    .hero-search-field{position:relative;display:flex;align-items:center;min-width:0}
+    .hero-search-field svg{position:absolute;left:15px;width:19px;height:19px;color:#77777c;pointer-events:none}
+    .hero-search input{width:100%;min-width:0;min-height:51px;padding:0 12px 0 44px;border:0;border-radius:10px;background:transparent;color:var(--ink);font-size:.86rem;outline:none}
+    .hero-search input::placeholder{color:#89898e;opacity:1}
+    .hero-search input:focus-visible{outline:2px solid rgba(18,106,196,.62);outline-offset:-3px}
+    .hero-search button{width:100%;min-height:47px;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:0 16px;border:0;border-radius:10px;background:var(--ink);color:#fff;cursor:pointer;font-size:.8rem;font-weight:650;white-space:nowrap;transition:background .2s,transform .2s}
+    .hero-search button:hover{background:#333337;transform:translateY(-1px)}
+    .hero-search button span{font-size:1.04rem;font-weight:400}
+    .hero-caption{position:absolute;z-index:1;right:14px;bottom:13px;left:14px;display:flex;align-items:center;justify-content:center;gap:6px;color:rgba(255,255,255,.84);font-size:.6rem;text-align:center;text-shadow:0 1px 5px rgba(0,0,0,.55)}
+    .hero-caption a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+    .hero-caption a:hover{opacity:.78}
+
+    /* Search results expand directly under the field; every card gets a sourced visual. */
+    .hero-results{width:min(1000px,100%);margin:17px auto 0;padding:14px 12px 11px;border:1px solid rgba(255,255,255,.7);border-radius:17px;background:rgba(255,255,255,.97);color:var(--ink);box-shadow:0 18px 56px rgba(0,0,0,.2);backdrop-filter:blur(18px);text-align:left;animation:results-in .24s ease-out both}
+    @keyframes results-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    .results-heading{display:block;margin-bottom:11px}
+    .results-kicker{margin:0 0 3px;color:#876942;font-size:.61rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+    .results-title{margin:0;font-size:1rem;font-weight:660;letter-spacing:-.035em;line-height:1.25}
+    .results-note{margin:5px 0 0;color:#707077;font-size:.7rem;line-height:1.45}
+    .results-grid{display:grid;grid-template-columns:1fr;gap:8px}
+    .result-card-wrap{position:relative;min-width:0;--card-pad:9px;--avatar-size:56px}
+    .result-card{width:100%;min-width:0;min-height:78px;display:flex;align-items:center;gap:11px;padding:var(--card-pad) 38px var(--card-pad) var(--card-pad);border:1px solid #eae8e3;border-radius:14px;background:rgba(255,255,255,.94);color:var(--ink);text-align:left;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s,background .18s}
+    .result-card:hover{transform:translateY(-2px);border-color:#d2c2a6;background:#fff;box-shadow:0 7px 19px rgba(0,0,0,.065)}
+    .result-avatar{position:relative;width:var(--avatar-size);height:var(--avatar-size);flex:none;overflow:hidden;border-radius:50%;background:#eeeae2}
+    .result-avatar img{width:100%;height:100%;object-fit:cover}
+    .result-avatar-badge{position:absolute;right:2px;bottom:2px;left:2px;padding:2px 1px;border-radius:999px;background:rgba(24,24,25,.78);color:#fff;font-size:.36rem;font-weight:750;letter-spacing:.05em;line-height:1.15;text-align:center}
+    .result-copy{min-width:0;display:flex;flex:1;flex-direction:column;align-items:flex-start;gap:2px}
+    .result-category{max-width:100%;overflow:hidden;color:#876942;font-size:.58rem;font-weight:750;letter-spacing:.035em;text-overflow:ellipsis;text-transform:uppercase;white-space:nowrap}
+    .result-copy strong{max-width:100%;overflow:hidden;font-size:.79rem;font-weight:660;letter-spacing:-.025em;text-overflow:ellipsis;white-space:nowrap}
+    .result-copy small{max-width:100%;overflow:hidden;color:#74747a;font-size:.65rem;text-overflow:ellipsis;white-space:nowrap}
+    .result-arrow{position:absolute;top:50%;right:12px;color:#8e7653;font-size:.98rem;transform:translateY(-50%);transition:transform .18s}
+    .result-card:hover .result-arrow{transform:translate(2px,-50%)}
+    .result-image-source{position:absolute;z-index:2;top:calc(var(--card-pad) + var(--avatar-size) - 19px);left:calc(var(--card-pad) + var(--avatar-size) - 19px);width:20px;height:20px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.9);border-radius:50%;background:rgba(28,28,29,.82);color:#fff;font-size:.68rem;line-height:1;box-shadow:0 1px 5px rgba(0,0,0,.2)}
+    .result-image-source:hover{background:#111}
+    .results-visual-note{margin:9px 2px 0;color:#6c6c72;font-size:.65rem;line-height:1.45}
+    .results-more{width:100%;min-height:38px;display:flex;align-items:center;justify-content:center;margin:10px auto 0;padding:6px 12px;border:0;border-radius:999px;background:#f4f0e8;color:#665136;cursor:pointer;font-size:.72rem;font-weight:680}
+    .results-more:hover{background:#ebe3d4;color:var(--ink)}
+
+    /* Compact, source-conscious footer. */
+    .site-footer{padding:15px 0 17px;background:#f7f6f3;color:#73737a;border-top:1px solid #eceae6}
+    .footer-inner{display:flex;align-items:flex-start;flex-direction:column;gap:8px}
+    .footer-brand{color:var(--ink);font-size:.75rem;font-weight:670;letter-spacing:-.025em}
+    .footer-note{max-width:780px;margin:4px 0 0;font-size:.64rem;line-height:1.5}
+    .footer-links{display:flex;gap:13px;flex-wrap:wrap;font-size:.68rem}
+    .footer-links a{color:#53535a}
+    .footer-links a:hover{text-decoration:underline;text-underline-offset:3px}
+
+    /* Provider details remain on demand and source-linked. */
+    .provider-dialog{width:calc(100% - 14px);max-width:740px;max-height:94svh;padding:0;overflow:hidden;border:0;border-radius:18px;background:#fff;color:var(--ink);box-shadow:0 24px 100px rgba(0,0,0,.28)}
+    .provider-dialog::backdrop{background:rgba(12,12,14,.52);backdrop-filter:blur(5px)}
+    .dialog-panel{max-height:94svh;overflow:auto}
+    .dialog-close{position:absolute;z-index:4;top:10px;right:10px;width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.76);border-radius:50%;background:rgba(255,255,255,.93);color:#252529;cursor:pointer;font-size:1.4rem;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.12)}
+    .dialog-close:hover{background:#fff}
+    .profile-media{position:relative;height:230px;overflow:hidden;background:#e8e7e3}
+    .profile-media img{width:100%;height:100%;object-fit:cover}
+    .profile-visual-badge{position:absolute;right:12px;bottom:11px;left:12px;width:fit-content;max-width:calc(100% - 24px);padding:6px 9px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(24,24,25,.78);color:#fff;font-size:.62rem;font-weight:600;line-height:1.35;backdrop-filter:blur(8px)}
+    .profile-content{padding:22px 19px 27px}
+    .profile-categories{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:9px}
+    .category-label{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;background:#f4f0e8;color:#775b36;font-size:.61rem;font-weight:650}
+    .region-label{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border:1px solid #e8e7e3;border-radius:999px;background:#fafaf9;color:#68686d;font-size:.61rem;font-weight:570}
+    .profile-content h2{margin:0;font-size:clamp(1.65rem,7vw,2.3rem);font-weight:680;letter-spacing:-.06em;line-height:1.06}
+    .profile-location{display:flex;align-items:center;gap:7px;margin:9px 0 0;color:var(--muted);font-size:.8rem}
+    .profile-summary{margin:16px 0 0;color:#4d4d53;font-size:.9rem;line-height:1.65}
+    .source-status{display:inline-flex;align-items:center;gap:7px;margin:16px 0 0;padding:7px 9px;border-radius:999px;background:#eff5ef;color:#356343;font-size:.68rem;font-weight:600}
+    .source-status i{width:7px;height:7px;border-radius:50%;background:#448453}
+    .profile-facts-title{margin:20px 0 9px;font-size:.91rem;font-weight:670;letter-spacing:-.02em}
+    .profile-facts{display:grid;gap:7px;padding:0;margin:0;list-style:none}
+    .profile-facts li{position:relative;padding-left:17px;color:#45454b;font-size:.8rem;line-height:1.5}
+    .profile-facts li::before{content:"";position:absolute;left:1px;top:.62em;width:5px;height:5px;border-radius:50%;background:#af8b58}
+    .profile-pricing{margin:16px 0 0;padding:11px 13px;border:1px solid #e7dfd2;border-radius:12px;background:#faf7f1;color:#5d4930;font-size:.78rem;line-height:1.5}
+    .profile-pricing strong{display:block;margin-bottom:4px;color:#4c3a24;font-size:.74rem}
+    .profile-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:20px;padding-top:16px;border-top:1px solid var(--line)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:39px;padding:0 13px;border:1px solid #d9d8d4;border-radius:999px;background:#fff;color:var(--ink);font-size:.75rem;font-weight:620;transition:background .18s,border-color .18s}
+    .btn:hover{border-color:#aaa8a1;background:#f7f6f3}
+    .profile-credits{margin:15px 0 0;color:var(--muted);font-size:.67rem;line-height:1.5}
+    .profile-credits a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
+    .profile-disclaimer{margin:10px 0 0;color:#77777d;font-size:.67rem;line-height:1.5}
+
+    /* Wider layouts enhance the same mobile-first components. */
+    @media (min-width:560px){
+      :root{--container:min(100% - 42px,1160px)}
+      html{scroll-padding-top:78px}
+      .site-header{height:72px}
+      .brand{gap:12px}
+      .brand-mark{font-size:2.8rem}
+      .brand-copy strong{font-size:.87rem}
+      .brand-copy small{display:block;font-size:.61rem}
+      .hero{padding:96px 0 68px}
+      .hero-inner{min-height:calc(100svh - 164px)}
+      .hero-copy{padding:32px 0 46px}
+      .eyebrow{font-size:.65rem;letter-spacing:.12em}
+      .hero h1{font-size:clamp(3.5rem,9.2vw,6.2rem)}
+      .hero-search{width:min(700px,100%);grid-template-columns:minmax(0,1fr) auto;gap:5px;margin-top:31px;padding:6px;border-radius:15px}
+      .hero-search-field svg{left:17px;width:20px;height:20px}
+      .hero-search input{min-height:55px;padding:0 14px 0 49px;font-size:.92rem}
+      .hero-search button{width:auto;min-width:140px;min-height:55px;padding:0 19px;font-size:.82rem}
+      .hero-caption{right:max(22px,calc((100vw - 1320px)/2));bottom:17px;left:auto;justify-content:flex-end;font-size:.64rem}
+      .hero-results{margin-top:19px;padding:17px 17px 13px;border-radius:18px}
+      .results-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:13px}
+      .results-kicker{font-size:.63rem}
+      .results-title{font-size:1.05rem}
+      .results-note{max-width:48%;margin:0;font-size:.7rem;text-align:right}
+      .results-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+      .result-card-wrap{--card-pad:9px;--avatar-size:58px}
+      .result-card{min-height:80px;gap:10px}
+      .result-copy strong{font-size:.8rem}
+      .result-copy small{font-size:.67rem}
+      .results-more{width:auto;min-height:36px;padding:6px 14px}
+      .footer-inner{align-items:center;flex-direction:row;justify-content:space-between;gap:18px}
+      .footer-note{font-size:.66rem}
+      .provider-dialog{width:min(700px,calc(100% - 24px));max-height:min(90vh,850px);border-radius:21px}
+      .dialog-panel{max-height:min(90vh,850px)}
+      .profile-media{height:285px}
+      .profile-content{padding:25px clamp(22px,4vw,38px) 31px}
+      .profile-actions .btn{min-height:40px;padding:0 15px;font-size:.78rem}
+    }
+    @media (min-width:900px){
+      :root{--container:min(1160px,calc(100% - 56px))}
+      .site-header{height:78px}
+      .brand-mark{font-size:3rem}
+      .hero h1{font-size:clamp(4.4rem,8.8vw,8.6rem)}
+      .hero-search{margin-top:36px}
+      .hero.has-results .hero-inner{min-height:0;align-items:flex-start;padding-top:108px;padding-bottom:24px}
+      .hero.has-results .hero-copy{padding:12px 0 42px}
+      .hero.has-results h1{font-size:clamp(3.2rem,5.2vw,5.4rem)}
+      .hero.has-results .hero-search{margin-top:22px}
+      .hero-results{padding:19px 20px 15px}
+      .results-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+      .result-card-wrap{--card-pad:10px;--avatar-size:60px}
+      .result-card{min-height:82px;gap:11px}
+      .result-category{font-size:.59rem}
+      .result-copy strong{font-size:.82rem}
+      .result-copy small{font-size:.68rem}
+      .footer-note{max-width:790px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="Mon Mariage Idéal, accueil">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-copy"><strong>mon mariage idéal</strong><small>Lille · Flandres · Belgique</small></span>
+      </a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="recherche" aria-labelledby="heroTitle">
+      <figure class="hero-backdrop" aria-label="Photographie de mariage publiée par Atelier Coqlico">
+        <img src="assets/atelier-coqlico.jpg" alt="Un couple de mariés dans une rue pavée, photographie publiée par Atelier Coqlico" fetchpriority="high">
+      </figure>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Lille Métropole · Flandres · France–Belgique</p>
+          <h1 id="heroTitle">Le bon prestataire.<br><span>Pour le grand jour.</span></h1>
+          <form class="hero-search" id="heroSearchForm" role="search">
+            <div class="hero-search-field">
+              <label class="sr-only" for="searchInput">Métier, prestataire ou ville recherchée</label>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+              <input id="searchInput" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" aria-controls="heroResults" placeholder="Métier, nom ou ville…">
+            </div>
+            <button type="submit">Rechercher <span aria-hidden="true">→</span></button>
+          </form>
+          <section class="hero-results" id="heroResults" aria-labelledby="resultsTitle" aria-live="polite" hidden>
+            <div class="results-heading">
+              <div><p class="results-kicker" id="resultsKicker"></p><h2 class="results-title" id="resultsTitle">Prestataires près de vous</h2></div>
+              <p class="results-note" id="resultsNote"></p>
+            </div>
+            <div class="results-grid" id="resultGrid"></div>
+            <p class="results-visual-note" id="resultsVisualNote" hidden>« VISUEL MÉTIER » désigne une photo d’ambiance issue d’un autre portfolio référencé, pas une photo du prestataire affiché. ↗ ouvre sa source.</p>
+            <button class="results-more" id="showMoreResults" type="button" hidden></button>
+          </section>
+        </div>
+      </div>
+      <div class="hero-caption"><span>Photographie publiée par Atelier Coqlico</span><a href="https://ateliercoqlico.fr/" target="_blank" rel="noopener noreferrer">Source officielle ↗</a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div><div class="footer-brand">mon mariage idéal</div><p class="footer-note">Annuaire local en cours d’enrichissement pour Lille Métropole, les Flandres et le bassin transfrontalier France–Belgique. Les « visuels métier » sont des photos de portfolios sourcées, mais ne représentent pas le prestataire affiché. Sélection non exhaustive.</p></div>
+      <nav class="footer-links" aria-label="Liens complémentaires"><a href="#recherche">Retour à la recherche ↑</a></nav>
+    </div>
+  </footer>
+
+  <dialog class="provider-dialog" id="providerDialog" aria-labelledby="profileName">
+    <div class="dialog-panel">
+      <button class="dialog-close" id="dialogClose" type="button" aria-label="Fermer la fiche">×</button>
+      <div class="profile-media" id="profileMedia"></div>
+      <div class="profile-content">
+        <div class="profile-categories" id="profileCategories"></div>
+        <h2 id="profileName">Fiche prestataire</h2>
+        <p class="profile-location" id="profileLocation"></p>
+        <p class="profile-summary" id="profileSummary"></p>
+        <div class="source-status"><i aria-hidden="true"></i>Fiche établie à partir de la source officielle</div>
+        <h3 class="profile-facts-title">Informations publiées</h3>
+        <ul class="profile-facts" id="profileFacts"></ul>
+        <div class="profile-pricing" id="profilePricing" hidden></div>
+        <div class="profile-actions" id="profileActions"></div>
+        <p class="profile-credits" id="profileCredits"></p>
+        <p class="profile-disclaimer">Les informations peuvent évoluer. Contactez directement le professionnel pour confirmer disponibilités, tarifs, conditions et zone d’intervention.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const REGION_LABELS = {
+        'lille-metropole': 'Lille Métropole',
+        'flandre-francaise': 'Flandre française',
+        'flandre-belge': 'Flandre belge',
+        'frontiere-fr-be': 'France–Belgique'
+      };
+
+      const CATEGORIES = [
+        'Lieu de réception', 'Photographe', 'Vidéaste', 'Traiteur', 'Wedding planner',
+        'Fleuriste', 'Robe de mariée', 'Costume', 'DJ & animation', 'Musique & musiciens',
+        'Maquillage & coiffure', 'Papeterie', 'Alliances', 'Décoration & location',
+        'Photobooth', 'Officiant de cérémonie'
+      ];
+
+      const PROVIDERS = [
+        {
+          id: 'domaine-achelles', name: 'Domaine d’Achelles', categories: ['Lieu de réception'],
+          location: 'Bondues · Nord', regions: ['lille-metropole'],
+          summary: 'Lieu de réception pour les mariages à Bondues, avec une salle de 180 m².',
+          facts: ['La page mariage indique une salle de 180 m².', 'Capacité publiée : jusqu’à 110 personnes assises et 220 en cocktail.'],
+          image: 'assets/domaine-achelles.jpg', imageAlt: 'Salle de réception dressée au Domaine d’Achelles, photo de la page officielle des espaces',
+          sourceUrl: 'https://www.ledomainedachelles.com/mariage', photoSource: 'https://www.ledomainedachelles.com/lesespaces',
+          photoSourceLabel: 'Les espaces du Domaine d’Achelles', contacts: []
+        },
+        {
+          id: 'fred-laurent', name: 'Fred Laurent', categories: ['Photographe'],
+          location: 'Près de Lille · reportage à Tournai', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Photographe de mariage et de portrait près de Lille ; son portfolio officiel comprend un reportage à Tournai.',
+          facts: ['Photographie de mariage et portrait.', 'Le site décrit une approche naturelle et discrète.', 'Un reportage de mariage à Tournai est publié sur son site.'],
+          image: 'assets/fred-laurent.jpg', imageAlt: 'Couple de mariés lors d’une réception extérieure, photographie issue du portfolio de Fred Laurent',
+          sourceUrl: 'https://www.fredlaurent.com/', photoSource: 'https://www.fredlaurent.com/mariage-dans-lesprit-guinguette-a-tournai/',
+          photoSourceLabel: 'Portfolio mariage de Fred Laurent', contacts: []
+        },
+        {
+          id: 'yanka-traiteur', name: 'Yanka Traiteur', categories: ['Traiteur'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Traiteur événementiel à Lille ; l’offre mariage présentée comprend cocktail, dîner et brunch.',
+          facts: ['Les prestations de mariage mentionnent cocktail, dîner et brunch.', 'Yanka indique privilégier des produits de saison et des approvisionnements locaux.'],
+          image: 'assets/yanka-traiteur.jpg', imageAlt: 'Plateau de mignardises présenté sur le site officiel de Yanka Traiteur',
+          sourceUrl: 'https://www.yanka.com/', photoSource: 'https://www.yanka.com/traiteur-cocktails/cocktail-sucres-traiteur-nord-pas-de-calais',
+          photoSourceLabel: 'Visuel officiel Yanka · mignardises', contacts: []
+        },
+        {
+          id: 'studio-paupiette', name: 'Studio Paupiette', categories: ['Fleuriste'],
+          location: 'Lille · Belgique proche', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Design floral de mariage à Lille et créations sur mesure, avec une zone annoncée incluant la Belgique proche.',
+          facts: ['Créations florales sur mesure pour les mariages.', 'L’atelier annonce fleurs de saison et locales, sans plastique ni mousse florale.', 'La page officielle mentionne la Belgique proche parmi les zones desservies.'],
+          image: 'assets/studio-paupiette.jpg', imageAlt: 'Composition florale de table publiée sur la page mariage de Studio Paupiette',
+          sourceUrl: 'https://studiopaupiette.com/les-prestations-de-design-floral/le-mariage/', photoSource: 'https://studiopaupiette.com/les-prestations-de-design-floral/le-mariage/',
+          photoSourceLabel: 'Page mariage de Studio Paupiette', contacts: []
+        },
+        {
+          id: 'aly-production', name: 'Aly Production', categories: ['Photographe', 'Vidéaste'],
+          location: 'Lille · Hauts-de-France · Belgique', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Alyssia propose des reportages photo et des films de mariage ; son site cite Lille, les Hauts-de-France et la Belgique.',
+          facts: ['Prestations publiées : photographie, film de mariage, couple, famille et professionnels.', 'La photographe indique être basée à Lille et se déplacer dans le Nord, en Belgique et ailleurs.'],
+          image: 'assets/aly-production.png', imageAlt: 'Mariée dans une chambre lumineuse, image issue du portfolio de mariage d’Aly Production',
+          sourceUrl: 'https://alyproduction.com/', photoSource: 'https://alyproduction.com/mariage-anglais-chic-et-colore-au-chateau-bayard',
+          photoSourceLabel: 'Portfolio mariage d’Aly Production', contacts: [{ label: 'Contact officiel', href: 'https://alyproduction.com/contact/' }]
+        },
+        {
+          id: 'elsa-barois', name: 'Elsa Barois', categories: ['Robe de mariée'],
+          location: 'Lille · sur rendez-vous', regions: ['lille-metropole'],
+          summary: 'Créatrice de robes de mariée à Lille, avec un showroom accessible sur rendez-vous.',
+          facts: ['Showroom au 1 rue de Denain, à Lille.', 'Le premier rendez-vous est annoncé comme gratuit.'],
+          price: 'Semi-mesure dès 2 500 € ; sur-mesure dès 3 500 €, selon les tarifs publiés sur le site.',
+          image: 'assets/elsa-barois.webp', imageAlt: 'Robe de mariée en dentelle photographiée de dos, image issue du site d’Elsa Barois',
+          sourceUrl: 'https://elsabarois.com/', photoSource: 'https://elsabarois.com/le-prix-dune-robe-de-mariee-sur-mesure/',
+          photoSourceLabel: 'Tarifs et atelier Elsa Barois', contacts: []
+        },
+        {
+          id: 'atelier-coqlico', name: 'Atelier Coqlico', categories: ['Costume'],
+          location: 'Vieux-Lille', regions: ['lille-metropole'],
+          summary: 'Atelier de costume sur mesure situé dans le Vieux-Lille.',
+          facts: ['Adresse publiée : 14 rue Bartholomé Masurel, Vieux-Lille.', 'Le site propose une prise de rendez-vous.'],
+          image: 'assets/atelier-coqlico.jpg', imageAlt: 'Couple de mariés en tenues de cérémonie, photographie publiée sur le site d’Atelier Coqlico',
+          sourceUrl: 'https://ateliercoqlico.fr/les-ateliers/costume-sur-mesure-lille/', photoSource: 'https://ateliercoqlico.fr/',
+          photoSourceLabel: 'Site officiel Atelier Coqlico',
+          contacts: [{ label: '03 20 21 17 26', href: 'tel:+33320211726' }]
+        },
+        {
+          id: 'lolypop-events', name: 'Lolypop Events', categories: ['DJ & animation'],
+          location: 'Frélinghien · Lille, Hazebrouck, Courtrai & Tournai',
+          regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'DJ et animation de mariage, depuis Frélinghien ; les déplacements annoncés relient Lille, Hazebrouck, Courtrai et Tournai.',
+          facts: ['Adresse publiée : 103 rue Au Vent, 4 Clos du Chêne, 59236 Frélinghien.', 'Le site présente une offre de sonorisation et d’animation musicale pour les mariages.', 'La zone de déplacement affichée inclut Lille, Courtrai, Hazebrouck et Tournai.'],
+          image: null, imageAlt: '',
+          sourceUrl: 'https://www.lolypop-events.com/mariage.php', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 66 88 35 87', href: 'tel:+33366883587' }]
+        },
+        {
+          id: 'suzette-simone', name: 'Suzette & Simone', categories: ['Wedding planner'],
+          location: 'Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Agence d’organisation d’événements qui présente des mariages à Lille et propose une sélection de prestataires.',
+          facts: ['Services présentés : coordination, planning, animations et décoration.', 'L’agence indique aussi accompagner la sélection de prestataires.', 'Le site présente des mariages organisés à Lille.'],
+          image: 'assets/suzette-simone.jpg', imageAlt: 'Mariés à la sortie d’une cérémonie, photographie issue du site de Suzette & Simone',
+          sourceUrl: 'https://www.suzetteetsimone.com/', photoSource: 'https://www.suzetteetsimone.com/',
+          photoSourceLabel: 'Portfolio de Suzette & Simone', contacts: []
+        },
+        {
+          id: 'laurene-dandois', name: 'Laurène Dandois', categories: ['Maquillage & coiffure'],
+          location: 'Métropole lilloise · mobile', regions: ['lille-metropole'],
+          summary: 'Maquillage et coiffure de mariage, avec des prestations mobiles sur la métropole lilloise.',
+          facts: ['Le forfait mariage présenté inclut un essai et le jour J.', 'Téléphone et adresse e-mail publiés sur le site.'],
+          image: 'assets/laurene-dandois.jpg', imageAlt: 'Portrait publié sur le site de Laurène Dandois',
+          sourceUrl: 'https://www.laurenedandois.com/', photoSource: 'https://www.laurenedandois.com/',
+          photoSourceLabel: 'Site officiel de Laurène Dandois',
+          contacts: [{ label: '06 11 59 00 81', href: 'tel:+33611590081' }, { label: 'Écrire à Laurène', href: 'mailto:laurene.dandois@gmail.com' }]
+        },
+        {
+          id: 'atelier-merigond', name: 'Atelier Mérigond', categories: ['Papeterie'],
+          location: 'Croix · métropole lilloise', regions: ['lille-metropole'],
+          summary: 'Papeterie de mariage personnalisable, avec créations sur rendez-vous à Croix.',
+          facts: ['La boutique et les créations sur rendez-vous sont annoncées à Croix.', 'Le site mentionne des papiers FSC et une fabrication française.'],
+          image: 'assets/atelier-merigond.jpg', imageAlt: 'Papeterie de mariage photographiée sur une table en bois, visuel Atelier Mérigond',
+          sourceUrl: 'https://merigond.fr/mariage/', photoSource: 'https://merigond.fr/categorie-produit/plans-de-table',
+          photoSourceLabel: 'Papeterie mariage Atelier Mérigond',
+          contacts: [{ label: 'imprimerie@merigond.fr', href: 'mailto:imprimerie@merigond.fr' }]
+        },
+        {
+          id: 'dael-grau', name: 'Dael & Grau', categories: ['Alliances'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Joaillier à Lille proposant alliances, collections et création de bijoux.',
+          facts: ['Le site présente des alliances et des collections de bijoux.', 'La création sur mesure est proposée.', 'La maison indique exercer depuis 1830.'],
+          image: 'assets/dael-grau.jpg', imageAlt: 'Alliance photographiée en gros plan, visuel publié sur la page mariage de Dael & Grau',
+          sourceUrl: 'https://www.daelgrau.com/', photoSource: 'https://daelgrau.com/fr/mariage',
+          photoSourceLabel: 'Page mariage de Dael & Grau', contacts: []
+        },
+        {
+          id: 'domaine-chanterelle', name: 'Domaine de la Chanterelle', categories: ['Lieu de réception'],
+          location: 'Verlinghem · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Domaine de réception à Verlinghem, avec salons, parc et espaces pour les mariages.',
+          facts: ['Adresse publiée : rue du Beau Rang, 59237 Verlinghem.', 'Le site annonce jusqu’à 300 personnes assises et 500 en cocktail ou vin d’honneur.', 'Le lieu présente des espaces de réception, un parc et une pergola.'],
+          image: null, imageAlt: '', sourceUrl: 'https://domainedelachanterelle.com/domaine-chanterelle', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 22 20 54', href: 'tel:+33320222054' }]
+        },
+        {
+          id: 'chateau-premesques', name: 'Château de Prémesques', categories: ['Lieu de réception'],
+          location: 'Prémesques · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Salon de réception avec parc et espaces modulables, à Prémesques.',
+          facts: ['Adresse publiée : 1055 route Nationale, 59840 Prémesques.', 'Le site annonce jusqu’à 140 personnes assises et 250 en cocktail.', 'Les salons sont annoncés sur 280 m² avec parking privé.'],
+          image: null, imageAlt: '', sourceUrl: 'https://domainedelachanterelle.com/chateau-premesques', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 22 20 54', href: 'tel:+33320222054' }]
+        },
+        {
+          id: 'bommelaers-wall', name: 'Domaine du Bommelaers Wall', categories: ['Lieu de réception'],
+          location: 'Ghyvelde · Flandre maritime', regions: ['flandre-francaise'],
+          summary: 'Domaine agricole avec salles de réception et espaces extérieurs, à proximité de Dunkerque.',
+          facts: ['Le site officiel présente des réceptions et mariages.', 'La grange du XVIIIᵉ siècle et une seconde salle peuvent être louées.', 'Adresse publiée : RD 601, lieu-dit Le Bommelaers Wall, 59254 Ghyvelde.'],
+          image: null, imageAlt: '', sourceUrl: 'https://location-salle-dunkerque.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 83 47 36 28', href: 'tel:+33683473628' }, { label: 'Écrire au domaine', href: 'mailto:domainebw@orange.fr' }]
+        },
+        {
+          id: 'mh-receptions-villa-blanche', name: 'MH Réceptions · Villa Blanche', categories: ['Lieu de réception', 'Traiteur'],
+          location: 'Coudekerque-Village · Dunkerque', regions: ['flandre-francaise'],
+          summary: 'Traiteur-organisateur de réceptions et lieu modulable Villa Blanche, au pourtour de Dunkerque.',
+          facts: ['Le site présente Villa Blanche comme salon de réception et propose également des prestations traiteur.', 'Adresse publiée pour Villa Blanche : 3 route des 7 Planètes, 59380 Coudekerque-Village.', 'Le site indique intervenir dans la campagne flamande et les Hauts-de-France.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.mh-receptions.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'grande-maison-reception', name: 'La Grande Maison Réception', categories: ['Lieu de réception'],
+          location: 'Cassel · Flandre française', regions: ['flandre-francaise'],
+          summary: 'Demeure de caractère à Cassel pour mariages et réceptions privées, avec offre de location ou d’organisation.',
+          facts: ['Adresse publiée : 1938 route de Lille, 59670 Cassel.', 'Le site présente la location de salle et une organisation clé en main selon le projet.', 'Un parc arboré, des terrasses et des espaces modulables sont présentés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://lagrandemaisonreception.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 85 75 17 69', href: 'tel:+33685751769' }, { label: 'Écrire au lieu', href: 'mailto:lagrandemaisonreception@hotmail.com' }]
+        },
+        {
+          id: 'groot-moerhof', name: '’t Groot Moerhof', categories: ['Lieu de réception', 'Traiteur'],
+          location: 'Adinkerke · frontière franco-belge', regions: ['flandre-belge', 'frontiere-fr-be'],
+          summary: 'Restaurant et salle de fête à Adinkerke, implantés sur la frontière entre la Belgique et la France.',
+          facts: ['Le site présente la grange restaurée pour mariages, réceptions et fêtes familiales.', 'Adresse publiée : Molendam 2, 8660 Adinkerke.', 'Le lieu indique se trouver directement sur la frontière entre les deux pays.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.grootmoerhof.be/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '+32 477 52 59 72', href: 'tel:+32477525972' }, { label: 'Écrire au lieu', href: 'mailto:info@grootmoerhof.be' }]
+        },
+        {
+          id: 'landhuis-molenhof', name: 'Landhuis Molenhof', categories: ['Lieu de réception', 'Traiteur'],
+          location: 'Heuvelland · Flandre belge', regions: ['flandre-belge'],
+          summary: 'Lieu de fête et de réception à Heuvelland, avec offre de restauration présentée sur le site.',
+          facts: ['La page officielle est consacrée aux fêtes de mariage.', 'La salle Crystal Waters est annoncée pour une capacité allant jusqu’à 220 personnes, piste de danse comprise.', 'Adresse publiée : Lijstermolendreef 4, 8950 Heuvelland.'],
+          image: null, imageAlt: '', sourceUrl: 'https://molenhof.be/huwelijksfeesten', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'domaine-ronceval', name: 'Domaine de Ronceval', categories: ['Lieu de réception'],
+          location: 'Mouscron · Belgique', regions: ['frontiere-fr-be'],
+          summary: 'Ferme rénovée accueillant des mariages à Mouscron, à proximité de Lille et Tourcoing.',
+          facts: ['Le site présente des mariages et événements privés.', 'Deux salles communicantes, une cour, un jardin et une maison sont décrits sur le site.', 'Le lieu se présente comme libre de traiteur.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.domainederonceval.be/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'didier-kapitza', name: 'Didier Kapitza', categories: ['Photographe'],
+          location: 'Hazebrouck · Lille · Dunkerque', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Photographe de mariage basé dans le Nord, avec des pages dédiées à Hazebrouck, Lille, Dunkerque et Saint-Omer.',
+          facts: ['La page mariage présente des reportages dans le Nord.', 'Le site décrit des prestations sur mesure ; demandez un devis pour connaître les tarifs actuels.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.didierkapitza.com/mariage/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'bastien-crequi', name: 'Bastien Créqui', categories: ['Photographe'],
+          location: 'Dunkerque · Lille · Nord', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Photographe de mariage à Dunkerque, Lille et dans le Nord, avec des reportages publiés dans les Flandres et en Belgique.',
+          facts: ['Le site indique se déplacer à Lille et dans le Nord de la France.', 'Le portfolio officiel présente des reportages à Dunkerque, Courtrai et De Panne.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.bastiencrequi.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: 'Écrire à Bastien', href: 'mailto:contact@bastiencrequi.com' }]
+        },
+        {
+          id: 'photographegs', name: 'PhotographeGS · Sébastien Garves', categories: ['Photographe'],
+          location: 'Grande-Synthe · Dunkerque', regions: ['flandre-francaise'],
+          summary: 'Photographe de mariage à Grande-Synthe, Dunkerque et dans les Hauts-de-France.',
+          facts: ['Le site identifie Sébastien Garves comme photographe professionnel basé à Grande-Synthe.', 'Un service de reportage de mariage dans le Dunkerquois est présenté.'],
+          image: null, imageAlt: '', sourceUrl: 'https://photographegs.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'christophe-blaszkowski', name: 'Christophe Blaszkowski', categories: ['Photographe'],
+          location: 'Lille · Arras · Hauts-de-France · Belgique', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Photographe de mariage à Lille et Arras ; le site annonce des déplacements dans les Hauts-de-France et en Belgique.',
+          facts: ['Le site présente des reportages de mariage à Lille et dans la région.', 'Les zones annoncées incluent Lille, Arras, les Hauts-de-France et la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://christopheblaszkowski.com/photographe-mariage-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 75 40 09 64', href: 'tel:+33675400964' }, { label: 'Écrire à Christophe', href: 'mailto:christophe.blaszkowski@gmail.com' }]
+        },
+        {
+          id: 'elena-decaen', name: 'Elena Decaen', categories: ['Photographe'],
+          location: 'Lille · Baisieux · Tournai · Courtrai', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Photographe de mariages intimistes, avec une zone de déplacement annoncée des deux côtés de la frontière franco-belge.',
+          facts: ['La page mariage est dédiée aux cérémonies en petit comité autour de Lille et Tournai.', 'Le site mentionne Lille, Villeneuve-d’Ascq, Tournai, Mouscron, Courtrai et la côte belge.', 'La FAQ publiée indique un tarif de 250 € par heure, dans la limite de quatre heures.'],
+          price: '250 € par heure pour les mariages intimistes, jusqu’à quatre heures, selon la FAQ du site.',
+          image: null, imageAlt: '', sourceUrl: 'https://www.elenadecaen.com/photographe-mariage-tournai', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'olivier-cousson', name: 'Olivier Cousson', categories: ['Photographe'],
+          location: 'Tournai · déplacements jusqu’à 75 km de Lille', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Photographe spécialisé dans le mariage à Tournai, avec des frais de déplacement inclus jusqu’à 75 km de Lille selon sa page.',
+          facts: ['Le site présente les prestations de mariage à Tournai et dans le Tournaisis.', 'La formule décrite sur la page inclut les déplacements jusqu’à 75 km de Lille.'],
+          image: null, imageAlt: '', sourceUrl: 'https://oliviercousson.com/mariage-tournai/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'kt-photography', name: 'KT Photography · Kassie Tuba', categories: ['Photographe'],
+          location: 'Lille · Belgique', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Photographe de mariage basée à Lille, qui annonce des reportages en Belgique et dans plusieurs villes flamandes.',
+          facts: ['La page officielle présente des mariages à Tournai, Gand, Bruges et Bruxelles.', 'La photographe indique être basée à Lille, près de la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://ktphotography.fr/photographe-mariage-belgique/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'sylvain-b-videaste', name: 'Sylvain B Vidéaste', categories: ['Vidéaste'],
+          location: 'Arras · Lille · Belgique', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Vidéaste de mariage basé à Arras ; le site annonce des déplacements à Lille, dans le Nord et en Belgique.',
+          facts: ['Le site présente Sylvain B comme vidéaste du duo photo-vidéo avec Stéphane Joly.', 'La FAQ annonce des prestations à Lille, dans le Nord, le Pas-de-Calais et en Belgique.', 'Un film de mariage au Palais Alta Ripa à Avelgem est présenté dans le portfolio.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.sylvainb-videaste.com/photographe-videaste-mariage-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'stephane-joly', name: 'Stéphane Joly', categories: ['Photographe'],
+          location: 'Arras · Lille · Belgique', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Photographe du duo de reportage mariage avec Sylvain B ; le site commun annonce des déplacements à Lille et en Belgique.',
+          facts: ['La page de présentation nomme Stéphane Joly comme photographe partenaire du vidéaste Sylvain B.', 'Le duo indique être basé à Arras et intervenir à Lille, dans le Nord, le Pas-de-Calais et en Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.stephanejoly-mariage.com/photographe-mariage-belgique', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 41 25 71 14', href: 'tel:+33641257114' }]
+        },
+        {
+          id: 'naylan-studio', name: 'Naylan Studio', categories: ['Photographe', 'Vidéaste'],
+          location: 'Lille · Hauts-de-France', regions: ['lille-metropole'],
+          summary: 'Studio proposant photo et vidéo de mariage à Lille et dans les environs.',
+          facts: ['La page mariage présente des reportages vidéo, films et photographies.', 'Le site affiche un numéro de contact pour les prestations de mariage.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.naylanstudio.com/3-1.htm', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 12 11 03 34', href: 'tel:+33612110334' }]
+        },
+        {
+          id: 'nicolas-deman-films', name: 'Nicolas Deman Films', categories: ['Photographe', 'Vidéaste'],
+          location: 'Lille · Hauts-de-France', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Photographe et vidéaste de mariage à Lille, avec une zone annoncée dans les Hauts-de-France.',
+          facts: ['Le site officiel présente les services photo et vidéo pour les mariages.', 'La page cite Lille, Roubaix, Tourcoing, Dunkerque et Villeneuve-d’Ascq parmi les secteurs desservis.'],
+          image: null, imageAlt: '', sourceUrl: 'https://nicolasdemanfilms.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'quentin-emilie', name: 'Quentin & Émilie', categories: ['Vidéaste'],
+          location: 'Lille Métropole · Nord', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Duo de vidéastes de mariage à Lille et dans la métropole, avec des déplacements annoncés dans le Nord et le Pas-de-Calais.',
+          facts: ['Le site présente des films de mariage naturels réalisés à deux vidéastes.', 'Les villes citées incluent Lille, Roubaix, Tourcoing, Villeneuve-d’Ascq, Marcq-en-Barœul, Bondues et Lambersart.'],
+          image: null, imageAlt: '', sourceUrl: 'https://quentin-et-emilie.com/en/videaste-mariage-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'reyem-vision', name: 'Reyem Vision', categories: ['Vidéaste'],
+          location: 'Hauts-de-France · Lille', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Vidéaste de mariage des Hauts-de-France ; la page présente des films de mariage et des prestations autour de Lille.',
+          facts: ['Le site met en avant des films et reportages de mariage.', 'Le vidéaste annonce être basé dans les Hauts-de-France et se déplacer selon les projets.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.reyemvision.com/en', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'le-mariage-des-etoiles', name: 'Le Mariage des Étoiles', categories: ['Wedding planner', 'Officiant de cérémonie', 'Décoration & location'],
+          location: 'Mons · Lille · Tournai', regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Agence basée à Mons proposant organisation, décoration et cérémonies laïques dans le Nord de la France et en Belgique.',
+          facts: ['La fondatrice indique travailler depuis Mons et se déplacer à Lille, Armentières, Tournai, Mons et dans plusieurs villes voisines.', 'Les services publiés incluent organisation de mariage, décoration et cérémonie laïque.'],
+          image: null, imageAlt: '', sourceUrl: 'https://lemariagedesetoiles.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '+33 6 19 97 07 75', href: 'tel:+33619970775' }, { label: 'Écrire à Alice', href: 'mailto:lemariagedesetoiles@gmail.com' }]
+        },
+        {
+          id: '3-petits-mots', name: '3 Petits Mots', categories: ['Wedding planner', 'Officiant de cérémonie'],
+          location: 'Kain · Tournai · Lille', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Wedding planner et officiante basée à Kain, près de Tournai ; elle annonce intervenir dans le Nord de la France, dont Lille.',
+          facts: ['La page officielle présente coordination, organisation de mariage et cérémonie.', 'La zone annoncée comprend la Wallonie picarde, le Hainaut et le Nord de la France.', 'Adresse publiée : avenue d’Audenarde 98, 7540 Kain.'],
+          image: null, imageAlt: '', sourceUrl: 'https://3petitsmots.be/services/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '+32 474 63 50 55', href: 'tel:+32474635055' }, { label: 'Écrire à Jessica', href: 'mailto:contact@3petitsmots.be' }]
+        },
+        {
+          id: 'planners-and-co-lille', name: 'Planners & Co · agence Nord', categories: ['Wedding planner'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Agence de wedding planning basée à Lille, proposant organisation, coaching, décoration et coordination.',
+          facts: ['La page officielle présente Mylène pour l’agence Nord Littoral et le secteur Nord.', 'Adresse publiée : 16 bis rue Garibaldi, 59000 Lille.', 'Les services affichés incluent organisation, coaching, décoration et coordination.'],
+          image: null, imageAlt: '', sourceUrl: 'https://plannersandco.fr/agence-wedding-planner-nord/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '07 66 36 90 58', href: 'tel:+33766369058' }, { label: 'Écrire à l’agence', href: 'mailto:agence-nord@plannersandco.fr' }]
+        },
+        {
+          id: 'agence-eme', name: 'Agence EME', categories: ['Wedding planner', 'Officiant de cérémonie', 'Décoration & location'],
+          location: 'Flandre Intérieure · entre Lille et Dunkerque', regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Agence de mariage basée en Flandre Intérieure, avec des prestations annoncées dans les Hauts-de-France et en Belgique.',
+          facts: ['La fondatrice indique être basée entre Lille et Dunkerque.', 'Le site présente organisation de mariage, événementiel, décoration et cérémonie.', 'Les zones publiées incluent Lille, les Hauts-de-France et la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://agence-eme.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'tomd-sono', name: 'Tom’D Sono', categories: ['DJ & animation'],
+          location: 'Wasquehal · Lille · Belgique frontalière', regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'DJ et animation de mariage basé à Wasquehal, avec une zone annoncée dans la métropole lilloise et en Belgique frontalière.',
+          facts: ['La page mariage présente sonorisation, animation et éclairage.', 'Le site indique intervenir à Lille, dans la métropole lilloise et dans des communes belges telles que Comines, Menin, Wevelgem, Tournai et Mouscron.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.tomd-sono.com/mariages', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 26 65 57 19', href: 'tel:+33626655719' }]
+        },
+        {
+          id: 'kestevents', name: 'KestEvents', categories: ['DJ & animation', 'Musique & musiciens'],
+          location: 'Estaires · Armentières · Nord', regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Agence d’animation près de Lille, avec DJ, musiciens et prestations musicales pour les mariages dans le Nord.',
+          facts: ['Adresse publiée : 20 rue de Merville, 59940 Estaires.', 'L’offre mariage comprend DJ, animateur, musiciens et sonorisation.', 'La page cite Lille, Hazebrouck, Dunkerque et Mouscron parmi les lieux d’intervention.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.kestevents.fr/8/dj-animateur-mariage.html', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '07 61 54 85 75', href: 'tel:+33761548575' }]
+        },
+        {
+          id: 'lille-metropole-traiteur', name: 'Lille Métropole Traiteur', categories: ['Traiteur'],
+          location: 'Faches-Thumesnil · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Traiteur de mariage à Faches-Thumesnil, avec des formules de cocktail, buffet, repas et brunch.',
+          facts: ['Adresse publiée : 287 route d’Arras, 59155 Faches-Thumesnil.', 'La page mariage présente vin d’honneur, cocktails, buffets et desserts.', 'Téléphone et e-mail de contact sont publiés sur le site.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lille-metropole-traiteur.com/traiteur-mariage-nord/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 97 90 04', href: 'tel:+33320979004' }, { label: 'Écrire au traiteur', href: 'mailto:contact@lille-metropole-traiteur.com' }]
+        },
+        {
+          id: 'cassiopa', name: 'Cassiopa', categories: ['Traiteur'],
+          location: 'Lille · Nord', regions: ['lille-metropole'],
+          summary: 'Traiteur de mariage à Lille et dans le Nord, avec menus personnalisés et plusieurs formats de service.',
+          facts: ['La page officielle est consacrée aux prestations traiteur de mariage.', 'Les formats présentés incluent service à l’assiette, buffet et animations culinaires.', 'L’entreprise annonce une couverture à Lille et dans le Nord.'],
+          image: null, imageAlt: '', sourceUrl: 'https://cassiopa.fr/traiteur-mariage/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'forest-traiteur', name: 'Forest Traiteur', categories: ['Traiteur'],
+          location: 'Métropole lilloise', regions: ['lille-metropole'],
+          summary: 'Traiteur événementiel lillois proposant l’organisation de mariages et de réceptions privées.',
+          facts: ['Le site présente des prestations de mariage, cocktails et événements privés.', 'Forest se décrit comme un traiteur lillois proposant des expériences sur mesure.'],
+          image: null, imageAlt: '', sourceUrl: 'https://forestevenementiel.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'les-freres-traiteurs', name: 'Les Frères Traiteurs', categories: ['Traiteur'],
+          location: 'Lille · métropole', regions: ['lille-metropole'],
+          summary: 'Traiteur basé à Lille, proposant buffets, cocktails et repas de mariage dans la métropole.',
+          facts: ['Le site présente des prestations de mariage et de réception privée.', 'L’entreprise indique être basée à Lille et se déplacer dans la métropole.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.traiteurlille.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'la-gourmandine', name: 'La Gourmandine', categories: ['Traiteur'],
+          location: 'Hem · Lille Métropole', regions: ['lille-metropole', 'frontiere-fr-be'],
+          summary: 'Traiteur de réception à Hem, près de Lille, pour les mariages et événements privés.',
+          facts: ['Le site présente des réceptions de mariage et plusieurs formats de service.', 'L’entreprise indique être basée à Hem et intervenir dans les Hauts-de-France et en Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lagourmandine.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'coquelicotte', name: 'Coquelicotte', categories: ['Fleuriste'],
+          location: 'Nord–Pas-de-Calais · Belgique', regions: ['flandre-francaise', 'frontiere-fr-be'],
+          summary: 'Fleuriste événementielle spécialisée dans le mariage, avec une zone annoncée dans le Nord–Pas-de-Calais et en Belgique.',
+          facts: ['Le site présente bouquets de mariée, compositions de cérémonie, centres de table et décor floral.', 'La zone de prestations publiée couvre le Nord–Pas-de-Calais et la Belgique.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.coquelicotte.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'mio-flora', name: 'Miö Flora', categories: ['Fleuriste'],
+          location: 'Lille · rue du Faubourg de Roubaix', regions: ['lille-metropole'],
+          summary: 'Atelier de design floral à Lille pour les mariages, événements et commandes sur mesure.',
+          facts: ['Le site présente des créations florales pour les mariages et événements.', 'Adresse publiée : 188 rue du Faubourg de Roubaix, 59000 Lille.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.mioflora.com/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: 'hello@mioflora.com', href: 'mailto:hello@mioflora.com' }]
+        },
+        {
+          id: 'felicite-fleurs', name: 'Félicité · atelier de poésie florale', categories: ['Fleuriste'],
+          location: 'Mouvaux · à 10 km de Lille', regions: ['lille-metropole'],
+          summary: 'Atelier de design floral à Mouvaux, proposant fleurs et créations pour les mariages et événements.',
+          facts: ['Le site présente une activité de mariage et événementiel.', 'Adresse publiée : 6 rue Jeanne d’Arc, 59420 Mouvaux.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.felicite-fleurs.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'make-up-en-nor', name: 'Make Up en N’or', categories: ['Maquillage & coiffure'],
+          location: 'Armentières · déplacements à Lille', regions: ['lille-metropole', 'flandre-francaise'],
+          summary: 'Maquilleuse professionnelle à Armentières, avec prestations de mariage et déplacements annoncés à Lille.',
+          facts: ['Le site présente un parcours mariée avec préparation, essai et mise en beauté le jour J.', 'La maquilleuse indique exercer à Armentières et se déplacer à Lille.'],
+          image: null, imageAlt: '', sourceUrl: 'https://makeupennor.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'celine-ponnet', name: 'Céline Ponnet', categories: ['Maquillage & coiffure'],
+          location: 'Lille · à domicile et alentours', regions: ['lille-metropole'],
+          summary: 'Make-up artist proposant maquillage et coiffage de mariage, avec rendez-vous à domicile à Lille et alentours.',
+          facts: ['Le site officiel présente des prestations de maquillage et coiffage pour les mariages.', 'Les rendez-vous à domicile à Lille et dans les environs sont mentionnés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://celineponnet.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'viktoria-larose', name: 'Viktoria Larose Makeup', categories: ['Maquillage & coiffure'],
+          location: 'Lille', regions: ['lille-metropole'],
+          summary: 'Maquilleuse et coiffeuse à Lille pour mariages et événements.',
+          facts: ['Le site présente des prestations de maquillage et de coiffure pour les mariages.', 'Des prestations en studio à Lille sont affichées.'],
+          image: null, imageAlt: '', sourceUrl: 'https://maquilleuse-lille.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'mariee-couture', name: 'Mariée Couture', categories: ['Robe de mariée'],
+          location: 'Lille · rue Sainte-Catherine', regions: ['lille-metropole'],
+          summary: 'Boutique lilloise de robes de mariée et d’accessoires, avec personnalisation et retouches.',
+          facts: ['Adresse publiée : 65 rue Sainte-Catherine, 59800 Lille.', 'Le site présente des collections de robes, accessoires, essayages et services de personnalisation.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.marieecouture.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 20 06 96 55', href: 'tel:+33320069655' }]
+        },
+        {
+          id: 'cymbeline-lille', name: 'Cymbeline Lille', categories: ['Robe de mariée'],
+          location: 'Lille · déplacements annoncés vers Courtrai et Tournai', regions: ['lille-metropole', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Boutique de robes de mariée à Lille proposant essayages personnalisés et collections Cymbeline.',
+          facts: ['Adresse publiée : 8 rue du Béguinage, 59000 Lille.', 'La page officielle cite Roubaix, Dunkerque, Courtrai et Tournai parmi les zones voisines.'],
+          image: null, imageAlt: '', sourceUrl: 'https://cymbeline.com/stores/cymbeline-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 28 36 27 29', href: 'tel:+33328362729' }, { label: 'cymbelinelille@gmail.com', href: 'mailto:cymbelinelille@gmail.com' }]
+        },
+        {
+          id: 'constance-cellier', name: 'Constance Cellier', categories: ['Robe de mariée'],
+          location: 'Pérenchies · atelier près de Lille', regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'],
+          summary: 'Créatrice de robes de mariée sur mesure, avec showroom privé à Pérenchies et pages de service dédiées aux villes voisines.',
+          facts: ['Le site présente des créations de robes de mariée sur mesure.', 'Showroom privé sur rendez-vous au 3 rue Maryse Bastié, 59840 Pérenchies.', 'Les pages officielles citent Armentières, Hazebrouck et Courtrai parmi les secteurs concernés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.constancecellier.fr/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '06 05 05 02 91', href: 'tel:+33605050291' }]
+        },
+        {
+          id: 'olivier-sinic', name: 'Olivier Sinic · Le Château Blanc', categories: ['Robe de mariée', 'Costume'],
+          location: 'Verlinghem · près de Lille', regions: ['lille-metropole'],
+          summary: 'Maison de cérémonie à Verlinghem réunissant robes de mariée, costumes homme et tenues de cocktail.',
+          facts: ['Le site présente des robes et costumes pour les mariages.', 'Le Château Blanc est annoncé à environ 5 km du centre de Lille.', 'Les essayages sont proposés sur rendez-vous.'],
+          image: null, imageAlt: '', sourceUrl: 'https://oliviersinic.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'blandin-delloye-lille', name: 'Blandin & Delloye Lille', categories: ['Costume'],
+          location: 'Vieux-Lille · rue Pierre Mauroy', regions: ['lille-metropole'],
+          summary: 'Showroom de costumes sur mesure à Lille, avec des tenues de mariage et essayages sur rendez-vous.',
+          facts: ['Adresse publiée : 17 rue Pierre Mauroy, 59000 Lille.', 'La boutique présente des costumes sur mesure de mariage et un accompagnement en showroom.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.blandindelloye.com/boutiques/costume-sur-mesure-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'zeina-lille', name: 'Zeina Lille', categories: ['Alliances'],
+          location: 'Vieux-Lille · place du Lion d’Or', regions: ['lille-metropole'],
+          summary: 'Bijouterie à Lille proposant alliances, bagues de fiançailles et personnalisation.',
+          facts: ['Adresse publiée : 14 bis place du Lion d’Or, 59000 Lille.', 'La boutique présente des alliances en plusieurs métaux et des services de gravure.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.zeina-alliances.com/pages/boutique/lille', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 74 09 66 60', href: 'tel:+33374096660' }]
+        },
+        {
+          id: 'la-fille-au-noeud-rouge', name: 'La Fille au Nœud Rouge', categories: ['Papeterie'],
+          location: 'Lille · atelier de création', regions: ['lille-metropole'],
+          summary: 'Création de faire-part et papeterie de mariage sur mesure, avec impression et finitions artisanales.',
+          facts: ['La créatrice indique accompagner les futurs mariés depuis 2013.', 'Le site présente faire-part, menus, marque-places, plans de table et cartes de remerciement.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lafilleaunoeudrouge.fr/faire-part-mariage-sur-mesure/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'croquez-la-pomme', name: 'Croquez la pomme', categories: ['Papeterie'],
+          location: 'Lille · création de faire-part', regions: ['lille-metropole'],
+          summary: 'Créateur lillois de faire-part de mariage personnalisés et sur mesure.',
+          facts: ['Le site présente des créations de faire-part modernes, personnalisés et sur mesure.', 'La marque se présente comme « Made in Lille ».'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.croquezlapomme.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'la-lilloise-evenementiel', name: 'La Lilloise Événementiel', categories: ['Décoration & location'],
+          location: 'Lille · zone d’intervention annoncée', regions: ['lille-metropole'],
+          summary: 'Wedding & event designer proposant la conception de décoration de mariage de A à Z.',
+          facts: ['Le site se présente comme Wedding & Event Designer à Lille.', 'Les prestations décrites couvrent la conception d’un concept décoratif et l’agencement de l’espace.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.lalilloiseevent.com/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'mkreadesign', name: 'MKréaDesign', categories: ['Décoration & location'],
+          location: 'Bully-les-Mines · livraison à Lille et dans le Nord', regions: ['lille-metropole'],
+          summary: 'Location de décoration, vaisselle et mobilier pour mariages, avec livraison annoncée à Lille et dans les Hauts-de-France.',
+          facts: ['La page mariage présente décoration, mobilier, vaisselle et location.', 'Retrait à Bully-les-Mines ou livraison sur le lieu de réception, selon les modalités du site.'],
+          image: null, imageAlt: '', sourceUrl: 'https://mkreadesign.fr/location/', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        },
+        {
+          id: 'time-to-smile', name: 'Time To Smile', categories: ['Photobooth'],
+          location: 'Villeneuve-d’Ascq · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Location de photobooth pour les mariages, avec retrait ou livraison dans la métropole lilloise.',
+          facts: ['Le site indique être basé à Villeneuve-d’Ascq.', 'La page mariage présente des bornes photo et des formules de location.', 'Un rayon de déplacement autour de Lille est affiché sur le site.'],
+          image: null, imageAlt: '', sourceUrl: 'https://timetosmile.fr/photobooth-lille/', photoSource: null,
+          photoSourceLabel: '', contacts: [{ label: '03 74 47 12 36', href: 'tel:+33374471236' }, { label: 'Écrire à Time To Smile', href: 'mailto:nicolas@timetosmile.fr' }]
+        },
+        {
+          id: 'borne-photo-lille', name: 'BornePhotoLille', categories: ['Photobooth'],
+          location: 'Wasquehal · Lille Métropole', regions: ['lille-metropole'],
+          summary: 'Location de borne photo à impression instantanée pour les mariages et événements de la métropole lilloise.',
+          facts: ['Le site présente la location de photobooth, la livraison et l’installation dans la métropole lilloise.', 'Adresse publiée : 74 rue Voltaire, 59290 Wasquehal.', 'Les impressions et l’écran de la borne peuvent être personnalisés.'],
+          image: null, imageAlt: '', sourceUrl: 'https://www.bornephotolille.com/location-photobooth-lille', photoSource: null,
+          photoSourceLabel: '', contacts: []
+        }
+      ];
+
+      const $ = (selector, root = document) => root.querySelector(selector);
+      const providerById = id => PROVIDERS.find(provider => provider.id === id);
+      const normalize = value => String(value ?? '').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+      const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+
+      const CATEGORY_ALIASES = {
+        'Lieu de réception': ['lieu', 'salle', 'domaine', 'reception'],
+        'Photographe': ['photographe', 'photographie', 'photography', 'photo', 'photographer'],
+        'Vidéaste': ['videaste', 'video', 'film', 'films'],
+        'Traiteur': ['traiteur', 'catering', 'repas'],
+        'Wedding planner': ['wedding planner', 'wedding', 'organisateur', 'organisatrice', 'organisation', 'organisation mariage'],
+        'Fleuriste': ['fleuriste', 'fleurs', 'floral', 'fleur'],
+        'Robe de mariée': ['robe de mariee', 'robes de mariee', 'robe', 'robes', 'mariee'],
+        'Costume': ['costume', 'costumes', 'tailleur'],
+        'DJ & animation': ['dj', 'animation', 'animateur'],
+        'Musique & musiciens': ['musique', 'musicien', 'musiciens', 'saxophone', 'saxophoniste', 'groupe de musique', 'orchestre'],
+        'Maquillage & coiffure': ['maquillage', 'makeup', 'coiffure', 'coiffeur', 'coiffeuse'],
+        'Papeterie': ['papeterie', 'faire part', 'fairepart', 'invitation', 'invitations'],
+        'Alliances': ['alliance', 'alliances', 'bijouterie', 'bijoux'],
+        'Décoration & location': ['decoration', 'deco', 'location', 'location decoration'],
+        'Photobooth': ['photobooth', 'borne photo'],
+        'Officiant de cérémonie': ['officiant', 'ceremonie', 'ceremonie laique']
+      };
+      const REGION_QUERY_GROUPS = [
+        { regions: ['lille-metropole'], phrases: ['lille', 'lille metropole', 'metropole lilloise', 'armentieres', 'wasquehal', 'bondues', 'roubaix', 'tourcoing', 'villeneuve d ascq', 'lambersart', 'marcq en baroeul', 'perenchies', 'verlinghem', 'la madeleine', 'croix', 'hem', 'lomme', 'seclin', 'lesquin', 'wambrechies', 'haubourdin', 'ronchin'] },
+        { regions: ['flandre-francaise'], phrases: ['flandre francaise', 'flandres francaises', 'hazebrouck', 'bailleul', 'cassel', 'dunkerque', 'bergues', 'wormhout', 'steenvoorde'] },
+        { regions: ['flandre-belge', 'frontiere-fr-be'], phrases: ['flandre belge', 'flandres belges', 'belgique', 'belge', 'tournai', 'courtrai', 'kortrijk', 'mouscron', 'comines', 'bruges', 'brugge', 'ypres', 'ieper', 'roeselare', 'menen', 'gand', 'ghent'] },
+        { regions: ['frontiere-fr-be', 'flandre-belge'], phrases: ['france belgique', 'frontiere franco belge', 'frontiere france belgique', 'transfrontalier', 'transfrontaliere'] },
+        { regions: ['lille-metropole', 'flandre-francaise', 'flandre-belge', 'frontiere-fr-be'], phrases: ['hauts de france', 'haut de france'] },
+        { regions: ['lille-metropole', 'flandre-francaise', 'frontiere-fr-be'], phrases: ['nord', 'pas de calais'] }
+      ];
+      const CITY_WORDS = new Set(['lille', 'armentieres', 'wasquehal', 'bondues', 'roubaix', 'tourcoing', 'villeneuve', 'ascq', 'lambersart', 'marcq', 'perenchies', 'verlinghem', 'hazebrouck', 'bailleul', 'cassel', 'dunkerque', 'bergues', 'tournai', 'courtrai', 'kortrijk', 'mouscron', 'comines', 'madeleine', 'croix', 'hem', 'lomme', 'seclin', 'lesquin', 'wambrechies', 'haubourdin', 'ronchin', 'wormhout', 'steenvoorde', 'bruges', 'brugge', 'ypres', 'ieper', 'roeselare', 'menen', 'gand', 'ghent']);
+      const STOP_WORDS = new Set(['a', 'au', 'aux', 'avec', 'bonjour', 'cherche', 'cherches', 'chez', 'dans', 'de', 'des', 'du', 'en', 'et', 'je', 'la', 'le', 'les', 'mariage', 'mariages', 'mon', 'ma', 'mes', 'pour', 'pres', 'proche', 'professionnel', 'professionnels', 'recherche', 'rechercher', 'sur', 'un', 'une', 'trouve', 'trouver', 'voudrais', 'veux']);
+      const CATEGORY_VISUALS = {
+        'Lieu de réception': 'domaine-achelles',
+        'Photographe': 'fred-laurent',
+        'Vidéaste': 'aly-production',
+        'Traiteur': 'yanka-traiteur',
+        'Wedding planner': 'suzette-simone',
+        'Fleuriste': 'studio-paupiette',
+        'Robe de mariée': 'elsa-barois',
+        'Costume': 'atelier-coqlico',
+        'DJ & animation': 'domaine-achelles',
+        'Musique & musiciens': 'suzette-simone',
+        'Maquillage & coiffure': 'laurene-dandois',
+        'Papeterie': 'atelier-merigond',
+        'Alliances': 'dael-grau',
+        'Décoration & location': 'studio-paupiette',
+        'Photobooth': 'fred-laurent',
+        'Officiant de cérémonie': 'suzette-simone'
+      };
+      const FEATURED_IDS = ['domaine-achelles', 'fred-laurent', 'yanka-traiteur', 'studio-paupiette', 'aly-production', 'elsa-barois'];
+      const INITIAL_RESULT_LIMIT = () => window.matchMedia?.('(max-width: 600px)').matches ? 4 : 6;
+      const state = { query: '', results: [], showAllResults: false, activeProvider: null };
+
+      function phraseIn(text, phrase) {
+        return ` ${text} `.includes(` ${phrase} `);
+      }
+
+      function parseSearch(query) {
+        const normalized = normalize(query);
+        const words = normalized.split(' ').filter(Boolean);
+        const categories = new Set();
+        const categoryTokens = new Set();
+        for (const [category, aliases] of Object.entries(CATEGORY_ALIASES)) {
+          for (const alias of aliases) {
+            const phrase = normalize(alias);
+            if (!phrase || !phraseIn(normalized, phrase)) continue;
+            categories.add(category);
+            phrase.split(' ').forEach(word => categoryTokens.add(word));
+          }
+        }
+        const regions = new Set();
+        const geoTokens = new Set();
+        for (const group of REGION_QUERY_GROUPS) {
+          for (const phrase of group.phrases) {
+            const normalizedPhrase = normalize(phrase);
+            if (!normalizedPhrase || !phraseIn(normalized, normalizedPhrase)) continue;
+            group.regions.forEach(region => regions.add(region));
+            normalizedPhrase.split(' ').forEach(word => {
+              if (!CITY_WORDS.has(word)) geoTokens.add(word);
+            });
+          }
+        }
+        const hasFlandersQualifier = words.some(word => ['francaise', 'francaises', 'belge', 'belges'].includes(word));
+        if (!hasFlandersQualifier && (words.includes('flandre') || words.includes('flandres'))) {
+          ['flandre-francaise', 'flandre-belge', 'frontiere-fr-be'].forEach(region => regions.add(region));
+          geoTokens.add(words.includes('flandres') ? 'flandres' : 'flandre');
+        }
+        const locationTerms = words.filter(word => !STOP_WORDS.has(word) && !categoryTokens.has(word) && !geoTokens.has(word));
+        return { normalized, words, categories: [...categories], regions: [...regions], locationTerms };
+      }
+
+      function providerSearchText(provider) {
+        return normalize([
+          provider.name, provider.location, provider.summary,
+          ...provider.categories, ...provider.facts,
+          ...provider.regions.map(region => REGION_LABELS[region] || region)
+        ].join(' '));
+      }
+
+      function sortByRelevance(providers, parsed) {
+        const terms = parsed.locationTerms;
+        return [...providers].sort((a, b) => {
+          const score = provider => {
+            const name = normalize(provider.name);
+            const categoryText = normalize(provider.categories.join(' '));
+            const fullText = providerSearchText(provider);
+            let points = 0;
+            if (parsed.normalized && name.includes(parsed.normalized)) points += 40;
+            if (parsed.categories.some(category => provider.categories.includes(category))) points += 18;
+            if (parsed.regions.some(region => provider.regions.includes(region))) points += 10;
+            for (const term of terms) {
+              if (name.split(' ').includes(term)) points += 12;
+              else if (categoryText.includes(term)) points += 8;
+              else if (fullText.includes(term)) points += 3;
+            }
+            return points;
+          };
+          return score(b) - score(a) || a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
+        });
+      }
+
+      function searchProviders(query) {
+        const parsed = parseSearch(query);
+        const hasIntent = parsed.categories.length > 0 || parsed.regions.length > 0 || parsed.locationTerms.length > 0;
+        if (!hasIntent) {
+          const featured = FEATURED_IDS.map(providerById).filter(Boolean);
+          const remaining = PROVIDERS.filter(provider => !FEATURED_IDS.includes(provider.id));
+          return {
+            providers: [...featured, ...remaining],
+            note: query ? 'Saisissez un métier, un nom ou une ville pour affiner la recherche dans le périmètre local.' : 'Quelques adresses sourcées pour commencer. La sélection complète s’affiche en développant les résultats.'
+          };
+        }
+
+        const categoryMatches = parsed.categories.length
+          ? PROVIDERS.filter(provider => provider.categories.some(category => parsed.categories.includes(category)))
+          : [...PROVIDERS];
+        let candidates = parsed.regions.length
+          ? categoryMatches.filter(provider => provider.regions.some(region => parsed.regions.includes(region)))
+          : categoryMatches;
+        let relaxedRegion = false;
+        if (!candidates.length && parsed.categories.length) {
+          candidates = categoryMatches;
+          relaxedRegion = true;
+        } else if (!candidates.length && parsed.regions.length) {
+          candidates = PROVIDERS.filter(provider => provider.regions.some(region => parsed.regions.includes(region)));
+        }
+
+        let exactMatches = candidates;
+        let relaxedLocation = false;
+        if (parsed.locationTerms.length) {
+          exactMatches = candidates.filter(provider => {
+            const text = providerSearchText(provider);
+            return parsed.locationTerms.every(term => text.includes(term));
+          });
+          if (exactMatches.length) candidates = exactMatches;
+          else relaxedLocation = true;
+        }
+
+        let fallback = false;
+        if (!candidates.length || (!parsed.categories.length && !parsed.regions.length && relaxedLocation)) {
+          candidates = [...PROVIDERS];
+          fallback = true;
+        }
+        const providers = sortByRelevance(candidates, parsed);
+        let note = '';
+        if (fallback) {
+          note = 'Pas de correspondance exacte pour cette recherche. Voici des prestataires sourcés dans notre périmètre Lille–Flandres–France–Belgique.';
+        } else if (relaxedRegion && relaxedLocation) {
+          note = 'Aucune fiche ne réunit exactement ce métier, cette ville et ce territoire. Voici les profils du métier référencés dans la région.';
+        } else if (relaxedRegion) {
+          note = 'Aucune fiche de ce métier n’est actuellement référencée dans ce territoire précis. Voici les profils correspondants du périmètre.';
+        } else if (relaxedLocation) {
+          note = 'La ville exacte n’est pas toujours publiée sur les fiches. Voici les profils correspondants dans le métier ou le territoire recherché.';
+        } else if (parsed.regions.length) {
+          note = 'Sélection de fiches sourcées dans le territoire indiqué par votre recherche. Vérifiez la zone d’intervention auprès du professionnel.';
+        } else {
+          note = 'Fiches sourcées correspondant à votre recherche. Vérifiez la zone d’intervention auprès du professionnel.';
+        }
+        return { providers, note };
+      }
+
+      function visualForProvider(provider) {
+        if (provider.image) {
+          return {
+            image: provider.image,
+            alt: provider.imageAlt || `Photo de portfolio de ${provider.name}`,
+            owner: provider,
+            sourceUrl: provider.photoSource || provider.sourceUrl,
+            sourceLabel: provider.photoSourceLabel || `Portfolio de ${provider.name}`,
+            isCategoryVisual: false
+          };
+        }
+        const category = provider.categories[0];
+        const owner = providerById(CATEGORY_VISUALS[category]) || providerById('suzette-simone');
+        return {
+          image: owner.image,
+          alt: `Visuel d’ambiance pour ${category}, issu du portfolio de ${owner.name}. Ce n’est pas une photo de ${provider.name}.`,
+          owner,
+          sourceUrl: owner.photoSource || owner.sourceUrl,
+          sourceLabel: owner.photoSourceLabel || `Portfolio de ${owner.name}`,
+          isCategoryVisual: true
+        };
+      }
+
+      function renderAvatar(provider, visual) {
+        const badge = visual.isCategoryVisual ? '<span class="result-avatar-badge" aria-hidden="true">VISUEL MÉTIER</span>' : '';
+        return `<span class="result-avatar"><img src="${escapeHTML(visual.image)}" alt="${escapeHTML(visual.alt)}" loading="lazy">${badge}</span>`;
+      }
+
+      function renderResultCard(provider) {
+        const visual = visualForProvider(provider);
+        const category = provider.categories.join(' · ');
+        const location = provider.location;
+        const contents = `${renderAvatar(provider, visual)}<span class="result-copy"><span class="result-category">${escapeHTML(category)}</span><strong>${escapeHTML(provider.name)}</strong><small>${escapeHTML(location)}</small></span><span class="result-arrow" aria-hidden="true">→</span>`;
+        const card = provider.profileUrl
+          ? `<a class="result-card" href="${escapeHTML(provider.profileUrl)}" target="_blank" rel="noopener noreferrer">${contents}</a>`
+          : `<button class="result-card" type="button" data-profile="${escapeHTML(provider.id)}">${contents}</button>`;
+        const creditLabel = visual.isCategoryVisual
+          ? `Source du visuel métier : ${visual.sourceLabel}, portfolio de ${visual.owner.name}`
+          : `Source de la photo de ${provider.name} : ${visual.sourceLabel}`;
+        const source = `<a class="result-image-source" href="${escapeHTML(visual.sourceUrl)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(creditLabel)}" title="${escapeHTML(creditLabel)}">↗</a>`;
+        return `<div class="result-card-wrap">${card}${source}</div>`;
+      }
+
+      function renderResultList() {
+        const limit = INITIAL_RESULT_LIMIT();
+        const shown = state.showAllResults ? state.results : state.results.slice(0, limit);
+        $('#resultGrid').innerHTML = shown.map(renderResultCard).join('');
+        $('#resultsVisualNote').hidden = !shown.some(provider => !provider.image);
+        const remaining = state.results.length - shown.length;
+        const moreButton = $('#showMoreResults');
+        moreButton.hidden = state.results.length <= limit;
+        moreButton.textContent = state.showAllResults
+          ? 'Réduire la liste'
+          : `Voir les ${remaining} autres adresse${remaining > 1 ? 's' : ''}`;
+      }
+
+      function showResults() {
+        const query = $('#searchInput').value.trim();
+        state.query = query;
+        state.showAllResults = false;
+        const results = searchProviders(query);
+        state.results = results.providers;
+        $('#resultsKicker').textContent = `${state.results.length} adresse${state.results.length === 1 ? '' : 's'} sourcée${state.results.length === 1 ? '' : 's'}`;
+        $('#resultsTitle').textContent = query ? `Résultats pour « ${query} »` : 'Quelques adresses locales pour commencer';
+        $('#resultsNote').textContent = results.note;
+        renderResultList();
+        $('#heroResults').hidden = false;
+        $('.hero').classList.add('has-results');
+        requestAnimationFrame(() => $('#heroResults').scrollIntoView({ behavior: 'smooth', block: 'nearest' }));
+      }
+
+      function hideResults() {
+        state.results = [];
+        state.showAllResults = false;
+        $('#heroResults').hidden = true;
+        $('.hero').classList.remove('has-results');
+      }
+
+      function renderPhoto(provider, visual = visualForProvider(provider)) {
+        const badge = visual.isCategoryVisual
+          ? `<span class="profile-visual-badge">Visuel métier · portfolio de ${escapeHTML(visual.owner.name)} · pas une photo de ${escapeHTML(provider.name)}</span>`
+          : '';
+        return `<img src="${escapeHTML(visual.image)}" alt="${escapeHTML(visual.alt)}">${badge}`;
+      }
+
+      function renderProfile(provider) {
+        state.activeProvider = provider.id;
+        const visual = visualForProvider(provider);
+        $('#profileMedia').innerHTML = renderPhoto(provider, visual);
+        $('#profileCategories').innerHTML = [
+          ...provider.categories.map(category => `<span class="category-label">${escapeHTML(category)}</span>`),
+          ...provider.regions.map(region => `<span class="region-label">${escapeHTML(REGION_LABELS[region] || region)}</span>`)
+        ].join('');
+        $('#profileName').textContent = provider.name;
+        $('#profileLocation').textContent = `⌖  ${provider.location}`;
+        $('#profileSummary').textContent = provider.summary;
+        $('#profileFacts').innerHTML = provider.facts.map(fact => `<li>${escapeHTML(fact)}</li>`).join('');
+        const pricing = $('#profilePricing');
+        if (provider.price) {
+          pricing.hidden = false;
+          pricing.innerHTML = `<strong>Tarifs publiés sur le site</strong>${escapeHTML(provider.price)}`;
+        } else {
+          pricing.hidden = true;
+          pricing.textContent = '';
+        }
+        const profileLink = provider.profileUrl
+          ? `<a class="btn" href="${escapeHTML(provider.profileUrl)}" target="_blank" rel="noopener noreferrer">Profil détaillé ↗</a>`
+          : '';
+        const officialLink = `<a class="btn" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Site officiel ↗</a>`;
+        const contacts = provider.contacts.map(contact => `<a class="btn" href="${escapeHTML(contact.href)}" ${contact.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHTML(contact.label)}</a>`).join('');
+        $('#profileActions').innerHTML = `${profileLink}${officialLink}${contacts}`;
+        const photoCredit = visual.isCategoryVisual
+          ? `Visuel d’ambiance pour la catégorie « ${escapeHTML(provider.categories[0])} » : <a href="${escapeHTML(visual.sourceUrl)}" target="_blank" rel="noopener noreferrer">portfolio de ${escapeHTML(visual.owner.name)}</a>. Cette photo ne représente pas ${escapeHTML(provider.name)}. `
+          : `Visuel : <a href="${escapeHTML(visual.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(visual.sourceLabel)}</a>. `;
+        $('#profileCredits').innerHTML = `Source des informations : <a href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">page officielle de ${escapeHTML(provider.name)}</a>. ${photoCredit}`;
+        const dialog = $('#providerDialog');
+        if (!dialog.open) dialog.showModal();
+        document.body.classList.add('dialog-open');
+        $('#dialogClose').focus();
+      }
+
+      function closeDialog() {
+        const dialog = $('#providerDialog');
+        if (dialog.open) dialog.close();
+        document.body.classList.remove('dialog-open');
+        state.activeProvider = null;
+      }
+
+      function bindEvents() {
+        const header = $('.site-header');
+        const syncHeaderContrast = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
+        window.addEventListener('scroll', syncHeaderContrast, { passive: true });
+        syncHeaderContrast();
+        $('#heroSearchForm').addEventListener('submit', event => {
+          event.preventDefault();
+          showResults();
+        });
+        $('#searchInput').addEventListener('input', hideResults);
+        $('#showMoreResults').addEventListener('click', () => {
+          state.showAllResults = !state.showAllResults;
+          renderResultList();
+        });
+        document.addEventListener('click', event => {
+          const profileButton = event.target.closest('[data-profile]');
+          if (!profileButton) return;
+          const provider = providerById(profileButton.dataset.profile);
+          if (provider) renderProfile(provider);
+        });
+        $('#dialogClose').addEventListener('click', closeDialog);
+        $('#providerDialog').addEventListener('close', () => {
+          document.body.classList.remove('dialog-open');
+          state.activeProvider = null;
+        });
+        $('#providerDialog').addEventListener('click', event => {
+          if (event.target === $('#providerDialog')) closeDialog();
+        });
+      }
+
+      bindEvents();
+    })();
+  </script>
+</body>
+</html>
