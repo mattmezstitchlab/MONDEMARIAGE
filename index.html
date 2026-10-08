@@ -10,412 +10,253 @@
     :root{
       color-scheme:light;
       --ink:#1d1d1f;
-      --ink-soft:#424248;
-      --muted:#6e6e73;
-      --blue:#0066cc;
-      --blue-hover:#0077ed;
-      --blue-soft:#eaf3ff;
-      --paper:#f5f5f7;
-      --white:#fff;
-      --line:#d2d2d7;
-      --line-soft:#e8e8ed;
-      --green:#28784b;
-      --green-soft:#e9f5ec;
-      --shadow:0 18px 54px rgba(0,0,0,.09);
-      --radius:24px;
-      --container:min(1220px,calc(100% - 56px));
+      --ink-soft:#45454b;
+      --muted:#74747a;
+      --accent:#af8b58;
+      --accent-dark:#8f6d40;
+      --paper:#f7f6f3;
+      --line:#e6e5e1;
+      --blue:#126ac4;
+      --container:min(1180px,calc(100% - 56px));
       --system:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     }
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:92px}
-    body{margin:0;background:var(--white);color:var(--ink);font-family:var(--system);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{margin:0;background:#fff;color:var(--ink);font-family:var(--system);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
     body.dialog-open{overflow:hidden}
     button,input,select{font:inherit}
     button,a{-webkit-tap-highlight-color:transparent}
     button{color:inherit}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-    ::selection{background:#cfe3ff;color:var(--ink)}
-    :focus-visible{outline:3px solid rgba(0,102,204,.62);outline-offset:3px}
-    .container{width:var(--container);max-width:1220px;margin:0 auto}
+    ::selection{background:#e8dcc7;color:var(--ink)}
+    :focus-visible{outline:3px solid rgba(18,106,196,.6);outline-offset:3px}
+    [hidden]{display:none!important}
+    .container{width:var(--container);max-width:1180px;margin:0 auto}
     .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-    .section{padding:104px 0}
-    .section--soft{background:var(--paper)}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;margin:0;color:var(--blue);font-size:.73rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-    .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}
-    .section-heading h2{max-width:720px;margin:12px 0 0;font-size:clamp(2.15rem,4.4vw,3.65rem);font-weight:650;line-height:1.02;letter-spacing:-.06em}
-    .section-heading h2 em{font-style:normal;color:var(--muted);font-weight:500}
-    .section-heading p{max-width:410px;margin:0;color:var(--muted);font-size:.96rem;line-height:1.6}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:46px;padding:0 19px;border:1px solid transparent;border-radius:999px;background:var(--blue);color:#fff;cursor:pointer;font-size:.9rem;font-weight:600;transition:background .2s,transform .2s,box-shadow .2s}
-    .btn:hover{background:var(--blue-hover);box-shadow:0 6px 20px rgba(0,102,204,.19);transform:translateY(-1px)}
-    .btn--quiet{background:var(--white);border-color:var(--line);color:var(--ink)}
-    .btn--quiet:hover{background:#f0f0f2;border-color:#c5c5ca;box-shadow:none}
-    .btn--small{min-height:38px;padding:0 14px;font-size:.82rem}
-    .text-link{display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:600}
-    .text-link:hover{text-decoration:underline;text-underline-offset:3px}
-    .subtle-note{color:var(--muted);font-size:.82rem}
 
-    /* Navigation */
-    .site-header{position:fixed;z-index:50;inset:0 0 auto;height:72px;border-bottom:1px solid rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(8,10,12,.36),transparent);color:#fff;backdrop-filter:saturate(150%) blur(8px);transition:background .25s,border-color .25s,box-shadow .25s}
-    .site-header.is-scrolled{border-color:rgba(210,210,215,.76);background:rgba(255,255,255,.92);color:var(--ink);box-shadow:0 1px 12px rgba(0,0,0,.06);backdrop-filter:saturate(180%) blur(18px)}
-    .header-inner{width:var(--container);max-width:1320px;height:100%;margin:auto;display:flex;align-items:center;gap:28px}
-    .brand{display:inline-flex;align-items:center;gap:10px;flex:0 0 auto}
-    .brand-mark{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;background:var(--ink);color:#fff;font-size:.92rem;font-weight:700;letter-spacing:-.08em}
+    /* Minimal navigation: the mark is a single, unboxed M. */
+    .site-header{position:fixed;z-index:50;inset:0 0 auto;height:76px;color:#fff;border-bottom:1px solid rgba(255,255,255,.16);background:linear-gradient(180deg,rgba(12,13,14,.33),transparent);backdrop-filter:saturate(145%) blur(8px);transition:background .25s,border-color .25s,box-shadow .25s,color .25s}
+    .site-header.is-scrolled{color:var(--ink);border-color:rgba(220,219,216,.8);background:rgba(255,255,255,.94);box-shadow:0 1px 14px rgba(0,0,0,.045);backdrop-filter:saturate(180%) blur(18px)}
+    .header-inner{width:var(--container);max-width:1320px;height:100%;margin:auto;display:flex;align-items:center;gap:34px}
+    .brand{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto}
+    .brand-mark{display:inline-block;color:inherit;font-family:Georgia,"Times New Roman",serif;font-size:2rem;font-weight:500;letter-spacing:-.13em;line-height:1}
     .brand-copy{display:flex;flex-direction:column;line-height:1.05}
-    .brand-copy strong{font-size:.9rem;letter-spacing:-.035em}
-    .brand-copy small{margin-top:5px;color:var(--muted);font-size:.63rem;letter-spacing:.04em}
-    .site-header:not(.is-scrolled) .brand-mark{border:1px solid rgba(255,255,255,.62);background:rgba(255,255,255,.13);color:#fff}
-    .site-header:not(.is-scrolled) .brand-copy strong,.site-header:not(.is-scrolled) .brand-copy small{color:#fff}
-    .main-nav{display:flex;align-items:center;gap:clamp(16px,2vw,27px);margin-left:auto}
-    .main-nav a{color:#515158;font-size:.81rem;font-weight:500;white-space:nowrap;transition:color .2s}
-    .site-header:not(.is-scrolled) .main-nav a{color:rgba(255,255,255,.92)}
-    .main-nav a:hover{color:var(--blue)}
-    .site-header:not(.is-scrolled) .main-nav a:hover{color:#fff;opacity:.76}
-    .header-actions{display:flex;align-items:center;gap:10px}
-    .favorite-jump{display:inline-flex;align-items:center;gap:7px;min-height:38px;padding:0 12px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer;font-size:.8rem;font-weight:600;white-space:nowrap}
-    .favorite-jump:hover{background:var(--paper)}
-    .site-header:not(.is-scrolled) .favorite-jump{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.1);color:#fff}
-    .site-header:not(.is-scrolled) .favorite-jump:hover{background:rgba(255,255,255,.19)}
-    .favorite-jump svg{width:16px;height:16px;color:#bf3f55}
-    .favorite-count{min-width:19px;height:19px;display:grid;place-items:center;padding:0 4px;border-radius:999px;background:#fcecef;color:#9f2940;font-size:.68rem}
-    .menu-toggle{display:none;width:40px;height:40px;padding:10px;border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer}
-    .menu-toggle span{display:block;width:17px;height:1.5px;margin:4px auto;background:var(--ink);transition:transform .2s}
-    .site-header:not(.is-scrolled) .menu-toggle{border-color:rgba(255,255,255,.6)}
-    .site-header:not(.is-scrolled) .menu-toggle span{background:#fff}
+    .brand-copy strong{font-size:.88rem;font-weight:650;letter-spacing:-.025em}
+    .brand-copy small{margin-top:5px;color:rgba(255,255,255,.75);font-size:.65rem;letter-spacing:.045em}
+    .site-header.is-scrolled .brand-copy small{color:var(--muted)}
+    .main-nav{display:flex;align-items:center;gap:30px;margin-left:auto}
+    .main-nav a{color:rgba(255,255,255,.9);font-size:.8rem;font-weight:550;white-space:nowrap;transition:opacity .2s,color .2s}
+    .site-header.is-scrolled .main-nav a{color:#55555b}
+    .main-nav a:hover{opacity:.72}
+    .site-header.is-scrolled .main-nav a:hover{color:var(--ink);opacity:1}
 
-    /* Immersive, source-credited hero */
-    .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#17181b;color:#fff;padding:106px 0 82px;isolation:isolate}
-    .hero-backdrop{position:absolute;z-index:-2;inset:0;margin:0;overflow:hidden;background:#17181b}
-    .hero-backdrop img{width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.88);transform:scale(1.015)}
-    .hero-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,11,13,.82) 0%,rgba(9,11,13,.63) 39%,rgba(9,11,13,.23) 72%,rgba(9,11,13,.18) 100%),linear-gradient(0deg,rgba(9,11,13,.72) 0%,transparent 43%,rgba(9,11,13,.36) 100%)}
-    .hero-inner{position:relative;z-index:1;width:var(--container);max-width:1320px;min-height:calc(100svh - 188px);margin:auto;display:flex;align-items:center}
-    .hero-copy{max-width:990px;padding:35px 0 44px}
-    .hero-copy .eyebrow{margin-bottom:23px;color:#f2d79c}
-    .hero h1{max-width:1000px;margin:0;font-size:clamp(4.35rem,10.3vw,9.7rem);font-weight:680;line-height:.89;letter-spacing:-.085em;text-wrap:balance;text-shadow:0 4px 30px rgba(0,0,0,.2)}
-    .hero h1 span{display:block;color:#fff;font-weight:560}
-    .hero-lead{max-width:680px;margin:27px 0 0;color:rgba(255,255,255,.9);font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.65;text-shadow:0 2px 12px rgba(0,0,0,.28)}
-    .hero-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-    .hero .btn{background:#fff;color:#17181b;border-color:#fff}
-    .hero .btn:hover{background:#e9e9ed;border-color:#e9e9ed;box-shadow:0 8px 24px rgba(0,0,0,.2)}
-    .hero .btn--quiet{border-color:rgba(255,255,255,.58);background:rgba(255,255,255,.1);color:#fff;backdrop-filter:blur(12px)}
-    .hero .btn--quiet:hover{border-color:rgba(255,255,255,.85);background:rgba(255,255,255,.2);color:#fff}
-    .hero-facts{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:28px;color:rgba(255,255,255,.77);font-size:.77rem}
-    .hero-facts strong{color:#fff;font-weight:650}
-    .hero-facts .dot{color:rgba(255,255,255,.5)}
-    .hero-caption{position:absolute;z-index:1;right:max(28px,calc((100vw - 1320px)/2));bottom:22px;display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.8);font-size:.69rem;text-shadow:0 1px 5px rgba(0,0,0,.55)}
+    /* Full-screen editorial hero. */
+    .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:#191919;color:#fff;padding:100px 0 80px;isolation:isolate}
+    .hero-backdrop{position:absolute;z-index:-2;inset:0;margin:0;overflow:hidden;background:#191919}
+    .hero-backdrop img{width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.86);transform:scale(1.012)}
+    .hero-backdrop::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,12,13,.76) 0%,rgba(11,12,13,.57) 43%,rgba(11,12,13,.18) 100%),linear-gradient(0deg,rgba(11,12,13,.58),transparent 40%,rgba(11,12,13,.28))}
+    .hero-inner{position:relative;z-index:1;width:var(--container);max-width:1320px;min-height:calc(100svh - 180px);margin:auto;display:flex;align-items:center}
+    .hero-copy{width:min(970px,100%);padding:42px 0 52px}
+    .eyebrow{display:inline-flex;align-items:center;gap:10px;margin:0;color:var(--accent);font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+    .hero .eyebrow{margin-bottom:24px;color:#ead5ad}
+    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+    .hero h1{max-width:1000px;margin:0;color:#fff;font-size:clamp(4rem,9.8vw,8.9rem);font-weight:620;line-height:.91;letter-spacing:-.083em;text-wrap:balance;text-shadow:0 5px 30px rgba(0,0,0,.22)}
+    .hero h1 span{display:block;color:#fff;font-weight:480}
+    .hero-search{width:min(700px,100%);display:flex;align-items:stretch;gap:5px;margin-top:38px;padding:6px;border:1px solid rgba(255,255,255,.84);border-radius:14px;background:rgba(255,255,255,.98);box-shadow:0 15px 50px rgba(0,0,0,.19)}
+    .hero-search-field{position:relative;display:flex;align-items:center;flex:1;min-width:0}
+    .hero-search-field svg{position:absolute;left:17px;width:20px;height:20px;color:#79797d;pointer-events:none}
+    .hero-search input{width:100%;min-width:0;min-height:56px;padding:0 14px 0 49px;border:0;border-radius:9px;background:transparent;color:var(--ink);font-size:.96rem;outline:none}
+    .hero-search input::placeholder{color:#89898e;opacity:1}
+    .hero-search input:focus-visible{outline:2px solid rgba(18,106,196,.62);outline-offset:-3px}
+    .hero-search button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:56px;padding:0 23px;border:0;border-radius:10px;background:var(--ink);color:#fff;cursor:pointer;font-size:.86rem;font-weight:650;white-space:nowrap;transition:background .2s,transform .2s}
+    .hero-search button:hover{background:#343438;transform:translateY(-1px)}
+    .hero-search button span{font-size:1.05rem;font-weight:400}
+    .hero-caption{position:absolute;z-index:1;right:max(28px,calc((100vw - 1320px)/2));bottom:21px;display:flex;align-items:center;gap:7px;color:rgba(255,255,255,.82);font-size:.68rem;text-shadow:0 1px 5px rgba(0,0,0,.55)}
     .hero-caption a{color:#fff;text-decoration:underline;text-underline-offset:3px}
-    .hero-caption a:hover{opacity:.8}
-    .hero-region-mark{position:absolute;z-index:1;right:max(28px,calc((100vw - 1320px)/2));top:50%;writing-mode:vertical-rl;transform:translateY(-30%);color:rgba(255,255,255,.7);font-size:.66rem;font-weight:650;letter-spacing:.15em;text-transform:uppercase}
-    .truth-strip{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:#fff}
-    .truth-strip-inner{width:var(--container);max-width:1220px;min-height:76px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:17px 0}
-    .truth-item{display:flex;align-items:center;gap:10px;color:#494950;font-size:.82rem}
-    .truth-icon{width:25px;height:25px;display:grid;place-items:center;border-radius:50%;background:var(--green-soft);color:var(--green);font-size:.77rem;font-weight:700}
-    .truth-item strong{font-weight:650;color:var(--ink)}
+    .hero-caption a:hover{opacity:.78}
 
-    /* Discovery */
-    .discover-section{padding-top:92px}
-    .directory-note{margin:-9px 0 22px;padding:15px 17px;border-left:3px solid #d7b978;border-radius:0 13px 13px 0;background:#faf8f2;color:#64615a;font-size:.83rem;line-height:1.55}
-    .directory-note strong{margin-right:5px;color:#292824;font-weight:650}
-    .search-panel{display:grid;grid-template-columns:minmax(240px,1fr) 225px auto;align-items:end;gap:13px;padding:17px;border:1px solid var(--line-soft);border-radius:20px;background:#fff;box-shadow:0 8px 32px rgba(0,0,0,.035)}
-    .field{display:flex;flex-direction:column;gap:7px;min-width:0}
-    .field label{color:#494950;font-size:.76rem;font-weight:600}
-    .search-box{position:relative}
-    .search-box svg{position:absolute;left:14px;top:50%;width:18px;height:18px;color:#8a8a91;transform:translateY(-50%);pointer-events:none}
-    .field input,.field select,.budget-total-input,.task-input{width:100%;min-height:45px;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-size:.9rem;outline:none;transition:border-color .2s,box-shadow .2s}
-    .search-box input{padding-left:43px}
-    .field input:focus,.field select:focus,.budget-total-input:focus,.task-input:focus{border-color:#5aa2e8;box-shadow:0 0 0 4px rgba(0,102,204,.11)}
-    .filter-reset{min-height:45px;padding:0 13px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--blue);cursor:pointer;font-size:.85rem;font-weight:600;white-space:nowrap}
-    .filter-reset:hover{background:var(--blue-soft)}
-    .category-chips{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 21px}
-    .category-chip{min-height:36px;padding:0 14px;border:1px solid #d9d9de;border-radius:999px;background:#fff;color:#4b4b52;cursor:pointer;font-size:.78rem;font-weight:550;white-space:nowrap;transition:background .18s,border-color .18s,color .18s}
-    .category-chip:hover{border-color:#a7a7ae;color:var(--ink)}
+    /* Search and filters. Results remain concealed until a criterion is chosen. */
+    .discover-section{padding:88px 0 106px;background:#fff}
+    .section-heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:26px}
+    .section-heading h2{max-width:680px;margin:11px 0 0;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:620;line-height:1.02;letter-spacing:-.065em}
+    .section-heading h2 span{color:#89898e;font-weight:480}
+    .section-heading p{max-width:440px;margin:0;color:var(--muted);font-size:.9rem;line-height:1.65}
+    .directory-note{margin:0 0 25px;color:#77777d;font-size:.78rem;line-height:1.6}
+    .directory-note strong{color:#37373c;font-weight:650}
+    .search-panel{display:flex;align-items:end;justify-content:space-between;gap:22px;padding:17px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .field{display:flex;flex-direction:column;gap:7px;min-width:min(100%,270px)}
+    .field label{color:#57575d;font-size:.72rem;font-weight:650;letter-spacing:.025em}
+    .field select{width:100%;min-height:43px;padding:0 36px 0 13px;border:1px solid #deddd9;border-radius:10px;background:#fff;color:var(--ink);font-size:.83rem;outline:none;transition:border-color .2s,box-shadow .2s}
+    .field select:focus{border-color:#72a8d9;box-shadow:0 0 0 4px rgba(18,106,196,.1)}
+    .filter-reset{min-height:43px;padding:0 4px;border:0;background:transparent;color:#55555a;cursor:pointer;font-size:.79rem;font-weight:600;white-space:nowrap}
+    .filter-reset:hover{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
+    .category-chips{display:flex;gap:8px;flex-wrap:wrap;padding:22px 0 20px}
+    .category-chip{min-height:35px;padding:0 13px;border:1px solid #e1e0dc;border-radius:999px;background:#fff;color:#55555a;cursor:pointer;font-size:.75rem;font-weight:550;white-space:nowrap;transition:background .18s,border-color .18s,color .18s}
+    .category-chip:hover{border-color:#b7b5ae;color:var(--ink)}
     .category-chip.is-active{border-color:var(--ink);background:var(--ink);color:#fff}
-    .results-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:13px 0 17px}
-    .results-count{margin:0;color:var(--muted);font-size:.84rem}
+    .results-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:7px 0 17px}
+    .results-count{margin:0;color:var(--muted);font-size:.8rem}
     .results-count strong{color:var(--ink);font-weight:650}
-    .sort-wrap{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.76rem}
-    .sort-wrap select{min-height:35px;padding:0 11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink-soft);font-size:.8rem}
+    .sort-wrap{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:.75rem}
+    .sort-wrap select{min-height:34px;padding:0 10px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink-soft);font-size:.77rem}
     .provider-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    .provider-card{min-width:0;overflow:hidden;border:1px solid var(--line-soft);border-radius:21px;background:#fff;transition:transform .22s,box-shadow .22s,border-color .22s}
-    .provider-card:hover{transform:translateY(-3px);border-color:#d0d0d6;box-shadow:0 14px 34px rgba(0,0,0,.075)}
-    .card-media{position:relative;height:224px;overflow:hidden;background:#e9e7e2}
-    .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .55s cubic-bezier(.2,.65,.2,1)}
+    .provider-card{min-width:0;overflow:hidden;border:1px solid #eae9e5;border-radius:17px;background:#fff;transition:transform .2s,box-shadow .2s,border-color .2s}
+    .provider-card:hover{transform:translateY(-3px);border-color:#d5d3cd;box-shadow:0 14px 34px rgba(0,0,0,.07)}
+    .card-media{position:relative;height:214px;overflow:hidden;background:#ebe9e4}
+    .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.65,.2,1)}
     .provider-card:hover .card-media img{transform:scale(1.035)}
-    .card-media::after{content:"";position:absolute;inset:auto 0 0;height:52px;background:linear-gradient(0deg,rgba(0,0,0,.25),transparent);pointer-events:none}
-    .photo-source{position:absolute;z-index:2;bottom:10px;left:12px;padding:5px 8px;border:1px solid rgba(255,255,255,.38);border-radius:999px;background:rgba(20,20,22,.48);color:#fff;font-size:.64rem;backdrop-filter:blur(8px)}
+    .card-media::after{content:"";position:absolute;inset:auto 0 0;height:54px;background:linear-gradient(0deg,rgba(0,0,0,.28),transparent);pointer-events:none}
+    .photo-source{position:absolute;z-index:2;bottom:10px;left:12px;padding:5px 8px;border:1px solid rgba(255,255,255,.4);border-radius:999px;background:rgba(20,20,22,.48);color:#fff;font-size:.63rem;backdrop-filter:blur(8px)}
     .photo-source:hover{background:rgba(20,20,22,.78)}
-    .no-photo{height:100%;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 24% 18%,#dfeafa 0,#eef2f6 35%,#e7e7eb 100%);text-align:center}
-    .no-photo-mark{width:72px;height:72px;display:grid;place-items:center;border:1px solid rgba(29,29,31,.18);border-radius:24px;color:#33333a;font-size:1.28rem;font-weight:650;letter-spacing:-.06em}
-    .no-photo small{display:block;margin-top:12px;color:#63636b;font-size:.74rem}
-    .favorite-toggle{position:absolute;z-index:3;top:13px;right:13px;width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.76);border-radius:50%;background:rgba(255,255,255,.91);color:#54545b;cursor:pointer;box-shadow:0 2px 9px rgba(0,0,0,.08);transition:transform .18s,background .18s,color .18s}
-    .favorite-toggle:hover{transform:scale(1.06);color:#bc394f}
-    .favorite-toggle.is-favorite{background:#fff0f2;color:#c63850}
-    .favorite-toggle svg{width:18px;height:18px}
-    .card-content{padding:18px 19px 17px}
+    .no-photo{height:100%;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 26% 18%,#efe6d8 0,#f2f0eb 39%,#e8e7e3 100%);text-align:center}
+    .no-photo-mark{display:block;color:#56504a;font-family:Georgia,"Times New Roman",serif;font-size:2.5rem;font-weight:400;letter-spacing:-.08em;line-height:1}
+    .no-photo small{display:block;margin-top:9px;color:#716c66;font-size:.69rem}
+    .card-content{padding:17px 18px 16px}
     .card-categories{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:9px}
-    .category-label{display:inline-flex;align-items:center;min-height:23px;padding:0 9px;border-radius:999px;background:var(--blue-soft);color:#075cac;font-size:.64rem;font-weight:700;letter-spacing:.025em}
+    .category-label{display:inline-flex;align-items:center;min-height:22px;padding:0 8px;border-radius:999px;background:#f4f0e8;color:#775b36;font-size:.62rem;font-weight:650;letter-spacing:.015em}
     .card-regions{display:flex;gap:5px;flex-wrap:wrap;margin:-2px 0 10px}
-    .region-label{display:inline-flex;align-items:center;min-height:21px;padding:0 8px;border:1px solid #e5e5e8;border-radius:999px;background:#f8f8f9;color:#5d5d65;font-size:.6rem;font-weight:600;letter-spacing:.015em}
-    .profile-categories .region-label{min-height:24px;font-size:.65rem}
-    .provider-card h3{margin:0;font-size:1.27rem;font-weight:650;letter-spacing:-.045em;line-height:1.18}
-    .card-location{display:flex;align-items:center;gap:6px;margin:8px 0 0;color:var(--muted);font-size:.78rem}
-    .card-location svg{width:14px;height:14px;flex:none;color:#8d8d95}
-    .card-summary{min-height:61px;margin:13px 0 0;color:#55555c;font-size:.85rem;line-height:1.52}
-    .card-price{margin:11px 0 0;padding:9px 10px;border-radius:11px;background:#f1f7ff;color:#174e84;font-size:.75rem;line-height:1.4}
-    .card-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding-top:14px;border-top:1px solid #eeeef1}
-    .card-open{display:inline-flex;align-items:center;gap:7px;padding:0;border:0;background:transparent;color:var(--blue);cursor:pointer;font-size:.83rem;font-weight:650}
+    .region-label{display:inline-flex;align-items:center;min-height:21px;padding:0 7px;border:1px solid #e8e7e3;border-radius:999px;background:#fafaf9;color:#68686d;font-size:.59rem;font-weight:570}
+    .profile-categories .region-label{min-height:23px;font-size:.65rem}
+    .provider-card h3{margin:0;font-size:1.2rem;font-weight:650;letter-spacing:-.045em;line-height:1.2}
+    .card-location{display:flex;align-items:center;gap:6px;margin:8px 0 0;color:var(--muted);font-size:.75rem}
+    .card-location svg{width:14px;height:14px;flex:none;color:#8b8b90}
+    .card-summary{min-height:64px;margin:12px 0 0;color:#57575c;font-size:.82rem;line-height:1.55}
+    .card-price{margin:10px 0 0;padding:9px 10px;border-radius:10px;background:#f5f5f3;color:#4e4c47;font-size:.74rem;line-height:1.4}
+    .card-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:15px;padding-top:13px;border-top:1px solid #efeeeb}
+    .card-open{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:transparent;color:#815f34;cursor:pointer;font-size:.79rem;font-weight:650}
     .card-open:hover{text-decoration:underline;text-underline-offset:3px}
-    .card-site{color:#64646b;font-size:.77rem;font-weight:550;white-space:nowrap}
+    .card-site{color:#64646a;font-size:.73rem;font-weight:550;white-space:nowrap}
     .card-site:hover{color:var(--blue);text-decoration:underline;text-underline-offset:3px}
-    .empty-state{grid-column:1/-1;padding:64px 22px;border:1px dashed var(--line);border-radius:20px;background:#fafafd;text-align:center}
-    .empty-state h3{margin:0 0 8px;font-size:1.35rem;letter-spacing:-.04em}
-    .empty-state p{margin:0;color:var(--muted)}
+    .search-prompt,.empty-state{grid-column:1/-1;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 22px;border:1px dashed #deddd9;border-radius:16px;background:#fbfaf8;text-align:center}
+    .search-prompt-mark{display:grid;place-items:center;width:42px;height:42px;margin-bottom:11px;border-radius:50%;background:#f0ece4;color:#866b45;font-family:Georgia,"Times New Roman",serif;font-size:1.6rem}
+    .search-prompt h3,.empty-state h3{margin:0 0 6px;font-size:1.08rem;font-weight:620;letter-spacing:-.025em}
+    .search-prompt p,.empty-state p{max-width:460px;margin:0;color:var(--muted);font-size:.81rem;line-height:1.55}
+    .empty-state .filter-reset{margin-top:11px;color:var(--blue)}
 
-    /* Categories */
-    .category-overview{background:var(--paper)}
-    .category-overview .section-heading{margin-bottom:27px}
-    .category-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-    .category-tile{min-height:112px;display:flex;align-items:center;gap:15px;padding:18px;border:1px solid #e2e2e7;border-radius:18px;background:#fff;text-align:left;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s}
-    .category-tile:hover{transform:translateY(-2px);border-color:#b8d6f5;box-shadow:0 9px 24px rgba(0,0,0,.05)}
-    .category-index{width:40px;height:40px;flex:none;display:grid;place-items:center;border-radius:14px;background:#f0f0f3;color:#55555b;font-size:.72rem;font-weight:700}
-    .category-tile-copy{min-width:0;display:flex;flex-direction:column;gap:5px}
-    .category-tile-copy strong{font-size:.9rem;font-weight:650;letter-spacing:-.02em}
-    .category-tile-copy small{color:var(--muted);font-size:.74rem}
-    .category-tile-arrow{margin-left:auto;color:var(--blue);font-size:1.05rem;opacity:.8}
-
-    /* Inspiration from portfolios */
-    .inspiration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px}
-    .inspiration-card{overflow:hidden;border:1px solid var(--line-soft);border-radius:21px;background:#fff}
-    .inspiration-photo{position:relative;height:275px;overflow:hidden;background:#e6e5e1}
-    .inspiration-photo img{width:100%;height:100%;object-fit:cover;transition:transform .45s}
-    .inspiration-card:hover img{transform:scale(1.04)}
-    .inspiration-photo .photo-source{bottom:12px}
-    .inspiration-copy{padding:17px 19px 19px}
-    .inspiration-copy small{color:var(--blue);font-size:.69rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-    .inspiration-copy h3{margin:7px 0 13px;font-size:1.15rem;font-weight:650;letter-spacing:-.035em}
-    .inspiration-copy .text-link{font-size:.82rem}
-    .portfolio-note{margin:22px 0 0;padding:13px 16px;border-radius:13px;background:var(--paper);color:#5c5c63;font-size:.79rem;line-height:1.55}
-
-    /* Personal tools */
-    .tools-section{background:var(--paper)}
-    .tools-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
-    .tool-card{min-width:0;padding:26px;border:1px solid #e3e3e8;border-radius:22px;background:#fff;box-shadow:0 5px 20px rgba(0,0,0,.025)}
-    .tool-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:20px}
-    .tool-card-head h3{margin:0;font-size:1.55rem;font-weight:650;letter-spacing:-.055em}
-    .tool-card-head p{max-width:450px;margin:6px 0 0;color:var(--muted);font-size:.83rem;line-height:1.5}
-    .tool-icon{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:15px;background:var(--blue-soft);color:var(--blue);font-weight:700}
-    .budget-total-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(150px,.55fr);align-items:end;gap:14px;padding:15px;border-radius:16px;background:#f6f8fb}
-    .budget-total-row label{display:block;margin-bottom:7px;color:#4c4c53;font-size:.75rem;font-weight:650}
-    .budget-total-input{min-height:42px}
-    .budget-summary{display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right}
-    .budget-summary strong{font-size:1.27rem;letter-spacing:-.04em}
-    .budget-summary small{color:var(--muted);font-size:.71rem}
-    .budget-summary.is-over strong{color:#b42335}
-    .budget-hint{margin:10px 0 12px;color:var(--muted);font-size:.74rem}
-    .budget-lines{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px}
-    .budget-line{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid #f0f0f3}
-    .budget-line label{font-size:.75rem;color:#48484f}
-    .budget-line input{width:105px;min-height:34px;padding:0 9px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);text-align:right;font-size:.77rem}
-    .budget-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line-soft)}
-    .budget-footer strong{font-size:.87rem}
-    .budget-footer span{color:var(--muted);font-size:.74rem}
-    .tool-reset{padding:6px 0;border:0;background:transparent;color:var(--blue);cursor:pointer;font-size:.78rem;font-weight:600}
-    .tool-reset:hover{text-decoration:underline;text-underline-offset:3px}
-    .check-progress{display:flex;align-items:center;gap:11px;margin:2px 0 16px}
-    .progress-track{display:block;min-width:0;height:7px;flex:1;overflow:hidden;border:0;border-radius:999px;background:#e9e9ed;appearance:none;-webkit-appearance:none}
-    .progress-track::-webkit-progress-bar{border-radius:999px;background:#e9e9ed}
-    .progress-track::-webkit-progress-value{border-radius:999px;background:var(--blue);transition:width .25s}
-    .progress-track::-moz-progress-bar{border-radius:999px;background:var(--blue);transition:width .25s}
-    .progress-label{color:var(--muted);font-size:.75rem;white-space:nowrap}
-    .task-form{display:flex;gap:8px;margin-bottom:14px}
-    .task-input{min-height:41px;flex:1}
-    .task-add{width:42px;min-width:42px;height:42px;border:0;border-radius:13px;background:var(--blue);color:#fff;cursor:pointer;font-size:1.3rem;line-height:1}
-    .task-add:hover{background:var(--blue-hover)}
-    .task-list{display:flex;flex-direction:column;gap:1px;max-height:350px;overflow:auto;padding:0;margin:0;list-style:none}
-    .task-item{display:flex;align-items:center;gap:10px;min-height:41px;padding:7px 2px;border-bottom:1px solid #f0f0f3}
-    .task-item label{min-width:0;display:flex;align-items:center;gap:10px;flex:1;color:#45454c;font-size:.8rem;cursor:pointer}
-    .task-item input[type=checkbox]{width:17px;height:17px;flex:none;accent-color:var(--blue)}
-    .task-item.is-done label span{text-decoration:line-through;color:#898990}
-    .task-remove{width:28px;height:28px;border:0;border-radius:50%;background:transparent;color:#8c8c92;cursor:pointer;font-size:1.1rem}
-    .task-remove:hover{background:#f3f3f5;color:#b42335}
-    .local-storage-note{margin:16px 0 0;color:#73737a;font-size:.72rem;line-height:1.5}
-
-    /* Favorites */
-    .favorites-section{min-height:220px}
-    .favorites-section .section-heading{margin-bottom:26px}
-    .favorite-empty{grid-column:1/-1;display:flex;align-items:center;gap:17px;padding:23px;border:1px dashed var(--line);border-radius:18px;background:#fafafd;color:var(--muted);font-size:.88rem}
-    .favorite-empty-mark{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:15px;background:#fcecef;color:#bc394f}
-    .favorite-empty-mark svg{width:19px;height:19px}
-
-    /* Transparency */
-    .transparency{padding:34px 0;background:#1d1d1f;color:#f5f5f7}
-    .transparency-inner{display:grid;grid-template-columns:1.2fr 2fr;gap:36px;align-items:center}
-    .transparency h2{margin:0;font-size:1.5rem;font-weight:600;letter-spacing:-.045em}
-    .transparency p{margin:7px 0 0;color:#b9b9c0;font-size:.8rem}
-    .transparency-points{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .transparency-point{color:#d0d0d6;font-size:.77rem;line-height:1.5}
-    .transparency-point strong{display:block;margin-bottom:4px;color:#fff;font-size:.79rem}
-
-    /* Footer */
-    .site-footer{padding:33px 0 28px;background:#1d1d1f;color:#b9b9c0;border-top:1px solid rgba(255,255,255,.12)}
-    .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:30px;flex-wrap:wrap}
-    .footer-brand{color:#fff;font-size:.92rem;font-weight:650;letter-spacing:-.03em}
-    .footer-inner p{max-width:700px;margin:8px 0 0;font-size:.74rem;line-height:1.6}
-    .footer-links{display:flex;gap:16px;flex-wrap:wrap;font-size:.77rem}
-    .footer-links a{color:#e2e2e7}
+    /* A clean source-focused footer. */
+    .site-footer{padding:29px 0 25px;background:#f7f6f3;color:#68686e;border-top:1px solid #edebe7}
+    .footer-inner{display:flex;align-items:flex-start;justify-content:space-between;gap:25px;flex-wrap:wrap}
+    .footer-brand{color:var(--ink);font-size:.87rem;font-weight:650;letter-spacing:-.03em}
+    .footer-inner p{max-width:700px;margin:7px 0 0;font-size:.73rem;line-height:1.6}
+    .footer-links{display:flex;gap:17px;flex-wrap:wrap;font-size:.75rem}
+    .footer-links a{color:#505057}
     .footer-links a:hover{text-decoration:underline;text-underline-offset:3px}
-    .footer-bottom{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:23px;padding-top:16px;border-top:1px solid rgba(255,255,255,.13);font-size:.69rem;color:#92929a}
+    .footer-bottom{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:19px;padding-top:13px;border-top:1px solid #e5e3df;font-size:.67rem;color:#85858a}
 
-    /* Profile dialog */
-    .provider-dialog{width:min(760px,calc(100% - 28px));max-width:760px;max-height:min(90vh,900px);padding:0;overflow:hidden;border:0;border-radius:26px;background:#fff;color:var(--ink);box-shadow:0 24px 100px rgba(0,0,0,.28)}
-    .provider-dialog::backdrop{background:rgba(12,12,14,.48);backdrop-filter:blur(5px)}
-    .dialog-panel{max-height:min(90vh,900px);overflow:auto}
-    .dialog-close{position:absolute;z-index:4;top:14px;right:14px;width:39px;height:39px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.72);border-radius:50%;background:rgba(255,255,255,.9);color:#252529;cursor:pointer;font-size:1.4rem;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.12)}
+    /* On-demand provider detail. */
+    .provider-dialog{width:min(740px,calc(100% - 28px));max-width:740px;max-height:min(90vh,880px);padding:0;overflow:hidden;border:0;border-radius:22px;background:#fff;color:var(--ink);box-shadow:0 24px 100px rgba(0,0,0,.28)}
+    .provider-dialog::backdrop{background:rgba(12,12,14,.5);backdrop-filter:blur(5px)}
+    .dialog-panel{max-height:min(90vh,880px);overflow:auto}
+    .dialog-close{position:absolute;z-index:4;top:13px;right:13px;width:38px;height:38px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.76);border-radius:50%;background:rgba(255,255,255,.92);color:#252529;cursor:pointer;font-size:1.4rem;line-height:1;box-shadow:0 3px 12px rgba(0,0,0,.12)}
     .dialog-close:hover{background:#fff}
-    .profile-media{position:relative;height:315px;overflow:hidden;background:#e5e5e8}
+    .profile-media{position:relative;height:300px;overflow:hidden;background:#e8e7e3}
     .profile-media img{width:100%;height:100%;object-fit:cover}
     .profile-media .no-photo{height:100%}
-    .profile-content{padding:27px clamp(22px,5vw,42px) 34px}
+    .profile-content{padding:25px clamp(21px,5vw,40px) 32px}
     .profile-categories{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
-    .profile-content h2{margin:0;font-size:clamp(1.8rem,4vw,2.55rem);font-weight:670;letter-spacing:-.06em;line-height:1.06}
-    .profile-location{display:flex;align-items:center;gap:7px;margin:11px 0 0;color:var(--muted);font-size:.86rem}
-    .profile-summary{margin:21px 0 0;color:#4b4b52;font-size:.97rem;line-height:1.7}
-    .source-status{display:inline-flex;align-items:center;gap:8px;margin:21px 0 0;padding:8px 11px;border-radius:999px;background:var(--green-soft);color:#21633d;font-size:.73rem;font-weight:600}
-    .source-status i{width:7px;height:7px;border-radius:50%;background:#279253}
-    .profile-facts-title{margin:24px 0 10px;font-size:.98rem;font-weight:650;letter-spacing:-.02em}
+    .profile-content h2{margin:0;font-size:clamp(1.75rem,4vw,2.45rem);font-weight:660;letter-spacing:-.06em;line-height:1.06}
+    .profile-location{display:flex;align-items:center;gap:7px;margin:10px 0 0;color:var(--muted);font-size:.83rem}
+    .profile-summary{margin:19px 0 0;color:#4d4d53;font-size:.94rem;line-height:1.7}
+    .source-status{display:inline-flex;align-items:center;gap:8px;margin:19px 0 0;padding:7px 10px;border-radius:999px;background:#eff5ef;color:#356343;font-size:.71rem;font-weight:600}
+    .source-status i{width:7px;height:7px;border-radius:50%;background:#448453}
+    .profile-facts-title{margin:22px 0 10px;font-size:.96rem;font-weight:650;letter-spacing:-.02em}
     .profile-facts{display:grid;gap:8px;padding:0;margin:0;list-style:none}
-    .profile-facts li{position:relative;padding-left:19px;color:#45454c;font-size:.87rem;line-height:1.55}
-    .profile-facts li::before{content:"";position:absolute;left:1px;top:.62em;width:6px;height:6px;border-radius:50%;background:var(--blue)}
-    .profile-pricing{margin:19px 0 0;padding:13px 15px;border:1px solid #d9e9f9;border-radius:14px;background:#f1f7ff;color:#194d7d;font-size:.83rem;line-height:1.55}
-    .profile-pricing strong{display:block;margin-bottom:4px;color:#173e62;font-size:.78rem}
-    .profile-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft)}
-    .profile-favorite{min-height:43px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:#55555c;cursor:pointer;font-size:.82rem;font-weight:600}
-    .profile-favorite:hover{background:#f9f9fa}
-    .profile-favorite.is-favorite{border-color:#efc8d0;background:#fff2f4;color:#b82b44}
-    .profile-credits{margin:19px 0 0;color:var(--muted);font-size:.72rem;line-height:1.55}
+    .profile-facts li{position:relative;padding-left:18px;color:#45454b;font-size:.84rem;line-height:1.55}
+    .profile-facts li::before{content:"";position:absolute;left:1px;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+    .profile-pricing{margin:18px 0 0;padding:12px 14px;border:1px solid #e7dfd2;border-radius:12px;background:#faf7f1;color:#5d4930;font-size:.81rem;line-height:1.55}
+    .profile-pricing strong{display:block;margin-bottom:4px;color:#4c3a24;font-size:.76rem}
+    .profile-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:0 15px;border:1px solid #d9d8d4;border-radius:999px;background:#fff;color:var(--ink);font-size:.78rem;font-weight:600;transition:background .18s,border-color .18s}
+    .btn:hover{border-color:#aaa8a1;background:#f7f6f3}
+    .profile-credits{margin:17px 0 0;color:var(--muted);font-size:.7rem;line-height:1.55}
     .profile-credits a{color:var(--blue);text-decoration:underline;text-underline-offset:2px}
-    .profile-disclaimer{margin:13px 0 0;color:#77777e;font-size:.72rem;line-height:1.55}
-    .toast{position:fixed;z-index:100;left:50%;bottom:24px;max-width:calc(100% - 32px);padding:12px 17px;border-radius:999px;background:#252529;color:#fff;font-size:.82rem;box-shadow:0 10px 32px rgba(0,0,0,.2);opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:opacity .2s,transform .2s}
+    .profile-disclaimer{margin:12px 0 0;color:#77777d;font-size:.7rem;line-height:1.55}
+    .toast{position:fixed;z-index:100;left:50%;bottom:22px;max-width:calc(100% - 32px);padding:11px 16px;border-radius:999px;background:#252529;color:#fff;font-size:.8rem;box-shadow:0 10px 32px rgba(0,0,0,.2);opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:opacity .2s,transform .2s}
     .toast.is-visible{opacity:1;transform:translate(-50%,0)}
 
-    @media (max-width:1050px){
-      :root{--container:min(100% - 42px,1220px)}
-      .main-nav{gap:16px}
-      .main-nav a{font-size:.77rem}
+    @media (max-width:1000px){
+      :root{--container:min(100% - 42px,1180px)}
+      .header-inner{gap:24px}
+      .main-nav{gap:22px}
       .provider-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .category-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .hero h1{font-size:clamp(4.5rem,11.6vw,8rem)}
-      .hero-region-mark{right:20px}
-      .tools-grid{gap:14px}
-      .tool-card{padding:22px}
+      .hero h1{font-size:clamp(4.2rem,11vw,7.2rem)}
     }
-    @media (max-width:780px){
+    @media (max-width:700px){
       :root{--container:calc(100% - 34px)}
-      html{scroll-padding-top:76px}
-      .site-header{height:64px}
+      html{scroll-padding-top:72px}
+      .site-header{height:66px}
       .header-inner{gap:12px}
-      .brand-mark{width:31px;height:31px;border-radius:10px}
-      .brand-copy strong{font-size:.82rem}
-      .brand-copy small{font-size:.58rem}
-      .main-nav{position:absolute;display:none;top:63px;left:0;right:0;margin:0;padding:12px 17px 17px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.97);backdrop-filter:blur(18px);box-shadow:0 12px 22px rgba(0,0,0,.07)}
-      .main-nav.is-open{display:grid;grid-template-columns:1fr 1fr;gap:2px 10px}
-      .main-nav a{padding:11px 9px;border-radius:9px;font-size:.83rem}
-      .main-nav a:hover{background:var(--paper)}
-      .site-header:not(.is-scrolled) .main-nav{border-bottom-color:rgba(255,255,255,.18);background:rgba(20,20,22,.97)}
-      .site-header:not(.is-scrolled) .main-nav a{color:#fff}
-      .site-header:not(.is-scrolled) .main-nav a:hover{background:rgba(255,255,255,.12);color:#fff}
-      .header-actions{margin-left:auto;gap:7px}
-      .favorite-jump{min-height:36px;padding:0 9px}
-      .favorite-jump .favorite-label{display:none}
-      .menu-toggle{display:block}
-      .hero{min-height:100svh;padding:88px 0 72px}
-      .hero-inner{min-height:calc(100svh - 160px);align-items:center}
-      .hero-copy{padding:32px 0 48px}
-      .hero h1{font-size:clamp(3.5rem,12.5vw,6.7rem);max-width:760px}
-      .hero-lead{margin-top:19px;font-size:.98rem}
-      .hero-actions{margin-top:23px}
-      .hero-facts{margin-top:21px;font-size:.72rem}
-      .hero-backdrop img{object-position:59% center}
-      .hero-caption{right:17px;bottom:15px;max-width:calc(100% - 34px);font-size:.64rem}
-      .hero-region-mark{display:none}
-      .directory-note{margin:-6px 0 17px;padding:13px 14px;font-size:.78rem}
-      .truth-strip-inner{justify-content:flex-start;gap:12px 22px;min-height:0;padding:15px 0}
-      .truth-item{font-size:.76rem}
-      .section{padding:76px 0}
-      .discover-section{padding-top:72px}
-      .section-heading{display:block;margin-bottom:26px}
-      .section-heading h2{font-size:clamp(2.2rem,9vw,3.2rem)}
-      .section-heading p{margin-top:15px}
-      .search-panel{grid-template-columns:1fr 1fr;gap:11px;padding:13px;border-radius:17px}
-      .search-field-wrap{grid-column:1/-1}
-      .filter-reset{align-self:end;text-align:left}
-      .category-chips{flex-wrap:nowrap;overflow-x:auto;padding:1px 0 5px;margin:17px -17px 17px;padding-left:17px;padding-right:17px;scrollbar-width:thin}
+      .brand{gap:9px}
+      .brand-mark{font-size:1.8rem}
+      .brand-copy strong{font-size:.79rem}
+      .brand-copy small{font-size:.56rem}
+      .main-nav{gap:15px}
+      .main-nav a{font-size:.71rem}
+      .hero{min-height:100svh;padding:85px 0 70px}
+      .hero-inner{min-height:calc(100svh - 155px)}
+      .hero-copy{padding:32px 0 45px}
+      .hero .eyebrow{margin-bottom:18px;font-size:.61rem;letter-spacing:.1em}
+      .hero h1{font-size:clamp(3.35rem,12vw,5.8rem)}
+      .hero-search{margin-top:29px}
+      .hero-search input{min-height:52px;padding-left:43px;font-size:.87rem}
+      .hero-search-field svg{left:14px;width:18px;height:18px}
+      .hero-search button{min-height:52px;padding:0 15px;font-size:.78rem}
+      .hero-caption{right:17px;bottom:15px;max-width:calc(100% - 34px);font-size:.62rem}
+      .discover-section{padding:69px 0 78px}
+      .section-heading{display:block;margin-bottom:21px}
+      .section-heading h2{font-size:clamp(2.15rem,8.8vw,3rem)}
+      .section-heading p{margin-top:12px;font-size:.84rem}
+      .directory-note{margin-bottom:17px;font-size:.74rem}
+      .search-panel{align-items:end;gap:12px;padding:14px 0}
+      .field{min-width:0;flex:1}
+      .field label{font-size:.69rem}
+      .field select{font-size:.76rem}
+      .filter-reset{font-size:.74rem}
+      .category-chips{flex-wrap:nowrap;overflow-x:auto;padding:17px 0 16px;scrollbar-width:thin}
+      .category-chip{min-height:34px;padding:0 11px;font-size:.71rem}
       .results-bar{align-items:flex-end}
-      .sort-wrap{font-size:.68rem}
-      .sort-wrap select{max-width:135px;font-size:.74rem}
+      .sort-wrap{font-size:.69rem}
+      .sort-wrap select{max-width:128px;font-size:.72rem}
       .provider-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-      .card-media{height:190px}
-      .card-content{padding:15px 14px 14px}
-      .provider-card h3{font-size:1.1rem}
-      .card-summary{min-height:80px;font-size:.79rem}
-      .card-actions{gap:7px;align-items:flex-start}
-      .card-open{font-size:.76rem}
-      .card-site{font-size:.71rem}
-      .category-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-      .category-tile{min-height:100px;padding:13px;gap:10px}
-      .category-index{width:34px;height:34px;border-radius:12px}
-      .category-tile-copy strong{font-size:.79rem}
-      .category-tile-copy small{font-size:.68rem}
-      .inspiration-grid{grid-template-columns:1fr 1fr;gap:11px}
-      .inspiration-card:last-child{grid-column:1/-1}
-      .inspiration-photo{height:210px}
-      .inspiration-card:last-child .inspiration-photo{height:230px}
-      .inspiration-copy{padding:14px}
-      .inspiration-copy h3{font-size:1rem}
-      .tools-grid{grid-template-columns:1fr}
-      .tool-card{padding:19px}
-      .budget-lines{gap:6px 10px}
-      .transparency-inner{grid-template-columns:1fr;gap:17px}
-      .transparency-points{gap:12px}
-      .transparency-point{font-size:.72rem}
-      .footer-inner{gap:20px}
+      .card-media{height:174px}
+      .card-content{padding:14px 13px 13px}
+      .provider-card h3{font-size:1.03rem}
+      .card-summary{min-height:82px;font-size:.76rem}
+      .card-actions{align-items:flex-start;gap:7px}
+      .card-open{font-size:.72rem}
+      .card-site{font-size:.67rem}
+      .search-prompt,.empty-state{min-height:170px;padding:25px 18px}
+      .footer-inner{gap:18px}
+      .footer-links{gap:13px}
     }
-    @media (max-width:460px){
+    @media (max-width:440px){
       :root{--container:calc(100% - 28px)}
-      .brand-copy small{letter-spacing:.01em}
-      .favorite-jump{width:36px;justify-content:center;padding:0}
-      .favorite-count{position:absolute;transform:translate(14px,-12px);min-width:16px;height:16px;font-size:.61rem}
-      .menu-toggle{width:36px;height:36px;padding:8px}
-      .hero h1{font-size:clamp(3.25rem,13vw,4.7rem)}
-      .hero-actions .btn{width:100%}
-      .hero-facts{align-items:flex-start;line-height:1.5}
-      .hero-caption{align-items:flex-start;flex-direction:column}
-      .truth-strip-inner{display:grid;grid-template-columns:1fr 1fr}
-      .truth-item{align-items:flex-start;font-size:.72rem}
-      .search-panel{grid-template-columns:1fr;gap:10px}
-      .search-field-wrap{grid-column:auto}
-      .filter-reset{justify-self:start;min-height:36px;padding:0 9px}
+      .brand-copy small{display:none}
+      .main-nav{gap:12px}
+      .main-nav a{font-size:.68rem}
+      .hero h1{font-size:clamp(3rem,12.5vw,4.4rem)}
+      .hero-search{gap:4px;padding:5px;border-radius:12px}
+      .hero-search input{min-height:48px;padding-right:5px;padding-left:39px;font-size:.8rem}
+      .hero-search-field svg{left:12px;width:17px;height:17px}
+      .hero-search button{min-height:48px;gap:6px;padding:0 11px;font-size:.72rem}
+      .search-panel{align-items:flex-end}
+      .filter-reset{align-self:flex-end;max-width:72px;white-space:normal;line-height:1.25;text-align:right}
       .results-bar{align-items:flex-start;flex-direction:column;gap:8px}
       .provider-grid{grid-template-columns:1fr}
-      .card-media{height:235px}
+      .card-media{height:225px}
       .card-summary{min-height:0}
-      .category-grid{grid-template-columns:1fr 1fr}
-      .category-tile{align-items:flex-start;flex-direction:column;min-height:112px;gap:9px}
-      .category-tile-arrow{position:absolute;right:13px;top:12px}
-      .inspiration-grid{grid-template-columns:1fr}
-      .inspiration-card:last-child{grid-column:auto}
-      .inspiration-photo,.inspiration-card:last-child .inspiration-photo{height:250px}
-      .budget-total-row{grid-template-columns:1fr;gap:9px}
-      .budget-summary{align-items:flex-start;text-align:left}
-      .budget-lines{grid-template-columns:1fr}
-      .budget-line input{width:120px}
-      .transparency-points{grid-template-columns:1fr}
-      .provider-dialog{width:calc(100% - 14px);max-height:94vh;border-radius:20px}
+      .card-content{padding:15px}
+      .provider-card h3{font-size:1.12rem}
+      .card-actions{align-items:center}
+      .card-open{font-size:.79rem}
+      .card-site{font-size:.73rem}
+      .provider-dialog{width:calc(100% - 14px);max-height:94vh;border-radius:18px}
       .dialog-panel{max-height:94vh}
-      .profile-media{height:240px}
-      .profile-actions .btn,.profile-actions .profile-favorite{flex:1}
-      .footer-links{gap:10px 14px}
+      .profile-media{height:225px}
+      .profile-content{padding:22px 19px 27px}
+      .profile-actions .btn{flex:1}
+      .footer-bottom{font-size:.64rem}
     }
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
@@ -426,23 +267,13 @@
   <header class="site-header">
     <div class="header-inner">
       <a class="brand" href="#top" aria-label="Mon Mariage Idéal, accueil">
-        <span class="brand-mark" aria-hidden="true">m.</span>
-        <span class="brand-copy"><strong>mon mariage idéal</strong><small>carnet d’adresses sourcées</small></span>
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span class="brand-copy"><strong>mon mariage idéal</strong><small>Lille · Flandres · Belgique</small></span>
       </a>
-      <nav class="main-nav" id="siteNav" aria-label="Navigation principale">
-        <a href="#prestataires">Prestataires</a>
-        <a href="#territoires">Territoires</a>
-        <a href="#categories">Métiers</a>
-        <a href="#inspirations">Inspirations</a>
-        <a href="#outils">Budget &amp; checklist</a>
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="#prestataires">Annuaire</a>
+        <a href="#metiers">Métiers</a>
       </nav>
-      <div class="header-actions">
-        <button class="favorite-jump" id="jumpFavorites" type="button" aria-label="Aller à mes favoris">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 8.8c0 5.2-8.5 11-8.5 11s-8.5-5.8-8.5-11a4.5 4.5 0 0 1 8.5-1.5 4.5 4.5 0 0 1 8.5 1.5Z"/></svg>
-          <span class="favorite-label">Favoris</span><span class="favorite-count" id="favoriteCount">0</span>
-        </button>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="siteNav"><span></span><span></span></button>
-      </div>
     </div>
   </header>
 
@@ -453,47 +284,33 @@
       </figure>
       <div class="hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow">Le carnet d’adresses mariage · Hauts-de-France &amp; Belgique</p>
-          <h1 id="heroTitle">Le mariage<br><span>sans frontières.</span></h1>
-          <p class="hero-lead">Les professionnels du mariage de Lille Métropole aux Flandres, jusqu’à la frontière franco-belge. Des fiches reliées à leurs sources publiques, sans tarifs, avis ni promesses inventés.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#prestataires">Explorer les prestataires <span aria-hidden="true">→</span></a>
-            <a class="btn btn--quiet" href="#outils">Préparer mon mariage</a>
-          </div>
-          <div class="hero-facts" id="directoryFacts" role="group" aria-label="Périmètre et principes du guide">
-            <strong>Un annuaire de proximité</strong><span class="dot">·</span><span>Lille Métropole</span><span class="dot">·</span><span>Flandres</span><span class="dot">·</span><span>France ↔ Belgique</span>
-          </div>
+          <p class="eyebrow">Lille Métropole · Flandres · France–Belgique</p>
+          <h1 id="heroTitle">Le bon prestataire.<br><span>Pour le grand jour.</span></h1>
+          <form class="hero-search" id="heroSearchForm" role="search">
+            <div class="hero-search-field">
+              <label class="sr-only" for="searchInput">Métier, prestataire ou lieu recherché</label>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg>
+              <input id="searchInput" type="search" autocomplete="off" placeholder="Métier, nom, ville…">
+            </div>
+            <button type="submit">Rechercher <span aria-hidden="true">→</span></button>
+          </form>
         </div>
       </div>
-      <span class="hero-region-mark" aria-hidden="true">Lille · Flandres · frontière franco-belge</span>
       <div class="hero-caption"><span>Photographie publiée par Atelier Coqlico</span><a href="https://ateliercoqlico.fr/" target="_blank" rel="noopener noreferrer">Source officielle ↗</a></div>
     </section>
 
-    <section class="truth-strip" id="territoires" aria-label="Périmètre de l’annuaire et engagements de transparence">
-      <div class="truth-strip-inner">
-        <div class="truth-item"><span class="truth-icon" aria-hidden="true">↔</span><span><strong>Lille Métropole</strong> et environs</span></div>
-        <div class="truth-item"><span class="truth-icon" aria-hidden="true">✳</span><span><strong>Flandre française</strong> &amp; Flandre belge</span></div>
-        <div class="truth-item"><span class="truth-icon" aria-hidden="true">✓</span><span><strong>Sources officielles</strong> pour chaque fiche</span></div>
-        <div class="truth-item"><span class="truth-icon" aria-hidden="true">✓</span><span><strong>Tarifs et avis</strong> jamais inventés</span></div>
-      </div>
-    </section>
-
-    <section class="section discover-section" id="prestataires" aria-labelledby="providersTitle">
+    <section class="discover-section" id="prestataires" aria-labelledby="providersTitle">
       <div class="container">
         <div class="section-heading">
-          <div><p class="eyebrow">L’annuaire local, en clair</p><h2 id="providersTitle">Les professionnels,<br><em>des deux côtés de la frontière.</em></h2></div>
-          <p>Recherchez par nom, métier ou lieu. Les territoires affichés reprennent les zones publiées par chaque professionnel ; ils ne garantissent ni sa disponibilité ni un déplacement donné.</p>
+          <div><p class="eyebrow">L’annuaire local</p><h2 id="providersTitle">Des adresses à découvrir.<br><span>Sans rien inventer.</span></h2></div>
+          <p>Lille Métropole, les Flandres et le bassin transfrontalier France–Belgique. Chaque fiche s’appuie sur une source publique et cette sélection n’est pas exhaustive.</p>
         </div>
-        <p class="directory-note"><strong>Un répertoire en expansion.</strong> Les fiches sont ajoutées au fil des vérifications de sources publiques. Cette sélection n’est pas présentée comme exhaustive.</p>
-        <div class="search-panel" role="search">
-          <div class="field search-field-wrap">
-            <label for="searchInput">Rechercher dans les fiches</label>
-            <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="searchInput" type="search" autocomplete="off" placeholder="Ex. traiteur, Lille, alliances…"></div>
-          </div>
+        <p class="directory-note"><strong>À vous de choisir le point de départ :</strong> recherchez un métier, un nom ou une ville, puis affinez par territoire ou catégorie. Les fiches s’affichent uniquement après une recherche ou un filtre.</p>
+        <div class="search-panel" id="metiers">
           <div class="field">
-            <label for="zoneFilter">Territoire concerné</label>
+            <label for="zoneFilter">Filtrer par territoire</label>
             <select id="zoneFilter">
-              <option value="all">Tout le périmètre</option>
+              <option value="all">Tous les territoires</option>
               <option value="lille-metropole">Lille Métropole</option>
               <option value="flandre-francaise">Flandre française</option>
               <option value="flandre-belge">Flandre belge</option>
@@ -502,8 +319,8 @@
           </div>
           <button class="filter-reset" id="resetFilters" type="button">Effacer les filtres</button>
         </div>
-        <div class="category-chips" id="categoryChips" role="group" aria-label="Filtrer par catégorie"></div>
-        <div class="results-bar">
+        <div class="category-chips" id="categoryChips" role="group" aria-label="Filtrer par métier"></div>
+        <div class="results-bar" id="resultsBar" hidden>
           <p class="results-count" id="resultsCount" aria-live="polite"></p>
           <label class="sort-wrap">Trier
             <select id="sortSelect"><option value="name">Nom A–Z</option><option value="category">Catégorie</option><option value="location">Lieu</option></select>
@@ -512,86 +329,15 @@
         <div class="provider-grid" id="providerGrid" aria-live="polite"></div>
       </div>
     </section>
-
-    <section class="section category-overview" id="categories" aria-labelledby="categoriesTitle">
-      <div class="container">
-        <div class="section-heading">
-          <div><p class="eyebrow">Les métiers du mariage</p><h2 id="categoriesTitle">Une catégorie,<br><em>un point de départ.</em></h2></div>
-          <p>Chaque tuile applique un filtre réel au carnet. Certains professionnels apparaissent dans plusieurs catégories quand leurs sites publient plusieurs activités.</p>
-        </div>
-        <div class="category-grid" id="categoryGrid"></div>
-      </div>
-    </section>
-
-    <section class="section" id="inspirations" aria-labelledby="inspirationTitle">
-      <div class="container">
-        <div class="section-heading">
-          <div><p class="eyebrow">Inspirations sourcées</p><h2 id="inspirationTitle">Des images de portfolios.<br><em>Pas de faux moodboards.</em></h2></div>
-          <p>Quelques aperçus publiés par les professionnels du carnet. Ouvrez leur fiche pour retrouver les services et la page d’origine.</p>
-        </div>
-        <div class="inspiration-grid" id="inspirationGrid"></div>
-        <p class="portfolio-note">Les visuels sont issus des pages officielles indiquées et restent la propriété de leurs auteurs. Les engagements ou caractéristiques décrits par les professionnels sont attribués à leurs propres sites.</p>
-      </div>
-    </section>
-
-    <section class="section tools-section" id="outils" aria-labelledby="toolsTitle">
-      <div class="container">
-        <div class="section-heading">
-          <div><p class="eyebrow">Vos outils, vos chiffres</p><h2 id="toolsTitle">Organiser sans<br><em>chiffres préfabriqués.</em></h2></div>
-          <p>Le budget ne contient aucun tarif moyen : saisissez votre enveloppe et vos propres montants. La checklist est modifiable et enregistrée sur cet appareil.</p>
-        </div>
-        <div class="tools-grid">
-          <section class="tool-card" aria-labelledby="budgetTitle">
-            <div class="tool-card-head"><div><h3 id="budgetTitle">Mon budget</h3><p>Ajoutez les montants de vos devis ou de vos estimations personnelles.</p></div><span class="tool-icon" aria-hidden="true">€</span></div>
-            <div class="budget-total-row">
-              <div><label for="budgetTotal">Mon enveloppe totale</label><input class="budget-total-input" id="budgetTotal" type="number" min="0" step="100" inputmode="numeric" placeholder="Ex. 20 000"></div>
-              <div class="budget-summary" id="budgetSummary"><strong id="budgetRemaining">—</strong><small id="budgetSummaryLabel">à répartir</small></div>
-            </div>
-            <p class="budget-hint">Montants prévus par catégorie — ils restent à zéro tant que vous ne les renseignez pas.</p>
-            <div class="budget-lines" id="budgetLines"></div>
-            <div class="budget-footer"><div><strong id="budgetAllocated">0 € répartis</strong><br><span id="budgetTotalLabel">Aucune enveloppe saisie</span></div><button class="tool-reset" id="resetBudget" type="button">Réinitialiser</button></div>
-          </section>
-          <section class="tool-card" aria-labelledby="checklistTitle">
-            <div class="tool-card-head"><div><h3 id="checklistTitle">Ma checklist</h3><p>Une base légère, à cocher, compléter ou adapter à votre journée.</p></div><span class="tool-icon" aria-hidden="true">✓</span></div>
-            <div class="check-progress"><progress class="progress-track" id="progressBar" max="100" value="0" aria-label="Progression de la checklist">0%</progress><span class="progress-label" id="progressLabel">0 terminée</span></div>
-            <form class="task-form" id="taskForm"><label class="sr-only" for="taskInput">Ajouter une tâche</label><input class="task-input" id="taskInput" type="text" maxlength="120" placeholder="Ajouter une tâche personnelle…"><button class="task-add" type="submit" aria-label="Ajouter la tâche">+</button></form>
-            <ul class="task-list" id="taskList"></ul>
-            <div class="budget-footer"><span>Cette checklist est personnelle et modifiable.</span><button class="tool-reset" id="resetChecklist" type="button">Tout réinitialiser</button></div>
-          </section>
-        </div>
-        <p class="local-storage-note">Vos favoris, votre budget et votre checklist sont conservés localement dans ce navigateur. Ils ne sont pas envoyés à un serveur.</p>
-      </div>
-    </section>
-
-    <section class="section favorites-section" id="favoris" aria-labelledby="favoritesTitle">
-      <div class="container">
-        <div class="section-heading">
-          <div><p class="eyebrow">Votre sélection personnelle</p><h2 id="favoritesTitle">Les adresses<br><em>à garder près de vous.</em></h2></div>
-          <p>Ajoutez un cœur sur une fiche. Vos favoris restent privés et stockés uniquement dans ce navigateur.</p>
-        </div>
-        <div class="provider-grid" id="favoritesGrid"></div>
-      </div>
-    </section>
-
-    <section class="transparency" aria-labelledby="transparencyTitle">
-      <div class="container transparency-inner">
-        <div><h2 id="transparencyTitle">Le réel avant le décor.</h2><p>Un annuaire utile ne promet pas ce qu’il ne peut pas vérifier.</p></div>
-        <div class="transparency-points">
-          <div class="transparency-point"><strong>Sources visibles</strong>Un lien officiel accompagne chaque fiche.</div>
-          <div class="transparency-point"><strong>Informations sobres</strong>Aucun avis, note ou créneau inventé.</div>
-          <div class="transparency-point"><strong>Contact direct</strong>Confirmez prix, dates et zone avec le professionnel.</div>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-inner">
         <div><div class="footer-brand">mon mariage idéal</div><p>Un annuaire local en cours d’enrichissement, consacré à Lille Métropole, aux Flandres et au bassin transfrontalier France–Belgique. Chaque fiche renvoie à une source publique ; la sélection n’est pas exhaustive et la présence d’une fiche ne garantit pas une disponibilité.</p></div>
-        <div class="footer-links"><a href="#prestataires">Prestataires</a><a href="#territoires">Territoires</a><a href="#outils">Budget &amp; checklist</a><a href="#top">Retour en haut ↑</a></div>
+        <div class="footer-links"><a href="#prestataires">Annuaire</a><a href="#metiers">Métiers</a><a href="#top">Retour en haut ↑</a></div>
       </div>
-      <div class="footer-bottom"><span>Les tarifs et prestations peuvent évoluer : vérifiez toujours auprès du professionnel.</span><span>Photos : droits réservés à leurs auteurs et sources respectives.</span></div>
+      <div class="footer-bottom"><span>Confirmez prestations, tarifs et disponibilités auprès du professionnel.</span><span>Photos : droits réservés à leurs auteurs et sources respectives.</span></div>
     </div>
   </footer>
 
@@ -1151,53 +897,11 @@
         }
       ];
 
-      const INSPIRATIONS = [
-        { providerId: 'suzette-simone', eyebrow: 'Portfolio · organisation', title: 'Un mariage en mouvement', image: 'assets/suzette-simone.jpg', alt: 'Mariés à la sortie d’une cérémonie, photo du portfolio de Suzette & Simone' },
-        { providerId: 'studio-paupiette', eyebrow: 'Portfolio · fleurs', title: 'Une composition de table', image: 'assets/studio-paupiette.jpg', alt: 'Composition florale de table issue du portfolio de Studio Paupiette' },
-        { providerId: 'atelier-merigond', eyebrow: 'Portfolio · papeterie', title: 'Le détail imprimé', image: 'assets/atelier-merigond.jpg', alt: 'Papeterie de mariage issue du portfolio de l’Atelier Mérigond' }
-      ];
-
-      const BUDGET_CATEGORIES = [
-        'Lieu de réception', 'Traiteur', 'Photographe', 'Vidéaste', 'Wedding planner',
-        'Fleuriste', 'Tenues', 'DJ & animation', 'Musique & musiciens',
-        'Maquillage & coiffure', 'Papeterie', 'Alliances', 'Décoration & location',
-        'Photobooth', 'Officiant de cérémonie', 'Autre'
-      ];
-
-      const BASE_TASKS = [
-        { id: 'date-guests', text: 'Définir la date et la première liste d’invités' },
-        { id: 'budget-envelope', text: 'Fixer une enveloppe de départ' },
-        { id: 'venue', text: 'Repérer un lieu et confirmer sa capacité' },
-        { id: 'contacts', text: 'Contacter les professionnels retenus' },
-        { id: 'ceremony', text: 'Préparer le déroulé de la cérémonie et de la journée' },
-        { id: 'paperwork', text: 'Lister les démarches administratives à vérifier' }
-      ];
-
       const $ = (selector, root = document) => root.querySelector(selector);
-      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
       const providerById = id => PROVIDERS.find(provider => provider.id === id);
       const normalize = value => String(value ?? '').toLocaleLowerCase('fr').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
       const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
-      const formatMoney = value => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(Math.max(0, Number(value) || 0));
-      const safeRead = (key, fallback) => {
-        try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); }
-        catch { return fallback; }
-      };
-      const safeWrite = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { toast('Le navigateur ne permet pas d’enregistrer ces données.'); } };
-
-      const storedFavorites = safeRead('mmi-favorites-v2', []);
-      const storedChecks = safeRead('mmi-checks-v2', []);
-      const storedCustomTasks = safeRead('mmi-custom-tasks-v2', []);
-      const state = {
-        query: '', category: 'all', zone: 'all', sort: 'name', activeProvider: null,
-        favorites: new Set((Array.isArray(storedFavorites) ? storedFavorites : []).filter(id => providerById(id))),
-        budget: safeRead('mmi-budget-v2', { total: '', lines: {} }),
-        done: new Set(Array.isArray(storedChecks) ? storedChecks : []),
-        customTasks: Array.isArray(storedCustomTasks) ? storedCustomTasks : []
-      };
-      if (!state.budget || typeof state.budget !== 'object') state.budget = { total: '', lines: {} };
-      if (!state.budget.lines || typeof state.budget.lines !== 'object') state.budget.lines = {};
-      if (!Array.isArray(state.customTasks)) state.customTasks = [];
+      const state = { query: '', category: 'all', zone: 'all', sort: 'name', activeProvider: null };
 
       let toastTimer;
       function toast(message) {
@@ -1206,32 +910,17 @@
         el.textContent = message;
         el.classList.add('is-visible');
         clearTimeout(toastTimer);
-        toastTimer = setTimeout(() => el.classList.remove('is-visible'), 2200);
-      }
-
-      function categoryCount(category) {
-        return PROVIDERS.filter(provider => provider.categories.includes(category)).length;
+        toastTimer = setTimeout(() => el.classList.remove('is-visible'), 2300);
       }
 
       function renderCategoryChips() {
-        const container = $('#categoryChips');
-        const chips = [{ name: 'Tout voir', value: 'all' }, ...CATEGORIES.map(name => ({ name, value: name }))];
-        container.innerHTML = chips.map(chip => `<button class="category-chip ${state.category === chip.value ? 'is-active' : ''}" type="button" data-category-filter="${escapeHTML(chip.value)}" aria-pressed="${state.category === chip.value}">${escapeHTML(chip.name)}</button>`).join('');
+        $('#categoryChips').innerHTML = CATEGORIES.map(category => `<button class="category-chip ${state.category === category ? 'is-active' : ''}" type="button" data-category-filter="${escapeHTML(category)}" aria-pressed="${state.category === category}">${escapeHTML(category)}</button>`).join('');
       }
 
-      function renderCategoryTiles() {
-        $('#categoryGrid').innerHTML = CATEGORIES.map((category, index) => `<button class="category-tile" type="button" data-category-filter="${escapeHTML(category)}" aria-label="Filtrer par ${escapeHTML(category)}"><span class="category-index">${String(index + 1).padStart(2, '0')}</span><span class="category-tile-copy"><strong>${escapeHTML(category)}</strong><small>${categoryCount(category)} profil${categoryCount(category) === 1 ? '' : 's'} affiché${categoryCount(category) === 1 ? '' : 's'}</small></span><span class="category-tile-arrow" aria-hidden="true">→</span></button>`).join('');
-      }
-
-      function isFavorite(id) { return state.favorites.has(id); }
-      function favoriteButton(provider) {
-        const active = isFavorite(provider.id);
-        return `<button class="favorite-toggle ${active ? 'is-favorite' : ''}" type="button" data-favorite="${escapeHTML(provider.id)}" aria-label="${active ? 'Retirer' : 'Ajouter'} ${escapeHTML(provider.name)} ${active ? 'des' : 'aux'} favoris" aria-pressed="${active}"><svg viewBox="0 0 24 24" fill="${active ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.5 8.8c0 5.2-8.5 11-8.5 11s-8.5-5.8-8.5-11a4.5 4.5 0 0 1 8.5-1.5 4.5 4.5 0 0 1 8.5 1.5Z"/></svg></button>`;
-      }
-
-      function renderPhoto(provider, className = '') {
+      function renderPhoto(provider) {
         if (!provider.image) {
-          return `<div class="no-photo ${className}" role="img" aria-label="Aucun visuel de portfolio sélectionné pour ${escapeHTML(provider.name)}"><div><span class="no-photo-mark">${escapeHTML(provider.categories[0].split(' ').map(word => word[0]).join('').slice(0, 2).toUpperCase())}</span><small>Pas de visuel officiel sélectionné</small></div></div>`;
+          const initials = provider.categories[0].split(/\s+/).map(word => word[0]).join('').slice(0, 2).toUpperCase();
+          return `<div class="no-photo" role="img" aria-label="Aucun visuel de portfolio sélectionné pour ${escapeHTML(provider.name)}"><div><span class="no-photo-mark">${escapeHTML(initials)}</span><small>Pas de visuel officiel sélectionné</small></div></div>`;
         }
         const credit = provider.photoSource ? `<a class="photo-source" href="${escapeHTML(provider.photoSource)}" target="_blank" rel="noopener noreferrer" aria-label="Ouvrir la source de la photo de ${escapeHTML(provider.name)}">Photo · source ↗</a>` : '';
         return `<img src="${escapeHTML(provider.image)}" alt="${escapeHTML(provider.imageAlt)}" loading="lazy">${credit}`;
@@ -1241,8 +930,12 @@
         const labels = provider.categories.map(category => `<span class="category-label">${escapeHTML(category)}</span>`).join('');
         const regions = provider.regions.map(region => `<span class="region-label">${escapeHTML(REGION_LABELS[region] || region)}</span>`).join('');
         const price = provider.price ? `<p class="card-price">${escapeHTML(provider.price)}</p>` : '';
+        // profileUrl is optional and provider-specific; sourceUrl always remains the official source.
+        const detailAction = provider.profileUrl
+          ? `<a class="card-open" href="${escapeHTML(provider.profileUrl)}" target="_blank" rel="noopener noreferrer">Profil détaillé <span aria-hidden="true">↗</span></a>`
+          : `<button class="card-open" type="button" data-profile="${escapeHTML(provider.id)}">Voir la fiche <span aria-hidden="true">→</span></button>`;
         return `<article class="provider-card" data-provider-card="${escapeHTML(provider.id)}">
-          <div class="card-media">${renderPhoto(provider)}${favoriteButton(provider)}</div>
+          <div class="card-media">${renderPhoto(provider)}</div>
           <div class="card-content">
             <div class="card-categories">${labels}</div>
             <div class="card-regions" aria-label="Territoires concernés">${regions}</div>
@@ -1250,22 +943,23 @@
             <p class="card-location"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M19 10.2c0 5-7 11-7 11s-7-6-7-11a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.2"/></svg><span>${escapeHTML(provider.location)}</span></p>
             <p class="card-summary">${escapeHTML(provider.summary)}</p>
             ${price}
-            <div class="card-actions"><button class="card-open" type="button" data-profile="${escapeHTML(provider.id)}">Voir la fiche <span aria-hidden="true">→</span></button><a class="card-site" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Site officiel ↗</a></div>
+            <div class="card-actions">${detailAction}<a class="card-site" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Site officiel ↗</a></div>
           </div>
         </article>`;
       }
 
       function filteredProviders() {
-        const query = normalize(state.query);
+        const queryTerms = normalize(state.query).split(' ').filter(Boolean);
         return PROVIDERS.filter(provider => {
           const matchesCategory = state.category === 'all' || provider.categories.includes(state.category);
           const matchesZone = state.zone === 'all' || provider.regions.includes(state.zone);
-          const haystack = normalize([
+          const searchableText = normalize([
             provider.name, provider.location, provider.summary,
             ...provider.categories, ...provider.facts,
             ...provider.regions.map(region => REGION_LABELS[region] || region)
           ].join(' '));
-          return matchesCategory && matchesZone && (!query || haystack.includes(query));
+          const matchesQuery = queryTerms.every(term => searchableText.includes(term));
+          return matchesCategory && matchesZone && matchesQuery;
         }).sort((a, b) => {
           if (state.sort === 'category') return a.categories[0].localeCompare(b.categories[0], 'fr', { sensitivity: 'base' }) || a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
           if (state.sort === 'location') return a.location.localeCompare(b.location, 'fr', { sensitivity: 'base' }) || a.name.localeCompare(b.name, 'fr', { sensitivity: 'base' });
@@ -1274,38 +968,28 @@
       }
 
       function renderProviders() {
+        const grid = $('#providerGrid');
+        const resultsBar = $('#resultsBar');
+        const hasCriteria = Boolean(normalize(state.query)) || state.category !== 'all' || state.zone !== 'all';
+        if (!hasCriteria) {
+          resultsBar.hidden = true;
+          grid.innerHTML = `<div class="search-prompt" role="status"><span class="search-prompt-mark" aria-hidden="true">⌕</span><h3>Commencez par une recherche ou un filtre.</h3><p>Choisissez un métier, un territoire, ou saisissez un nom, une activité ou une ville dans le champ en haut de page.</p></div>`;
+          return;
+        }
         const providers = filteredProviders();
-        $('#resultsCount').innerHTML = `<strong>${providers.length}</strong> fiche${providers.length === 1 ? '' : 's'} sur ${PROVIDERS.length}`;
-        $('#directoryFacts').innerHTML = `<strong>${PROVIDERS.length} fiches sourcées</strong><span class="dot">·</span><span>${CATEGORIES.length} métiers</span><span class="dot">·</span><span>périmètre Lille–Flandres–Belgique</span>`;
-        $('#providerGrid').innerHTML = providers.length ? providers.map(renderProviderCard).join('') : `<div class="empty-state"><h3>Aucune fiche ne correspond.</h3><p>Essayez un autre métier, un autre lieu ou effacez les filtres.</p><button class="btn btn--quiet btn--small" type="button" data-reset-filters>Tout afficher</button></div>`;
-        renderFavoriteCount();
-      }
-
-      function renderFavoriteCount() {
-        $('#favoriteCount').textContent = String(state.favorites.size);
-        $('#favoriteCount').setAttribute('aria-label', `${state.favorites.size} favori${state.favorites.size === 1 ? '' : 's'}`);
-        const favoriteProviders = PROVIDERS.filter(provider => state.favorites.has(provider.id));
-        $('#favoritesGrid').innerHTML = favoriteProviders.length ? favoriteProviders.map(renderProviderCard).join('') : `<div class="favorite-empty"><span class="favorite-empty-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.5 8.8c0 5.2-8.5 11-8.5 11s-8.5-5.8-8.5-11a4.5 4.5 0 0 1 8.5-1.5 4.5 4.5 0 0 1 8.5 1.5Z"/></svg></span><span>Aucune adresse enregistrée pour l’instant. Appuyez sur le cœur d’une fiche pour la retrouver ici.</span></div>`;
-      }
-
-      function renderInspirations() {
-        $('#inspirationGrid').innerHTML = INSPIRATIONS.map(item => {
-          const provider = providerById(item.providerId);
-          return `<article class="inspiration-card">
-            <div class="inspiration-photo"><img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.alt)}" loading="lazy"><a class="photo-source" href="${escapeHTML(provider.photoSource || provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Photo · source ↗</a></div>
-            <div class="inspiration-copy"><small>${escapeHTML(item.eyebrow)}</small><h3>${escapeHTML(item.title)}</h3><button class="text-link" type="button" data-profile="${escapeHTML(provider.id)}">Découvrir ${escapeHTML(provider.name)} <span aria-hidden="true">→</span></button></div>
-          </article>`;
-        }).join('');
+        resultsBar.hidden = false;
+        $('#resultsCount').innerHTML = `<strong>${providers.length}</strong> fiche${providers.length === 1 ? '' : 's'} trouvée${providers.length === 1 ? '' : 's'}`;
+        grid.innerHTML = providers.length
+          ? providers.map(renderProviderCard).join('')
+          : `<div class="empty-state"><h3>Aucune fiche ne correspond.</h3><p>Essayez un autre métier, un autre lieu ou effacez les filtres.</p><button class="filter-reset" type="button" data-reset-filters>Effacer les filtres</button></div>`;
       }
 
       function renderProfile(provider) {
         state.activeProvider = provider.id;
         const media = $('#profileMedia');
-        if (provider.image) {
-          media.innerHTML = `<img src="${escapeHTML(provider.image)}" alt="${escapeHTML(provider.imageAlt)}">`;
-        } else {
-          media.innerHTML = renderPhoto(provider);
-        }
+        media.innerHTML = provider.image
+          ? `<img src="${escapeHTML(provider.image)}" alt="${escapeHTML(provider.imageAlt)}">`
+          : renderPhoto(provider);
         $('#profileCategories').innerHTML = [
           ...provider.categories.map(category => `<span class="category-label">${escapeHTML(category)}</span>`),
           ...provider.regions.map(region => `<span class="region-label">${escapeHTML(REGION_LABELS[region] || region)}</span>`)
@@ -1322,11 +1006,15 @@
           pricing.hidden = true;
           pricing.textContent = '';
         }
-        const contacts = provider.contacts.map(contact => `<a class="btn btn--quiet btn--small" href="${escapeHTML(contact.href)}" ${contact.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHTML(contact.label)}</a>`).join('');
-        const source = `<a class="btn btn--small" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Source publique ↗</a>`;
-        const active = state.favorites.has(provider.id);
-        $('#profileActions').innerHTML = `${source}${contacts}<button class="profile-favorite ${active ? 'is-favorite' : ''}" type="button" id="profileFavorite" data-favorite="${escapeHTML(provider.id)}" aria-pressed="${active}">${active ? '♥ Enregistré' : '♡ Ajouter aux favoris'}</button>`;
-        const photoCredit = provider.photoSource ? `Visuel : <a href="${escapeHTML(provider.photoSource)}" target="_blank" rel="noopener noreferrer">${escapeHTML(provider.photoSourceLabel || 'page source')}</a>. ` : 'Aucun visuel de portfolio n’est repris pour cette fiche. ';
+        const profileLink = provider.profileUrl
+          ? `<a class="btn" href="${escapeHTML(provider.profileUrl)}" target="_blank" rel="noopener noreferrer">Profil détaillé ↗</a>`
+          : '';
+        const officialLink = `<a class="btn" href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">Site officiel ↗</a>`;
+        const contacts = provider.contacts.map(contact => `<a class="btn" href="${escapeHTML(contact.href)}" ${contact.href.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''}>${escapeHTML(contact.label)}</a>`).join('');
+        $('#profileActions').innerHTML = `${profileLink}${officialLink}${contacts}`;
+        const photoCredit = provider.photoSource
+          ? `Visuel : <a href="${escapeHTML(provider.photoSource)}" target="_blank" rel="noopener noreferrer">${escapeHTML(provider.photoSourceLabel || 'page source')}</a>. `
+          : 'Aucun visuel de portfolio n’est repris pour cette fiche. ';
         $('#profileCredits').innerHTML = `Source des informations : <a href="${escapeHTML(provider.sourceUrl)}" target="_blank" rel="noopener noreferrer">page officielle de ${escapeHTML(provider.name)}</a>. ${photoCredit}`;
         const dialog = $('#providerDialog');
         if (!dialog.open) dialog.showModal();
@@ -1341,32 +1029,6 @@
         state.activeProvider = null;
       }
 
-      function toggleFavorite(id) {
-        const provider = providerById(id);
-        if (!provider) return;
-        if (state.favorites.has(id)) {
-          state.favorites.delete(id);
-          toast(`${provider.name} retiré des favoris.`);
-        } else {
-          state.favorites.add(id);
-          toast(`${provider.name} ajouté aux favoris.`);
-        }
-        safeWrite('mmi-favorites-v2', [...state.favorites]);
-        renderProviders();
-        if (state.activeProvider) renderProfileControlsOnly(providerById(state.activeProvider));
-      }
-
-      function renderProfileControlsOnly(provider) {
-        if (!provider) return;
-        const active = state.favorites.has(provider.id);
-        const button = $('#profileFavorite');
-        if (button) {
-          button.classList.toggle('is-favorite', active);
-          button.setAttribute('aria-pressed', String(active));
-          button.textContent = active ? '♥ Enregistré' : '♡ Ajouter aux favoris';
-        }
-      }
-
       function clearFilters() {
         state.query = '';
         state.category = 'all';
@@ -1377,52 +1039,23 @@
         renderProviders();
       }
 
-      function renderBudget() {
-        const totalInput = $('#budgetTotal');
-        const total = Number(state.budget.total) || 0;
-        const allocated = BUDGET_CATEGORIES.reduce((sum, category) => sum + (Number(state.budget.lines[category]) || 0), 0);
-        const remaining = total - allocated;
-        totalInput.value = state.budget.total === '' ? '' : String(state.budget.total);
-        $('#budgetRemaining').textContent = total > 0 ? formatMoney(Math.abs(remaining)) : '—';
-        $('#budgetSummaryLabel').textContent = total > 0 ? (remaining < 0 ? 'au-dessus de l’enveloppe' : 'restant à répartir') : 'saisissez une enveloppe';
-        $('#budgetSummary').classList.toggle('is-over', total > 0 && remaining < 0);
-        $('#budgetAllocated').textContent = `${formatMoney(allocated)} répartis`;
-        $('#budgetTotalLabel').textContent = total > 0 ? `sur ${formatMoney(total)}` : 'Aucune enveloppe saisie';
-        $('#budgetLines').innerHTML = BUDGET_CATEGORIES.map((category, index) => `<div class="budget-line"><label for="budgetLine${index}">${escapeHTML(category)}</label><input id="budgetLine${index}" type="number" min="0" step="50" inputmode="numeric" placeholder="0 €" value="${escapeHTML(state.budget.lines[category] ?? '')}" data-budget-line="${escapeHTML(category)}" aria-label="Montant prévu pour ${escapeHTML(category)}"></div>`).join('');
-      }
-
-      function saveBudget() { safeWrite('mmi-budget-v2', state.budget); }
-
-      function renderTasks() {
-        const tasks = [...BASE_TASKS, ...state.customTasks];
-        const doneCount = tasks.filter(task => state.done.has(task.id)).length;
-        const percent = tasks.length ? Math.round(doneCount / tasks.length * 100) : 0;
-        $('#progressBar').value = percent;
-        $('#progressLabel').textContent = `${doneCount} / ${tasks.length} terminée${doneCount === 1 ? '' : 's'}`;
-        $('#taskList').innerHTML = tasks.map(task => `<li class="task-item ${state.done.has(task.id) ? 'is-done' : ''}"><label><input type="checkbox" data-task-toggle="${escapeHTML(task.id)}" ${state.done.has(task.id) ? 'checked' : ''}><span>${escapeHTML(task.text)}</span></label>${task.custom ? `<button class="task-remove" type="button" data-task-remove="${escapeHTML(task.id)}" aria-label="Supprimer la tâche ${escapeHTML(task.text)}">×</button>` : ''}</li>`).join('');
-      }
-
-      function resetBudget() {
-        state.budget = { total: '', lines: {} };
-        saveBudget();
-        renderBudget();
-        toast('Votre budget a été réinitialisé.');
-      }
-
-      function resetChecklist() {
-        state.done.clear();
-        state.customTasks = [];
-        safeWrite('mmi-checks-v2', []);
-        safeWrite('mmi-custom-tasks-v2', []);
-        renderTasks();
-        toast('Votre checklist a été réinitialisée.');
-      }
-
       function bindEvents() {
         const header = $('.site-header');
         const syncHeaderContrast = () => header.classList.toggle('is-scrolled', window.scrollY > 24);
         window.addEventListener('scroll', syncHeaderContrast, { passive: true });
         syncHeaderContrast();
+
+        $('#heroSearchForm').addEventListener('submit', event => {
+          event.preventDefault();
+          state.query = $('#searchInput').value;
+          if (!normalize(state.query) && state.category === 'all' && state.zone === 'all') {
+            toast('Saisissez un métier, un nom ou une ville pour lancer la recherche.');
+            $('#searchInput').focus();
+            return;
+          }
+          renderProviders();
+          $('#prestataires').scrollIntoView({ behavior: 'smooth' });
+        });
         $('#searchInput').addEventListener('input', event => {
           state.query = event.target.value;
           renderProviders();
@@ -1439,17 +1072,9 @@
         $('#categoryChips').addEventListener('click', event => {
           const chip = event.target.closest('[data-category-filter]');
           if (!chip) return;
-          state.category = chip.dataset.categoryFilter;
+          state.category = state.category === chip.dataset.categoryFilter ? 'all' : chip.dataset.categoryFilter;
           renderCategoryChips();
           renderProviders();
-        });
-        $('#categoryGrid').addEventListener('click', event => {
-          const tile = event.target.closest('[data-category-filter]');
-          if (!tile) return;
-          state.category = tile.dataset.categoryFilter;
-          renderCategoryChips();
-          renderProviders();
-          $('#prestataires').scrollIntoView({ behavior: 'smooth' });
         });
         document.addEventListener('click', event => {
           const profileButton = event.target.closest('[data-profile]');
@@ -1458,14 +1083,8 @@
             if (provider) renderProfile(provider);
             return;
           }
-          const favoriteButtonEl = event.target.closest('[data-favorite]');
-          if (favoriteButtonEl) {
-            toggleFavorite(favoriteButtonEl.dataset.favorite);
-            return;
-          }
           if (event.target.closest('[data-reset-filters]')) clearFilters();
         });
-        $('#jumpFavorites').addEventListener('click', () => $('#favoris').scrollIntoView({ behavior: 'smooth' }));
         $('#dialogClose').addEventListener('click', closeDialog);
         $('#providerDialog').addEventListener('close', () => {
           document.body.classList.remove('dialog-open');
@@ -1474,90 +1093,10 @@
         $('#providerDialog').addEventListener('click', event => {
           if (event.target === $('#providerDialog')) closeDialog();
         });
-        $('#budgetTotal').addEventListener('input', event => {
-          const raw = event.target.value;
-          state.budget.total = raw === '' ? '' : Math.max(0, Number(raw) || 0);
-          saveBudget();
-          const activeId = document.activeElement.id;
-          renderBudget();
-          if (activeId === 'budgetTotal') $('#budgetTotal').focus();
-        });
-        $('#budgetLines').addEventListener('input', event => {
-          const input = event.target.closest('[data-budget-line]');
-          if (!input) return;
-          const value = input.value;
-          state.budget.lines[input.dataset.budgetLine] = value === '' ? '' : Math.max(0, Number(value) || 0);
-          saveBudget();
-          const total = Number(state.budget.total) || 0;
-          const allocated = BUDGET_CATEGORIES.reduce((sum, category) => sum + (Number(state.budget.lines[category]) || 0), 0);
-          const remaining = total - allocated;
-          $('#budgetRemaining').textContent = total > 0 ? formatMoney(Math.abs(remaining)) : '—';
-          $('#budgetSummaryLabel').textContent = total > 0 ? (remaining < 0 ? 'au-dessus de l’enveloppe' : 'restant à répartir') : 'saisissez une enveloppe';
-          $('#budgetSummary').classList.toggle('is-over', total > 0 && remaining < 0);
-          $('#budgetAllocated').textContent = `${formatMoney(allocated)} répartis`;
-          $('#budgetTotalLabel').textContent = total > 0 ? `sur ${formatMoney(total)}` : 'Aucune enveloppe saisie';
-        });
-        $('#resetBudget').addEventListener('click', resetBudget);
-        $('#taskForm').addEventListener('submit', event => {
-          event.preventDefault();
-          const input = $('#taskInput');
-          const text = input.value.trim();
-          if (text.length < 2) { toast('Ajoutez une tâche un peu plus précise.'); input.focus(); return; }
-          const id = `custom-${Date.now()}-${Math.random().toString(16).slice(2, 7)}`;
-          state.customTasks.push({ id, text, custom: true });
-          safeWrite('mmi-custom-tasks-v2', state.customTasks);
-          input.value = '';
-          renderTasks();
-          toast('Tâche ajoutée à votre checklist.');
-        });
-        $('#taskList').addEventListener('change', event => {
-          const checkbox = event.target.closest('[data-task-toggle]');
-          if (!checkbox) return;
-          const id = checkbox.dataset.taskToggle;
-          if (checkbox.checked) state.done.add(id); else state.done.delete(id);
-          safeWrite('mmi-checks-v2', [...state.done]);
-          renderTasks();
-        });
-        $('#taskList').addEventListener('click', event => {
-          const removeButton = event.target.closest('[data-task-remove]');
-          if (!removeButton) return;
-          const id = removeButton.dataset.taskRemove;
-          state.customTasks = state.customTasks.filter(task => task.id !== id);
-          state.done.delete(id);
-          safeWrite('mmi-custom-tasks-v2', state.customTasks);
-          safeWrite('mmi-checks-v2', [...state.done]);
-          renderTasks();
-          toast('Tâche supprimée.');
-        });
-        $('#resetChecklist').addEventListener('click', resetChecklist);
-        $('#menuToggle').addEventListener('click', () => {
-          const nav = $('#siteNav');
-          const isOpen = nav.classList.toggle('is-open');
-          $('#menuToggle').setAttribute('aria-expanded', String(isOpen));
-          $('#menuToggle').setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
-        });
-        $('#siteNav').addEventListener('click', event => {
-          if (event.target.closest('a')) {
-            $('#siteNav').classList.remove('is-open');
-            $('#menuToggle').setAttribute('aria-expanded', 'false');
-            $('#menuToggle').setAttribute('aria-label', 'Ouvrir le menu');
-          }
-        });
-        document.addEventListener('keydown', event => {
-          if (event.key === 'Escape') {
-            const nav = $('#siteNav');
-            nav.classList.remove('is-open');
-            $('#menuToggle').setAttribute('aria-expanded', 'false');
-          }
-        });
       }
 
       renderCategoryChips();
-      renderCategoryTiles();
-      renderInspirations();
       renderProviders();
-      renderBudget();
-      renderTasks();
       bindEvents();
     })();
   </script>
