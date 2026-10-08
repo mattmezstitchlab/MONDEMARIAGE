@@ -75,6 +75,20 @@ Chaque ligne renvoie à une page publique du professionnel ou du lieu. Les descr
 
 ## Images et droits
 
-Les fichiers de `assets/` proviennent des pages officielles indiquées pour Domaine d’Achelles, Fred Laurent, Yanka Traiteur, Studio Paupiette, Aly Production, Elsa Barois, Atelier Coqlico, Suzette & Simone, Laurène Dandois, Atelier Mérigond et Dael & Grau. La grande image du premier écran est le visuel publié par [Atelier Coqlico](https://ateliercoqlico.fr/). Les autres fiches n’affichent pas de photo empruntée : un visuel neutre signale qu’aucune image de portfolio n’a été sélectionnée.
+Les fichiers de `assets/` proviennent des pages officielles indiquées pour Domaine d’Achelles, Fred Laurent, Yanka Traiteur, Studio Paupiette, Aly Production, Elsa Barois, Atelier Coqlico, Suzette & Simone, Laurène Dandois, Atelier Mérigond et Dael & Grau. La grande image du premier écran est le visuel publié par [Atelier Coqlico](https://ateliercoqlico.fr/). Une fiche qui possède sa propre photo affiche cette image de portfolio. Pour les autres, la vignette ronde est une photo réelle, sourcée, issue d’un autre portfolio déjà référencé ; elle porte le badge « VISUEL MÉTIER », ouvre sa source au clic, et la fiche détaillée précise qu’elle ne représente pas le prestataire affiché. Aucun portrait, portfolio, professionnel ou fait n’est inventé.
 
-La présence d’une image sur le site source ne constitue pas une autorisation de réutilisation. Les fichiers restent la propriété de leurs auteurs ou ayants droit. Avant toute mise en production publique ou commerciale, obtenir leur accord écrit ou remplacer les photos par des visuels sous licence. Le crédit visible ne remplace pas une permission.
+| Catégorie illustrée (si aucune photo individuelle) | Portfolio source de la photo d’ambiance |
+|---|---|
+| Lieu de réception, DJ & animation | Domaine d’Achelles |
+| Photographe, photobooth | Fred Laurent |
+| Vidéaste | Aly Production |
+| Traiteur | Yanka Traiteur |
+| Wedding planner, musique & musiciens, officiant de cérémonie | Suzette & Simone |
+| Fleuriste, décoration & location | Studio Paupiette |
+| Robe de mariée | Elsa Barois |
+| Costume | Atelier Coqlico |
+| Maquillage & coiffure | Laurène Dandois |
+| Papeterie | Atelier Mérigond |
+| Alliances | Dael & Grau |
+
+La règle d’association est tenue dans `CATEGORY_VISUALS` dans `index.html` ; les sources détaillées des portfolios figurent dans le tableau ci-dessus. La présence d’une image sur le site source ne constitue pas une autorisation de réutilisation. Les fichiers restent la propriété de leurs auteurs ou ayants droit. Avant toute mise en production publique ou commerciale, obtenir leur accord écrit ou remplacer les photos par des visuels sous licence. Le crédit visible ne remplace pas une permission.
